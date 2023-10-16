@@ -1,10 +1,17 @@
-import { Text } from 'react-native';
-import styled, { css } from 'styled-components/native';
+import { View, Image } from 'react-native';
+import styled from 'styled-components/native';
 
-export const StyledHeading = styled(Text)<{ color?: string }>`
-  ${({ theme, color }) => css`
-    font-size: 32px;
-    margin-bottom: 24px;
-    color: ${color || `${theme.colors.black}`};
-  `}
+export const Wrapper = styled(View)`
+  width: 80px;
+  height: 80px;
+  margin-top: 48px;
+  border-bottom-right-radius: 40px;
+  border-top-right-radius: 40px;
+  border-top-left-radius: 40px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Lines_Esq = styled(Image)`
+  position: absolute; 
 `;
