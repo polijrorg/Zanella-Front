@@ -1,35 +1,12 @@
 import { theme } from '@styles/default.theme';
-import { TouchableOpacity, Text, View, Image } from 'react-native';
+import { TouchableOpacity, Text, View, Image, ImageBackground } from 'react-native';
 import styled from 'styled-components/native';
 
 
 export const Wrapper = styled(View)`
   flex: 1;
   align-items: center;
-  justify-content: center;
-  background: ${ theme.colors.primary.BgTela };
-`;
-
-export const Container = styled(View)`
-  align-items: center;
-  justify-content: center;
-  background: ${ theme.colors.primary.BgTela };
-`;
-
-export const Lines_Sup_Esq = styled(Image)`
-  top: -23%;
-  left: -90%;
-  position: absolute;
-  width: 740px;
-  height: 532px;
-`;
-
-export const Lines_Sup_Dir = styled(Image)`
-  top: -25%;
-  right: -60%;
-  position: absolute;
-  width: 728px;
-  height: 532px;
+  justify-content: center; 
 `;
 
 export const Title = styled(Text)`

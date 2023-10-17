@@ -11,7 +11,7 @@ import { UserContext } from '@utils/UserContext';
 
 const Cadastro_I = (props) => {
 
-  const { setName, setAge, setParental} = useContext(UserContext);
+  const context = useContext(UserContext);
   
   const [userName, setUserName] = useState("");
   const [userAge, setUserAge] = useState("");
@@ -21,12 +21,10 @@ const Cadastro_I = (props) => {
     props.navigation.navigate('login');
   };
 
-  function handleCadastroii() {
-    console.log("antes");
-    setName(userName);
-    setAge(userAge);
-    setParental(userParental);
-    console.log("depois");
+  const handleCadastroii = () => {
+    context.setName(userName);
+    context.setAge(userAge);
+    context.setParental(userParental);
     props.navigation.navigate('cadastroii');
   };
 
@@ -34,11 +32,6 @@ const Cadastro_I = (props) => {
 
   return(
   <S.Wrapper>
-    <S.Lines_Sup_Esq source={require('../../../public/assets/Lines_Sup_Es.png')}/>
-    <S.Lines_Sup_Dir source={require('../../../public/assets/Lines_Sup_Dir.png')}/>
-    <S.Lines_Inf_Esq source={require('../../../public/assets/Lines_Inf_Es.png')}/>
-    <S.Lines_Inf_Dir source={require('../../../public/assets/Lines_Inf_Dir.png')}/>
-    <StatusBar style="dark" />
     <S.Title>ComTato</S.Title>
    
 

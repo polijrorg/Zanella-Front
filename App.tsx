@@ -1,7 +1,9 @@
 import AppProvider from '@hooks/index';
 import React from 'react';
-import { useFonts, Poppins_600SemiBold } from '@expo-google-fonts/poppins';
+import { useFonts } from '@expo-google-fonts/poppins';
 import { Rotas } from './src/routes';
+import { Image } from 'react-native';
+import { UserContextProvider } from '@utils/UserContext';
 export default function App() {
 
   const [fontsLoaded] = useFonts({
@@ -9,7 +11,7 @@ export default function App() {
     PoppinsLight: require('./public/fonts/Poppins-Light.ttf'),
     PoppinsMedium: require('./public/fonts/Poppins-Medium.ttf'),
     Poppins: require('./public/fonts/Poppins-Regular.ttf'),
-    PoppinsSemiBold: require('./public/fonts/PoppinsSemiBold.ttf')
+    PoppinsSemiBold: require('./public/fonts/Poppins-SemiBold.ttf'),
   });
 
   if (!fontsLoaded) {
@@ -18,7 +20,9 @@ export default function App() {
 
   return (
     <AppProvider>
-      <Rotas />
+      <UserContextProvider>
+        <Rotas />
+      </UserContextProvider>
     </AppProvider>
   );
 }

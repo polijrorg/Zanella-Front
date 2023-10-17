@@ -70,5 +70,8 @@
     "husky": "^8.0.1",
     "typescript": "^5.1.3"
   },
-  "private": true
+  "private": true,
+  "repository": "https://github.com/polijrorg/Zanella-Front.git",
+  "author": "LTeoS <danteo.lira@polijunior.com.br>",
+  "license": "MIT"
 }

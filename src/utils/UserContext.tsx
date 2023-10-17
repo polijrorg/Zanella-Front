@@ -39,9 +39,8 @@ export const UserContextProvider = ({
   }, [name, age, parental, phone,  email,  password]);
 
   return (
-    <View></View>
-    //<UserContextProvider.Provider value={{ name, setName, age, setAge, parental, setParental, phone, setPhone, email, setEmail, password, setPassword }}>
-    //  {children}
-    //</UserContextProvider.Provider>
-    );
+    <UserContext.Provider value={{ name, setName, age, setAge, parental, setParental, phone, setPhone, email, setEmail, password, setPassword }}>
+      {children} 
+    </UserContext.Provider>
+    )
 };

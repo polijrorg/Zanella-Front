@@ -6,11 +6,14 @@ export function Rotas() {
 
   return (
     <S.View_Back>
-      <NavigationContainer>
-        <AppRoutes />
-      </NavigationContainer>
+      <S.Background source={require('@assets/Background.png')}>
+        <S.Status />
+        <NavigationContainer>
+          <AppRoutes />
+        </NavigationContainer>
+      </S.Background>
     </S.View_Back>
-);
+  );
 };
 
 export default Rotas;

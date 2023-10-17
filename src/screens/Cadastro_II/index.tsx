@@ -11,7 +11,7 @@ import { TouchableOpacity } from 'react-native';
 
 const Cadastro_II = ({navigation}) => {
 
-  const {name,  age,  parental } = useContext(UserContext);
+  const { name,  age,  parental } = useContext(UserContext);
   const [userPhone, setUserPhone] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
@@ -39,12 +39,7 @@ const Cadastro_II = ({navigation}) => {
   return(
     
   <S.Wrapper>
-    <S.Lines_Sup_Esq source={require('../../../public/assets/Lines_Sup_Es.png')}/>
-    <S.Lines_Sup_Dir source={require('../../../public/assets/Lines_Sup_Dir.png')}/>
-    <StatusBar style="dark" />
     <S.Title>ComTato</S.Title>
-    <S.Lines_Inf_Esq source={require('../../../public/assets/Lines_Inf_Es.png')}/>
-    <S.Lines_Inf_Dir source={require('../../../public/assets/Lines_Inf_Dir.png')}/>
 
     <S.Container>
       <Nelson_Ballon/>

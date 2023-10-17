@@ -10,13 +10,14 @@ import Forum from '@screens/Forum';
 import Perfil from '@screens/Perfil';
 import Interesses from '@screens/Interesses';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import * as S from './styles';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
 export function AppRoutes(){
   return (
-    <Navigator initialRouteName='login' screenOptions={{headerShown: false}}>
-      <Screen name="login" component={Login} />
+    <Navigator initialRouteName='login' screenOptions={{ headerShown: false, contentStyle: { backgroundColor: 'transparent'} }}>
+      <Screen name="login" component={Login}/>
       <Screen name="cadastroi" component={Cadastro_I} />
       <Screen name="cadastroii" component={Cadastro_II} />
       <Screen name="main" component={Main} />

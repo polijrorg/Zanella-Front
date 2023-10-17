@@ -7,23 +7,6 @@ export const Wrapper = styled(View)`
   flex: 1;
   align-items: center;
   justify-content: center;
-  background: ${ theme.colors.primary.BgTela };
-`;
-
-export const Lines_Sup_Esq = styled(Image)`
-  top: -28%;
-  left: -80%;
-  position: absolute;
-  width: 740px;
-  height: 532px;
-`;
-
-export const Lines_Sup_Dir = styled(Image)`
-  top: -29%;
-  right: -60%;
-  position: absolute;
-  width: 728px;
-  height: 532px;
 `;
 
 export const Title = styled(Text)`
