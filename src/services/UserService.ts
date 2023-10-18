@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import User from '@interfaces/User';
 
 
-import api from './api';
+import { api } from './api';
 
 interface ILoginRequest {
     email: string;
@@ -19,7 +19,7 @@ interface ILoginResponse {
 export default class UserService {
     static async login(data: ILoginRequest): Promise<ILoginResponse> {
         const response: AxiosResponse<ILoginResponse> = await api.post(
-            '/session/login',
+            '/users/authenticate',
             data
         );
 

@@ -2,7 +2,7 @@ import { theme } from '@styles/default.theme';
 import { TouchableOpacity, Text, View } from 'react-native';
 import styled from 'styled-components/native';
 
-export const Wrapper = styled(View)`
+export const Wrapper = styled(TouchableOpacity)`
   width: 80%;
   height: 48px;
   border-radius: 24px;
