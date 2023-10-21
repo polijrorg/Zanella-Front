@@ -1,5 +1,5 @@
 import { theme } from '@styles/default.theme';
-import { Text, View, SafeAreaView, Image } from 'react-native';
+import { Text, View, TouchableOpacity, Image } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Wrapper = styled(View)`
@@ -7,7 +7,7 @@ export const Wrapper = styled(View)`
   align-items: center;
   justify-content: flex-start;
   gap: 24px;
-  padding-top: 120px; 
+  padding-top: 90px; 
   background-color: ${theme.colors.primary.White};
 `;
 
@@ -38,4 +38,15 @@ export const AttributesWrapper = styled(View)`
   padding: 0 16px;
   gap: 4px;
 `
-
+export const LogoutButtonWrapper = styled(View)`
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 0 16px;
+  width: 100%;
+`
+export const LogoutButton = styled(TouchableOpacity)`
+`
+export const LogoutIcon= styled(Image)`
+  width: 32px;
+  height: 32px;
+`

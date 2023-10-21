@@ -1,14 +1,17 @@
 import * as S from './styles';
-import React, { useEffect, ReducerState, ReducerAction, useReducer } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import NavBar from '@components/NavBar_Perfil';
 import HeadBar from '@components/Nelson_Question';
+import Modal from '@components/Modal'
 import { api } from '@services/api';
 import User from '@interfaces/User';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
+
 
 const Perfil = ({navigation}) => {
+
+  const [modal, setModal] = useState(false);
 
   const getUser = async(): Promise<User> => {
     try {
@@ -67,13 +70,30 @@ const Perfil = ({navigation}) => {
 
   const [SynchronizedUser, updateUser] = useReducer((prev, next) => {
     return { ...prev, ...next };
-
   }, {});
   
+  const Logout = async () => {
+    try {
+      await AsyncStorage.removeItem('@app:token');
+      await AsyncStorage.removeItem('@app:userId');
+      navigation.navigate('login')
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
       <S.Wrapper>
         <HeadBar Profilename={SynchronizedUser.name}/>
+        
+        <S.LogoutButtonWrapper>
+          <S.LogoutButton onPress={() => setModal(true)}>
+            <S.LogoutIcon source={require('@assets/LogoutIcon.png')}/>
+          </S.LogoutButton>
+        </S.LogoutButtonWrapper>
+
+        <Modal visible={modal} onRequestClose={() => setModal(false)} onConfirm={Logout} />
+
         <S.ImageGroup>
           <S.NelsonImage source={require('@assets/JabutiNelson_Esq.png')} />
           <S.UserName>{SynchronizedUser.name}</S.UserName>

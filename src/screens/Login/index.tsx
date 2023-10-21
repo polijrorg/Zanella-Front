@@ -45,7 +45,7 @@ export function Login(props) {
         <S.Cadastrar>Cadastre-se</S.Cadastrar>
         </S.Wrapper_Cadastro>
       </S.Wrapper_Info>
-      <Button text='ENTRAR' onPress={signIn} />
+      <Button text='ENTRAR' onPress={signIn} style='solido' />
     </S.Wrapper>
   )
 };

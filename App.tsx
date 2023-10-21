@@ -7,11 +7,11 @@ import { UserContextProvider } from '@utils/UserContext';
 export default function App() {
 
   const [fontsLoaded] = useFonts({
-    PoppinsExtraLight: require('./public/fonts/Poppins-ExtraLight.ttf'),
-    PoppinsLight: require('./public/fonts/Poppins-Light.ttf'),
-    PoppinsMedium: require('./public/fonts/Poppins-Medium.ttf'),
-    Poppins: require('./public/fonts/Poppins-Regular.ttf'),
-    PoppinsSemiBold: require('./public/fonts/Poppins-SemiBold.ttf'),
+    "PoppinsExtraLight": require('./public/fonts/Poppins-ExtraLight.ttf'),
+    "PoppinsLight": require('./public/fonts/Poppins-Light.ttf'),
+    "PoppinsMedium": require('./public/fonts/Poppins-Medium.ttf'),
+    "Poppins": require('./public/fonts/Poppins-Regular.ttf'),
+    "PoppinsSemiBold": require('./public/fonts/PoppinsSemiBold.ttf'),
   });
 
   if (!fontsLoaded) {

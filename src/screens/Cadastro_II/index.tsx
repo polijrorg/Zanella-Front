@@ -64,9 +64,7 @@ const Cadastro_II = ({navigation}) => {
           value={userPassword}
           onChangeText={(value) => setUserPassword(value)}/>
       </S.Wrapper_Input>
-      <TouchableOpacity onPress={signUp}>
-        <Button text='CADASTRAR' />
-      </TouchableOpacity>
+      <Button text='CADASTRAR' onPress={signUp} style='solido'/>
     </S.Container>
     
   </S.Wrapper>
