@@ -6,7 +6,6 @@ import NavBar from '@components/NavBar_Home';
 const Main = () => (
   
   <S.Wrapper>
-    <StatusBar style="dark" />
     <S.Wrapper_Talk>
       <S.Talk>Oi Zanella! Estou aqui se quiser ajuda!</S.Talk>
     </S.Wrapper_Talk>

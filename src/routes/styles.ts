@@ -1,5 +1,5 @@
 import { theme } from '@styles/default.theme';
-import { ImageBackground, SafeAreaView, StatusBar, View } from 'react-native';
+import { ImageBackground, SafeAreaView, StatusBar } from 'react-native';
 import styled from 'styled-components';
 
 export const View_Back = styled(SafeAreaView)`

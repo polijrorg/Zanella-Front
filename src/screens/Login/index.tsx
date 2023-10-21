@@ -26,7 +26,7 @@ export function Login(props) {
     catch (error) {
       console.log(error);
     }
-    // props.navigation.navigate('home');
+    props.navigation.navigate('main');
   }
 
   return (
@@ -45,7 +45,7 @@ export function Login(props) {
         <S.Cadastrar>Cadastre-se</S.Cadastrar>
         </S.Wrapper_Cadastro>
       </S.Wrapper_Info>
-      <Button text='ENTRAR' onPress={signIn} />
+      <Button text='ENTRAR' onPress={signIn} style='solido' size='regular' />
     </S.Wrapper>
   )
 };

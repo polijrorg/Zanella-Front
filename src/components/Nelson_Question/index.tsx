@@ -10,7 +10,6 @@ const Nelson_Question: React.FC<TestProps> = ({Profilename}) => (
     <S.Nelson source={require('../../../public/assets/JabutiNelson_Dir.png')}/>
     <S.Wrapper_Name>Como você está hoje, <S.Wrapper_Name>{Profilename}</S.Wrapper_Name>?<S.Wrapper_Name></S.Wrapper_Name>
     </S.Wrapper_Name>
-  
   </S.Wrapper>
 );
 
