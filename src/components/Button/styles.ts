@@ -3,7 +3,7 @@ import { TouchableOpacity, Text } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Wrapper = styled(TouchableOpacity)<{ style: string, size: string }>`
-  width: ${(props) => props.size === 'small' ? '128px' : '80%' };
+  width: ${(props) => props.size === 'small' ? '128px' : props.size === 'big' ? '100%' : '80%' };
   height: 48px;
   border-radius: 24px;
   color: ${(props) => props.style === 'solido' ? theme.colors.primary.White : theme.colors.primary.BgSólidoHover };

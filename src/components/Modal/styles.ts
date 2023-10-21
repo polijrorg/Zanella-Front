@@ -8,9 +8,9 @@ export const Container = styled(View)`
   flex: 1;
   align-items: center;
   justify-content: center;
-  blur-radius: 10px;
   background-color: #FFFFFF50};
 `
+
 export const ModalContent = styled(View)`
   width: 320px;
   height: 152px;
@@ -19,7 +19,7 @@ export const ModalContent = styled(View)`
   padding: 0px 16px;
   background-color: ${ theme.colors.primary.BgSutil };
   border-radius: ${ theme.borderRadius.rounded };
-  elevation: 3;
+  elevation: ${ theme.shadow.threeDP };
 `
 
 export const ButtonsWrapper = styled(View)`
