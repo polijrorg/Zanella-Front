@@ -38,7 +38,13 @@ export const theme = {
       surface: '#FFFFFF',
       divider: '#E6EAED',
       background: '#FAFAFA'
-  }
-
-  
+  },
+    fontSizes: {
+        subtitle: '16px',
+        body: '12px',
+    },
+    fontWeights: {
+        subtitle: 'bold',
+        body: 'regular'
+    }
 };

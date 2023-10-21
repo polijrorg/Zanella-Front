@@ -26,7 +26,7 @@ export function Login(props) {
     catch (error) {
       console.log(error);
     }
-    // props.navigation.navigate('home');
+    props.navigation.navigate('main');
   }
 
   return (
