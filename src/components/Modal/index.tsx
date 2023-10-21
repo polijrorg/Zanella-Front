@@ -8,7 +8,7 @@ interface ModalProps {
   onConfirm(): void;
 }
 
-const Modal : React.FC = ({ visible, onRequestClose, onConfirm }: ModalProps) => {
+const Modal : React.FC<ModalProps> = ({ visible, onRequestClose, onConfirm }) => {
   return (
     <S.ModalWrapper
       animationType='fade'
