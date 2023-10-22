@@ -38,8 +38,8 @@ export const theme = {
     background: '#FAFAFA'
   },
   fontSizes: {
-    subtitle: '16px',
-    body: '14px',
+    subtitle: '18px',
+    body: '16px',
   },
   fontWeights: {
     subtitle: 'bold',
@@ -47,5 +47,8 @@ export const theme = {
   },              
   borderRadius: {
     rounded: '16px',
+  },
+  shadow: {
+    threeDP: '5',
   }
 };

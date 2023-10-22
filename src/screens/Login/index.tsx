@@ -22,11 +22,11 @@ export function Login(props) {
     try {
       const response = await UserService.login({ email, password });
       console.log(response);
+      props.navigation.navigate('main');
     }
     catch (error) {
       console.log(error);
     }
-    props.navigation.navigate('main');
   }
 
   return (

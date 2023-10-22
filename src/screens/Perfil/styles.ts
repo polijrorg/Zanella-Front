@@ -50,3 +50,28 @@ export const LogoutIcon= styled(Image)`
   width: 32px;
   height: 32px;
 `
+export const TitleWrapper = styled(View)`
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`
+export const InfoText = styled(Text)`
+  color: ${theme.colors.primary.TextoHigh};
+  font-size: ${theme.fontSizes.body};
+  font-weight: ${theme.fontWeights.body};
+`
+export const ButtonGroup = styled(TouchableOpacity)`
+  flex-direction: row;
+  align-items: center;
+`
+
+export const EditIcon = styled(Image)`
+  width: 20px;
+  height: 20px;
+`
+export const EditText = styled(Text)`
+  color: ${theme.colors.primary.TextoHigh};
+  font-size: ${theme.fontSizes.body};
+  font-weight: ${theme.fontWeights.body};
+`

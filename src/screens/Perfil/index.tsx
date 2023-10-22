@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import NavBar from '@components/NavBar_Perfil';
 import HeadBar from '@components/Nelson_Question';
 import Modal from '@components/Modal'
+import UpdateModal from '@components/UpdateModal';
 import { api } from '@services/api';
 import User from '@interfaces/User';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -12,6 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Perfil = ({navigation}) => {
 
   const [modal, setModal] = useState(false);
+  const [updateModal, setUpdateModal] = useState(false);
 
   const getUser = async(): Promise<User> => {
     const user: User = {
@@ -28,32 +30,6 @@ const Perfil = ({navigation}) => {
     return user;
   }
 
-  const update = async (user: User): Promise<User> => {
-    try {
-      const response = await api.patch('/users/', user);
-      
-      await AsyncStorage.setItem('@app:userName', response.data.name);
-      await AsyncStorage.setItem('@app:userAge', response.data.age);
-      await AsyncStorage.setItem('@app:userRole', response.data.parental_role);
-      await AsyncStorage.setItem('@app:userDescription', response.data.description || "null");
-      await AsyncStorage.setItem('@app:userPhone', response.data.phone || "null");
-      await AsyncStorage.setItem('@app:userEmail', response.data.email);
-
-      const updatedUser: User = {
-        name: response.data.name,
-        age: response.data.age,
-        parental_role: response.data.parental_role,
-        description: response.data.description,
-        phone: response.data.phone,
-        email: response.data.email,
-      };
-
-      return updatedUser;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   useEffect(() => {
     const synchronizeUser = async () => {
       const responseUser = await getUser();
@@ -61,7 +37,7 @@ const Perfil = ({navigation}) => {
       updateUser(responseUser);
     }
     synchronizeUser();
-  }, [])
+  }, [AsyncStorage, []])
   
 
   const [SynchronizedUser, updateUser] = useReducer((prev, next) => {
@@ -89,13 +65,23 @@ const Perfil = ({navigation}) => {
         </S.LogoutButtonWrapper>
 
         <Modal visible={modal} onRequestClose={() => setModal(false)} onConfirm={Logout} />
+        <UpdateModal visible={updateModal} onRequestClose={() => setUpdateModal(false)} />
 
         <S.ImageGroup>
           <S.NelsonImage source={require('@assets/JabutiNelson_Esq.png')} />
           <S.UserName>{SynchronizedUser.name}</S.UserName>
         </S.ImageGroup>
+
         <S.AttributesWrapper>
-          <S.Attribute>{'Informações'}</S.Attribute>
+        
+          <S.TitleWrapper>
+            <S.InfoText>{'Informações'}</S.InfoText>
+            <S.ButtonGroup onPress={() => setUpdateModal(true)}>
+              <S.EditIcon source={require("@assets/EditIcon.png")}/>
+              <S.EditText>{'EDITAR'}</S.EditText>
+            </S.ButtonGroup>
+          </S.TitleWrapper>
+        
           <S.Attribute>{`Idade: ${SynchronizedUser.age}`}</S.Attribute>
           <S.Attribute>{`Grau de parentesco: ${SynchronizedUser.parental_role}`}</S.Attribute>
           <S.Attribute>{`Breve descrição: ${SynchronizedUser.description}`}</S.Attribute>
