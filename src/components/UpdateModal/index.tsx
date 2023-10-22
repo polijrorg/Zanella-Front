@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './styles';
-import UpdateAttribute from '@components/UpdateAttribute';
 import Button from '@components/Button';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { api } from '@services/api';
@@ -44,7 +43,8 @@ const UpdateModal: React.FC<ModalProps> = ({ visible, onRequestClose }) => {
         email: response.data.email,
       };
 
-      console.log(updatedUser);
+      console.log('apiResponse', updatedUser);
+      console.log('asyncStorage', await AsyncStorage.getItem('@app:userEmail'));
       return updatedUser;
     } catch (error) {
       console.log(error);
@@ -73,10 +73,20 @@ const UpdateModal: React.FC<ModalProps> = ({ visible, onRequestClose }) => {
 
   useEffect((): any => {
     const asArray = Object.entries(user);
-    const filtered = asArray.filter(([key, value]) => value !== '');
+    const filtered = asArray.filter(([key, value]) => value != '');
     const requestUser = Object.fromEntries(filtered) as User;
 
+    console.log('userFilter', requestUser);
     update(requestUser)
+    
+    setName('');
+    setAge('');
+    setParentalRole('');
+    setDescription('');
+    setEmail('');
+    setPhone('');
+    setPassword('');
+
   }, [toggle])
 
   return (
@@ -114,7 +124,7 @@ const UpdateModal: React.FC<ModalProps> = ({ visible, onRequestClose }) => {
             )
           })}
         </S.AtributtesWrapper>
-        <Button onPress={() => {setToggle(!toggle)}} text='CONFIRMAR' size='big' style='solido' />
+        <Button onPress={() => {setToggle(!toggle); onRequestClose()}} text='CONFIRMAR' size='big' style='solido' />
         </S.ModalContent>
       </S.Container>
 

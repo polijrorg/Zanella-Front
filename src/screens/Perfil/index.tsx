@@ -37,7 +37,7 @@ const Perfil = ({navigation}) => {
       updateUser(responseUser);
     }
     synchronizeUser();
-  }, [])
+  }, [AsyncStorage, []])
   
 
   const [SynchronizedUser, updateUser] = useReducer((prev, next) => {
