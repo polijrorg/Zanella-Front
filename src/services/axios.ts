@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 const getApi = async () => {
-  const token = await AsyncStorage.getItem('@zanella:token');
+  const token = await AsyncStorage.getItem('@app:token');
 
   const api = axios.create({
     baseURL: 'http://zanella.polijrinternal.com/',

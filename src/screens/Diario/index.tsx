@@ -8,7 +8,6 @@ import HeadBar from '@components/Nelson_Question';
 const Diario = ({navigation}) => (
   
   <S.Wrapper>
-    <StatusBar style="dark" />
     <HeadBar Profilename={'Zanella'} />
     <NavBar />
   </S.Wrapper>

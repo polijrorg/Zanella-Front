@@ -4,6 +4,7 @@ import { useFonts } from '@expo-google-fonts/poppins';
 import { Rotas } from './src/routes';
 import { Image } from 'react-native';
 import { UserContextProvider } from '@utils/UserContext';
+import { AuthProvider } from '@hooks/useAuth';
 export default function App() {
 
   const [fontsLoaded] = useFonts({
@@ -20,9 +21,11 @@ export default function App() {
 
   return (
     <AppProvider>
-      <UserContextProvider>
-        <Rotas />
-      </UserContextProvider>
+      <AuthProvider>
+        <UserContextProvider>
+          <Rotas />
+        </UserContextProvider>
+      </AuthProvider>
     </AppProvider>
   );
 }
