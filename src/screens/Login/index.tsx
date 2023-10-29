@@ -4,29 +4,20 @@ import React from 'react';
 import Nelson_Ballon from '@components/Nelson_Balloon';
 import Button from '@components/Button';
 import Input from '@components/Input';
-import { api } from '@services/api';
-import { useNavigation } from '@react-navigation/native';
-import { Text } from 'react-native';
-import UserService from '@services/UserService';
+import useAuth from '@hooks/useAuth';
 
-export function Login(props) {
+export function Login({ navigation }) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const { signIn } = useAuth();
 
 
-  function handleCadastre() {
-      props.navigation.navigate('cadastroi');
+  const handleCadastre = () => {
+    navigation.navigate('cadastroi');
   };
 
-  const signIn = async () => {
-    try {
-      const response = await UserService.login({ email, password });
-      console.log(response);
-      props.navigation.navigate('main');
-    }
-    catch (error) {
-      console.log(error);
-    }
+  const handleSignIn = async () => {
+    await signIn({ email, password });
   }
 
   return (
@@ -45,7 +36,7 @@ export function Login(props) {
         <S.Cadastrar>Cadastre-se</S.Cadastrar>
         </S.Wrapper_Cadastro>
       </S.Wrapper_Info>
-      <Button text='ENTRAR' onPress={signIn} style='solido' size='regular' />
+      <Button text='ENTRAR' onPress={handleSignIn} style='solido' size='regular' />
     </S.Wrapper>
   )
 };

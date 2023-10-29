@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "my-app5",
-    "slug": "my-app5",
+    "name": "Zanella",
+    "slug": "Zanella",
+    "scheme": "Zanella",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"

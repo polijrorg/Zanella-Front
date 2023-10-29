@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import Button from '@components/Button';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { api } from '@services/api';
-import User from '@interfaces/User';
+import useAuth from '@hooks/useAuth';
+import { IUpdateRequest } from '@services/UserService';
 
 interface ModalProps {
   visible: boolean;
@@ -19,37 +18,7 @@ const UpdateModal: React.FC<ModalProps> = ({ visible, onRequestClose }) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
-  const [toggle, setToggle] = useState(false);
-
-  const update = async (user: User): Promise<User> => {
-    try {
-      const response = await api.patch('/users/update', user, {
-        headers: { Authorization: `Bearer ${await AsyncStorage.getItem('@app:token')}` }
-      });
-      
-      await AsyncStorage.setItem('@app:userName', response.data.name);
-      await AsyncStorage.setItem('@app:userAge', response.data.age);
-      await AsyncStorage.setItem('@app:userRole', response.data.parental_role);
-      await AsyncStorage.setItem('@app:userDescription', response.data.description || "null");
-      await AsyncStorage.setItem('@app:userPhone', response.data.phone || "null");
-      await AsyncStorage.setItem('@app:userEmail', response.data.email);
-
-      const updatedUser: User = {
-        name: response.data.name,
-        age: response.data.age,
-        parental_role: response.data.parental_role,
-        description: response.data.description,
-        phone: response.data.phone,
-        email: response.data.email,
-      };
-
-      console.log('apiResponse', updatedUser);
-      console.log('asyncStorage', await AsyncStorage.getItem('@app:userEmail'));
-      return updatedUser;
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  const { update } = useAuth();
 
   const atributtes = [
     "Nome",
@@ -61,7 +30,7 @@ const UpdateModal: React.FC<ModalProps> = ({ visible, onRequestClose }) => {
     "Senha",
   ]
   
-  const user: User = {
+  const user: IUpdateRequest = {
     name, 
     age, 
     parental_role: parentalRole,
@@ -71,12 +40,17 @@ const UpdateModal: React.FC<ModalProps> = ({ visible, onRequestClose }) => {
     password,
   }
 
-  useEffect((): any => {
+  const updateUser = () => {
     const asArray = Object.entries(user);
     const filtered = asArray.filter(([key, value]) => value != '');
-    const requestUser = Object.fromEntries(filtered) as User;
+  
+    if (filtered.length === 0) {
+      alert('Preencha ao menos um campo');
+      return;
+    };
 
-    console.log('userFilter', requestUser);
+    const requestUser = Object.fromEntries(filtered) as IUpdateRequest;
+
     update(requestUser)
     
     setName('');
@@ -87,7 +61,8 @@ const UpdateModal: React.FC<ModalProps> = ({ visible, onRequestClose }) => {
     setPhone('');
     setPassword('');
 
-  }, [toggle])
+    onRequestClose();
+  }
 
   return (
     <S.ModalWrapper
@@ -124,7 +99,7 @@ const UpdateModal: React.FC<ModalProps> = ({ visible, onRequestClose }) => {
             )
           })}
         </S.AtributtesWrapper>
-        <Button onPress={() => {setToggle(!toggle); onRequestClose()}} text='CONFIRMAR' size='big' style='solido' />
+        <Button onPress={() => updateUser()} text='CONFIRMAR' size='big' style='solido' />
         </S.ModalContent>
       </S.Container>
 

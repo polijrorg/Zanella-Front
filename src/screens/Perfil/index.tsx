@@ -1,62 +1,36 @@
 import * as S from './styles';
 import React, { useEffect, useState, useReducer } from 'react';
-import { StatusBar } from 'expo-status-bar';
 import NavBar from '@components/NavBar_Perfil';
 import HeadBar from '@components/Nelson_Question';
 import Modal from '@components/Modal'
 import UpdateModal from '@components/UpdateModal';
-import { api } from '@services/api';
-import User from '@interfaces/User';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import useAuth from '@hooks/useAuth';
 
 
-const Perfil = ({navigation}) => {
+const Perfil = () => {
 
   const [modal, setModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
-
-  const getUser = async(): Promise<User> => {
-    const user: User = {
-      id: await AsyncStorage.getItem('@app:userId'),
-      name: await AsyncStorage.getItem('@app:userName'),
-      age: await AsyncStorage.getItem('@app:userAge'),
-      parental_role: await AsyncStorage.getItem('@app:userRole'),
-      description: await AsyncStorage.getItem('@app:userDescription'),
-      phone: await AsyncStorage.getItem('@app:userPhone'),
-      email: await AsyncStorage.getItem('@app:userEmail'),
-      topics: await AsyncStorage.getItem('@app:topics'),
-    }
-
-    return user;
-  }
+  const { signOut, user } = useAuth();
 
   useEffect(() => {
     const synchronizeUser = async () => {
-      const responseUser = await getUser();
+      const responseUser = JSON.parse(await AsyncStorage.getItem('@app:user'));
 
       updateUser(responseUser);
     }
     synchronizeUser();
-  }, [AsyncStorage, []])
+  }, [user])
   
 
-  const [SynchronizedUser, updateUser] = useReducer((prev, next) => {
+  const [synchronizedUser, updateUser] = useReducer((prev, next) => {
     return { ...prev, ...next };
   }, {});
-  
-  const Logout = async () => {
-    try {
-      await AsyncStorage.removeItem('@app:token');
-      await AsyncStorage.removeItem('@app:userId');
-      navigation.navigate('login')
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   return (
       <S.Wrapper>
-        <HeadBar Profilename={SynchronizedUser.name}/>
+        <HeadBar Profilename={synchronizedUser.name}/>
         
         <S.LogoutButtonWrapper>
           <S.LogoutButton onPress={() => setModal(true)}>
@@ -64,12 +38,12 @@ const Perfil = ({navigation}) => {
           </S.LogoutButton>
         </S.LogoutButtonWrapper>
 
-        <Modal visible={modal} onRequestClose={() => setModal(false)} onConfirm={Logout} />
+        <Modal visible={modal} onRequestClose={() => setModal(false)} onConfirm={signOut} />
         <UpdateModal visible={updateModal} onRequestClose={() => setUpdateModal(false)} />
 
         <S.ImageGroup>
           <S.NelsonImage source={require('@assets/JabutiNelson_Esq.png')} />
-          <S.UserName>{SynchronizedUser.name}</S.UserName>
+          <S.UserName>{synchronizedUser.name}</S.UserName>
         </S.ImageGroup>
 
         <S.AttributesWrapper>
@@ -82,11 +56,11 @@ const Perfil = ({navigation}) => {
             </S.ButtonGroup>
           </S.TitleWrapper>
         
-          <S.Attribute>{`Idade: ${SynchronizedUser.age}`}</S.Attribute>
-          <S.Attribute>{`Grau de parentesco: ${SynchronizedUser.parental_role}`}</S.Attribute>
-          <S.Attribute>{`Breve descrição: ${SynchronizedUser.description}`}</S.Attribute>
-          <S.Attribute>{`E-mail: ${SynchronizedUser.email}`}</S.Attribute>
-          <S.Attribute>{`Telefone: ${SynchronizedUser.phone}`}</S.Attribute>
+          <S.Attribute>{`Idade: ${synchronizedUser.age}`}</S.Attribute>
+          <S.Attribute>{`Grau de parentesco: ${synchronizedUser.parental_role}`}</S.Attribute>
+          <S.Attribute>{`Breve descrição: ${synchronizedUser.description}`}</S.Attribute>
+          <S.Attribute>{`E-mail: ${synchronizedUser.email}`}</S.Attribute>
+          <S.Attribute>{`Telefone: ${synchronizedUser.phone}`}</S.Attribute>
         </S.AttributesWrapper>
         <NavBar />
       </S.Wrapper>
