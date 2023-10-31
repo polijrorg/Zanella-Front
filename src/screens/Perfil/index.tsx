@@ -1,7 +1,5 @@
 import * as S from './styles';
 import React, { useEffect, useState, useReducer } from 'react';
-import NavBar from '@components/NavBar_Perfil';
-import HeadBar from '@components/Nelson_Question';
 import Modal from '@components/Modal'
 import UpdateModal from '@components/UpdateModal';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -29,9 +27,7 @@ const Perfil = () => {
   }, {});
 
   return (
-      <S.Wrapper>
-        <HeadBar Profilename={synchronizedUser.name}/>
-        
+      <S.Wrapper>       
         <S.LogoutButtonWrapper>
           <S.LogoutButton onPress={() => setModal(true)}>
             <S.LogoutIcon source={require('@assets/LogoutIcon.png')}/>
@@ -62,7 +58,6 @@ const Perfil = () => {
           <S.Attribute>{`E-mail: ${synchronizedUser.email}`}</S.Attribute>
           <S.Attribute>{`Telefone: ${synchronizedUser.phone}`}</S.Attribute>
         </S.AttributesWrapper>
-        <NavBar />
       </S.Wrapper>
     )
   }

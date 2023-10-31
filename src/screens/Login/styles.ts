@@ -7,7 +7,15 @@ export const Wrapper = styled(View)`
   flex: 1;
   align-items: center;
   justify-content: center; 
+  background-color: ${ theme.colors.primary.White };
 `;
+
+export const Background = styled(ImageBackground)`
+  flex: 1;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+`
 
 export const Title = styled(Text)`
   color: ${ theme.colors.primary.Texto };

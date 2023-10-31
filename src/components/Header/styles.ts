@@ -6,14 +6,13 @@ import styled from 'styled-components/native';
 export const Wrapper = styled(View)`
   width: 100%;
   aspect-ratio: 6;
-  position: absolute;
-  top: 0;
   display: flex;
   flex-direction: row;
   border-bottom-right-radius: 32px;
   background: ${ theme.colors.primary.BgHover };
   align-items: center;
   padding: 16px 8px;
+  z-index: 1;
 `;
 
 export const Nelson = styled(Image)`

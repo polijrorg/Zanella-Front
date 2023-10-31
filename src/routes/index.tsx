@@ -6,12 +6,14 @@ import PrivateRoutes from './PrivateRoutes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import useAuth from '@hooks/useAuth';
 import UserService, { ILoginRequest } from '@services/UserService';
+import NavBar from '@components/Navbar';
+import Header from '@components/Header';
+import { Platform } from 'react-native';
 
 export function Rotas() {
   const { user, loading } = useAuth();
-
   const [route, setRoute] = useState('public');
-
+  const [OS, setOS] = useState('');
   const routes = {
     public: <PublicRoutes />,
     private: <PrivateRoutes />,
@@ -27,15 +29,22 @@ export function Rotas() {
 
   useEffect(() => {
     getRoutes();
+    if (Platform.OS === 'ios') {
+      setOS('ios')
+    } else {
+      setOS('android')
+    }
     console.log(route, loading, user)
   }, [loading, user])
 
   return (
-    <S.View_Back>
+    <S.View_Back OS={OS} >
       <S.Background source={require('@assets/Background.png')}>
-        <S.Status />
+        <S.Status barStyle={OS === 'ios'? 'dark-content' : 'light-content'} />
         <NavigationContainer>
+          {route === 'private' && (<Header />)}
           {routes[route]}
+          {route === 'private' && (<NavBar />)}
         </NavigationContainer>
       </S.Background>
     </S.View_Back>

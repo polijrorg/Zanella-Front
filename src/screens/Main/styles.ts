@@ -19,6 +19,7 @@ export const Wrapper_Talk = styled(View)`
   border: 1px ${ theme.colors.primary.BgSólido };
   background: ${ theme.colors.primary.BgTela };
   padding: 18px 16px;
+  z-index: 100;
 `;
 
 export const Talk = styled(Text)`

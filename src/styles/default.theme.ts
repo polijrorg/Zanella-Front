@@ -21,7 +21,10 @@ export const theme = {
       BgSólidoHover: '#ED5F00',
       Texto: '#BD4B00',
       TextoHigh: '#451E11',
-      Grass: '#297C3B'
+      Grass: {
+        escura: '#297C3B',
+        clara: '#46A758',
+      },
     },
     secundary: {
       main: '#FCA925',

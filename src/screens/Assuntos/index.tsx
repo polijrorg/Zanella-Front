@@ -1,8 +1,6 @@
 import * as S from './styles';
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import NavBar from '@components/NavBar_Assunto';
-import HeadBar from '@components/Nelson_Question';
 import Cards_Assunto from '@components/Cards_Assunto';
 
 const Assunto = () => {
@@ -28,8 +26,6 @@ const Assunto = () => {
       <Cards_Assunto title={'Título do Assunto'} subtitle='Descrição do Assunto' />
       <Cards_Assunto title={'Título do Assunto'} subtitle='Descrição do Assunto' />
     </S.Container>
-    <HeadBar Profilename='Zanella'/>
-    <NavBar />
   </S.Wrapper>
 )
 };

@@ -27,6 +27,15 @@ export interface IUpdateRequest {
   topics?: string;
 }
 
+export interface IEntryResponse {
+  title: string;
+  content: string;
+}
+
+export interface IEntryRequest extends IEntryResponse {
+  date: string;
+}
+
 export default class UserService {
   static async login(data: ILoginRequest): Promise<ILoginResponse> {
     try {
@@ -42,9 +51,46 @@ export default class UserService {
   }
 
   static async update(data: IUpdateRequest): Promise<User> {
+    const token = await AsyncStorage.getItem('@app:token');
     try {
       const response: AxiosResponse<User> = await api.patch(
         '/users/update', 
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      return response.data;
+    } catch (error) {
+      throw new AppError(error);
+    }
+  }
+
+  static async getDateEntry(date: string): Promise<IEntryResponse> {
+    const token = await AsyncStorage.getItem('@app:token');
+    try {
+      const response: AxiosResponse<IEntryResponse> = await api.get(
+        `/diary/list/${date}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      return response.data;
+    } catch (error) {
+      throw new AppError(error);
+    }
+  }
+
+  static async postEntry(data: IEntryRequest): Promise<IEntryResponse> {
+    try {
+      const response: AxiosResponse<IEntryResponse> = await api.post(
+        '/diary',
         data
       );
 

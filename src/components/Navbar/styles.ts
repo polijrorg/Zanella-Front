@@ -24,27 +24,7 @@ align-items: center;
 justify-content: center;
 `;
 
-export const Icon_Home = styled(Image)`
-  width: 24px;
-  height: 24px;
-`;
-
-export const Icon_Diario = styled(Image)`
-  width: 24px;
-  height: 24px;
-`;
-
-export const Icon_Assuntos = styled(Image)`
-  width: 24px;
-  height: 24px;
-`;
-
-export const Icon_forum = styled(Image)`
-  width: 24px;
-  height: 24px;
-`;
-
-export const Icon_Perfil = styled(Image)`
+export const NavbarIcon = styled(Image)`
   width: 24px;
   height: 24px;
 `;

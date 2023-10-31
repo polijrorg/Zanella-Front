@@ -42,8 +42,6 @@ const Forum = () => {
       <Cards_Forum title={'Título do Fórum'} subtitle='Descrição do Fórum' />
       <Cards_Forum title={'Título do Fórum'} subtitle='Descrição do Fórum' />
     </S.Container>
-    <HeadBar Profilename='Zanella'/>
-    <NavBar />
   </S.Wrapper>
 )
 };

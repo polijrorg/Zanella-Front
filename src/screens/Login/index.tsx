@@ -22,6 +22,8 @@ export function Login({ navigation }) {
 
   return (
     <S.Wrapper>
+      <S.Background source={require('@assets/Background.png')}>
+
       <S.Title>ComTato</S.Title>
       <Nelson_Ballon/>
       <S.StyledText>É bom ter você aqui!</S.StyledText>
@@ -37,6 +39,7 @@ export function Login({ navigation }) {
         </S.Wrapper_Cadastro>
       </S.Wrapper_Info>
       <Button text='ENTRAR' onPress={handleSignIn} style='solido' size='regular' />
+      </S.Background>
     </S.Wrapper>
   )
 };
