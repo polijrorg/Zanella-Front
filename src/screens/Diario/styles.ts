@@ -39,17 +39,18 @@ export const Body = styled(View)`
   border-top-right-radius: 32px;
   width: 100%;
   padding: 16px;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
 `
 export const EntryTitle = styled(Text)`
   font-size: 16px; 
+  height: 32px;
   font-weight: 700;
   color: ${ theme.colors.primary.Texto };
 `
 export const EntryContent = styled(Text)`
   font-size: 14px;
-  color: ${ theme.colors.primary.TextoHigh };
+  color: ${ theme.colors.primary.Texto };
 `
 export const EntryTitleInput = styled(TextInput).attrs({
   'placeholderTextColor': `${ theme.colors.primary.Texto }`
