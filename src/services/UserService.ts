@@ -69,7 +69,7 @@ export default class UserService {
     }
   }
 
-  static async getDateEntry(date: string): Promise<IEntryResponse> {
+  static async getDateEntry(date: string): Promise<any> {
     const token = await AsyncStorage.getItem('@app:token');
     try {
       const response: AxiosResponse<IEntryResponse> = await api.get(

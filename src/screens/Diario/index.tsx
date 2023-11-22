@@ -22,24 +22,22 @@ const Diario = ({navigation}) => {
 
   const [visible, setVisibility] = useState(false);
 
-  const getCurrentDate =  async (selectedDate: Date | null) => {
-    const currentDate = selectedDate || date;
-    setDate(currentDate);
-
-    const formattedDate = (currentDate.getDate() + 1) + "/" + (currentDate.getMonth() + 1) + "/" + currentDate.getFullYear();
+  const getCurrentEntry =  async (selectedDate: Date) => {
+    const formattedDate = (selectedDate.getDate() + 1) + "/" + (selectedDate.getMonth() + 1) + "/" + selectedDate.getFullYear();
     setTitleDate(formattedDate);
     
-    const requestDate = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + "-" + (currentDate.getDate() + 1);
+    const requestDate = selectedDate.getFullYear() + "-" + (selectedDate.getMonth() + 1) + "-" + (selectedDate.getDate() + 1);
     try {
-      const dateEntry = await UserService.getDateEntry(requestDate);
+      const response = await UserService.getDateEntry(requestDate);
   
-      console.log(dateEntry);
+      console.log(response);
   
-      if(dateEntry.content != undefined){
-        setEntryTitle(dateEntry.title);
-        setEntryContent(dateEntry.content);
-      } else {
+      if(response.length == 0){
         setMode('writing')
+      } else {
+        setEntryTitle(response[0].title);
+        setEntryContent(response[0].content);
+        setMode('reading')
       }
 
 
@@ -63,14 +61,14 @@ const Diario = ({navigation}) => {
   }
 
   useEffect(() => {
-    getCurrentDate(null);
-  }, [])
+    getCurrentEntry(date);
+  }, [date])
 
   return (
     <S.Wrapper>
       <S.Header>
         <S.CurrentDate>{`${TitleDate}`}</S.CurrentDate>
-        <CalendarModal visible={visible} setVisibility={setVisibility} getCurrentDate={getCurrentDate}/>
+        <CalendarModal visible={visible} setVisibility={setVisibility} setDate={setDate}/>
         <S.CalendarButton onPress={() => setVisibility(true)}>
           {mode === 'reading' ? (
             <S.CalendarIcon source={require('@assets/carbon_calendar.png')}/>

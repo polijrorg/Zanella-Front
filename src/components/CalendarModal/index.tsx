@@ -29,13 +29,13 @@ LocaleConfig.defaultLocale = 'br';
 interface ICalendarModalProps {
   visible: boolean;
   setVisibility: (visible: boolean) => void;
-  getCurrentDate: (date: Date)=> void;
+  setDate: (date: Date)=> void;
 }
 
 const ModalCalendar:React.FC<ICalendarModalProps> = ({
   visible,
   setVisibility,
-  getCurrentDate,
+  setDate,
 }) => {
   const initialDate = `${new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + (new Date().getDate() - 1)}`;
   const [selectedDate, setSelectedDate] = useState<string>(initialDate);
@@ -50,7 +50,7 @@ const ModalCalendar:React.FC<ICalendarModalProps> = ({
             </S.CloseIconButton>
           </S.CloseIconWrapper>
           <Calendar 
-            onDayPress={(day) => {setSelectedDate(day.dateString); getCurrentDate(new Date(day.dateString)); setVisibility(false)}}
+            onDayPress={(day) => {setSelectedDate(day.dateString); setDate(new Date(day.dateString)); setVisibility(false)}}
             setState={{
               selectedDate: `${selectedDate}`,
             }}
