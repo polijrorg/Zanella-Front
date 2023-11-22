@@ -3,7 +3,7 @@ import { Text, View, Image, TouchableOpacity, TextInput } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Wrapper = styled(View)`
-  padding: 0px 16px;
+  padding: 16px;
   flex: 1;
   gap: 16px;
   align-items: center;
