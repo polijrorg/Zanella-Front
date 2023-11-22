@@ -3,6 +3,16 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text, Image, View } from 'react-native';
 import styled from 'styled-components/native';
 
+interface ContainerProps {
+  isVisible: boolean;
+}
+
+export const Container = styled(View)<ContainerProps>`
+  display: ${ props => props.isVisible ? 'flex' : 'none' };
+  width: 100%;
+  background-color: ${ theme.colors.primary.White };
+`
+
 export const Wrapper = styled(View)`
   width: 100%;
   aspect-ratio: 6;

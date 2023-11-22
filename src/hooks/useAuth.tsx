@@ -19,6 +19,8 @@ interface AuthContextData {
     signIn(data: ILoginRequest): Promise<void>;
     signOut(): Promise<void>;
     update(data: IUpdateRequest): Promise<void>;
+    handleMainPage(isFocused: boolean): void;
+    onMain: boolean;    
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -26,6 +28,11 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 export const AuthProvider: React.FC<{ children?: React.ReactNode | undefined }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [onMain, setOnMain] = useState(false);
+
+  const handleMainPage = (isFocused: boolean) => {
+    setOnMain(isFocused);
+  }
 
   const signIn = async (data: ILoginRequest) => {
     try {
@@ -74,7 +81,7 @@ export const AuthProvider: React.FC<{ children?: React.ReactNode | undefined }> 
   });
 
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signOut, update }}>
+    <AuthContext.Provider value={{ user, loading, signIn, signOut, update, handleMainPage, onMain }}>
       {children}
     </AuthContext.Provider>
   );

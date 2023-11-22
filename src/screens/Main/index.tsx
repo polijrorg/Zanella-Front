@@ -1,11 +1,17 @@
 import * as S from './styles';
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import NavBar from '@components/NavBar_Home';
+import React, { useEffect } from 'react';
 import useAuth from '@hooks/useAuth';
+import { useNavigation } from '@react-navigation/native';
 
 const Main = () => {
-  const { user } = useAuth();
+  const { user, handleMainPage } = useAuth();
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    if (navigation.isFocused()) {
+      handleMainPage(true);
+    }
+  }, [navigation])
 
   return (
     <S.Wrapper>

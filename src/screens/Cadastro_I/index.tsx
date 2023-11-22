@@ -32,6 +32,7 @@ const Cadastro_I = (props) => {
 
   return(
   <S.Wrapper>
+    <S.Background source={require('@assets/Background.png')}>
     <S.Title>ComTato</S.Title>
    
 
@@ -73,7 +74,7 @@ const Cadastro_I = (props) => {
         <S.Login_Button>CONTINUAR</S.Login_Button>
       </S.Button_continuar>
     </S.Container>
-    
+    </S.Background>
   </S.Wrapper>
   )
 };
