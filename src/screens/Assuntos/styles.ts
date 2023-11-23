@@ -8,6 +8,9 @@ export const Wrapper = styled(View)`
   background: ${ theme.colors.primary.BgTela };
 `;
 
+export const CardButton = styled(TouchableOpacity)`
+`
+
 export const Container = styled(View)`
   align-items: center;
   margin-top: 80px;
