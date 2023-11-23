@@ -2,12 +2,14 @@ import { theme } from '@styles/default.theme';
 import { TouchableOpacity, Text, Image, View } from 'react-native';
 import styled from 'styled-components/native';
 
-export const Wrapper = styled(TouchableOpacity)`
+export const Wrapper = styled(View)`
   width: 100%;
   height: 88px;
   display: flex;
   flex-direction: column;
+  padding: 7px 16px;
   border-radius: 24px;
+  justify-content: center;
   background: ${ theme.colors.primary.BgSutil };
   shadow-opacity: 1;
   shadow-offset: 1px 3px;
@@ -20,8 +22,9 @@ export const Container_Forum = styled(View)`
   height: 56px;
   display: flex;
   flex-direction: row;
-  margin-top: 12px;
-  padding-left: 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
 `;
 
 export const Forum = styled(View)`
@@ -31,22 +34,25 @@ export const Forum = styled(View)`
   border-radius: 28px;
 `;
 
-export const Wrapper_Forum = styled(TouchableOpacity)`
-  width: 80%;
-  height: 56px;
+export const Wrapper_Forum = styled(View)`
+  max-width: 70%;
+  height: 74px;
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
-  padding-left: 8px;
 `;
 
 export const Title_Forum = styled(Text)`
   font-size: 18px;
   color: ${ theme.colors.primary.Texto };
-  margin-bottom: 8px;
 `; 
 
-export const SubTitle_Forum = styled(Text)`
+export const SubTitle_Forum = styled(Text).attrs({
+  numberOfLines: 2,
+})`
   font-size: 12px;
+  line-height: 22px;
+  height: 48px;
   color: ${ theme.colors.primary.TextoHigh };;
 `; 
 

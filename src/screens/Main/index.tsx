@@ -16,7 +16,7 @@ const Main = () => {
   return (
     <S.Wrapper>
       <S.Wrapper_Talk>
-        <S.Talk>{`Oi${' ' + user.name + '!' || ','} Estou aqui se quiser ajuda!`}</S.Talk>
+        <S.Talk>{`Oi${' ' + user?.name + '!' || ','} Estou aqui se quiser ajuda!`}</S.Talk>
       </S.Wrapper_Talk>
       <S.Nelson source={require('../../../public/assets/JabutiNelson_Esq.png')}/>
       <S.Container>

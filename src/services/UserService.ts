@@ -99,4 +99,23 @@ export default class UserService {
       throw new AppError(error);
     }
   }
+
+  static async getSubjects(user: User): Promise<any> {
+    const { id } = user;
+    const token = await AsyncStorage.getItem('@app:token');
+    try {
+      const response: AxiosResponse<any> = await api.get(
+        `/users/subjects/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      return response.data;
+    } catch (error) {
+      throw new AppError(error);
+    }
+  }
 }

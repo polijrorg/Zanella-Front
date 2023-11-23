@@ -5,7 +5,7 @@ import Assuntos from '@screens/Assuntos';
 import Forum from '@screens/Forum';
 import Perfil from '@screens/Perfil';
 import Interesses from '@screens/Interesses';
-
+import Assunto from '@screens/Assunto';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -18,6 +18,7 @@ export function PrivateRoutes(){
       <Screen name="forum" component={Forum} />
       <Screen name="perfil" component={Perfil} />
       <Screen name="interesses" component={Interesses} />
+      <Screen name="assunto" component={Assunto} />
     </Navigator>
   );
 };
