@@ -37,7 +37,7 @@ const ModalCalendar:React.FC<ICalendarModalProps> = ({
   setVisibility,
   setDate,
 }) => {
-  const initialDate = `${new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + (new Date().getDate() - 1)}`;
+  const initialDate = `${new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + (new Date().getDate())}`;
   const [selectedDate, setSelectedDate] = useState<string>(initialDate);
 
   return (

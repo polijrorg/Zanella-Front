@@ -23,14 +23,12 @@ const Diario = ({navigation}) => {
   const [visible, setVisibility] = useState(false);
 
   const getCurrentEntry =  async (selectedDate: Date) => {
-    const formattedDate = (selectedDate.getDate() + 1) + "/" + (selectedDate.getMonth() + 1) + "/" + selectedDate.getFullYear();
+    const formattedDate = (selectedDate.getDate()) + "/" + (selectedDate.getMonth() + 1) + "/" + selectedDate.getFullYear();
     setTitleDate(formattedDate);
     
-    const requestDate = selectedDate.getFullYear() + "-" + (selectedDate.getMonth() + 1) + "-" + (selectedDate.getDate() + 1);
+    const requestDate = selectedDate.getFullYear() + "-" + (selectedDate.getMonth() + 1) + "-" + (selectedDate.getDate());
     try {
       const response = await UserService.getDateEntry(requestDate);
-  
-      console.log(response);
   
       if(response.length == 0){
         setMode('writing')
