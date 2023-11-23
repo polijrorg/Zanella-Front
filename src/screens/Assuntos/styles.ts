@@ -1,5 +1,5 @@
 import { theme } from '@styles/default.theme';
-import { Text, View, Image, TouchableOpacity, TextInput } from 'react-native';
+import { View, Image, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Wrapper = styled(View)`
@@ -10,13 +10,17 @@ export const Wrapper = styled(View)`
 
 export const CardButton = styled(TouchableOpacity)`
 `
-
-export const Container = styled(View)`
-  align-items: center;
-  margin-top: 80px;
+export const HeaderGap = styled(View)`
+  width: 100%;
+`
+export const Container = styled(ScrollView).attrs({
+  contentContainerStyle: {
+    alignItems: 'center',
+    gap: 24,
+  }
+})`
   width: 90%;
   height: 100%;
-  gap: 24px;
 `;
 
 export const Search_Wrapper = styled(View)`
