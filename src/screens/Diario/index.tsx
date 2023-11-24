@@ -24,6 +24,7 @@ const Diario = ({navigation}) => {
 
   const getCurrentEntry =  async (selectedDate: Date) => {
     const formattedDate = (selectedDate.getDate()) + "/" + (selectedDate.getMonth() + 1) + "/" + selectedDate.getFullYear();
+    console.log(formattedDate);
     setTitleDate(formattedDate);
     
     const requestDate = selectedDate.getFullYear() + "-" + (selectedDate.getMonth() + 1) + "-" + (selectedDate.getDate());

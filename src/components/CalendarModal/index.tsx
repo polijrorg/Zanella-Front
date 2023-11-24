@@ -1,7 +1,7 @@
 import * as S from './styles';
 import { Calendar, LocaleConfig } from 'react-native-calendars';
 import { theme } from '@styles/default.theme';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 LocaleConfig.locales['br'] = {
   monthNames: [
@@ -40,6 +40,13 @@ const ModalCalendar:React.FC<ICalendarModalProps> = ({
   const initialDate = `${new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + (new Date().getDate())}`;
   const [selectedDate, setSelectedDate] = useState<string>(initialDate);
 
+  const handleDayPress = (date: string) => {
+    const dateTime = new Date(date);
+    dateTime.setHours(new Date().getHours() + 3);
+    setSelectedDate(`${dateTime.getFullYear() + '-' + (dateTime.getMonth() + 1) + '-' + (dateTime.getDate())}`)
+    setDate(dateTime);
+  }
+  
   return (
     <S.ModalWrapper visible={visible} transparent> 
       <S.ModalContainer>
@@ -50,7 +57,7 @@ const ModalCalendar:React.FC<ICalendarModalProps> = ({
             </S.CloseIconButton>
           </S.CloseIconWrapper>
           <Calendar 
-            onDayPress={(day) => {setSelectedDate(day.dateString); setDate(new Date(day.dateString)); setVisibility(false)}}
+            onDayPress={(day) => handleDayPress(day.dateString)}
             setState={{
               selectedDate: `${selectedDate}`,
             }}
