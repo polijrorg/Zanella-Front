@@ -36,6 +36,11 @@ export interface IEntryRequest extends IEntryResponse {
   date: string;
 }
 
+interface IUpdateTopicsRequest {
+  id: string;
+  topics: string[];
+}
+
 export default class UserService {
   static async login(data: ILoginRequest): Promise<ILoginResponse> {
     try {
@@ -106,6 +111,43 @@ export default class UserService {
     try {
       const response: AxiosResponse<any> = await api.get(
         `/users/subjects/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      return response.data;
+    } catch (error) {
+      throw new AppError(error);
+    }
+  }
+
+  static async listTopics(): Promise<any> {
+    const token = await AsyncStorage.getItem('@app:token');
+    try {
+      const response: AxiosResponse<any> = await api.get(
+        '/users/topics',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      return response.data;
+    } catch (error) {
+      throw new AppError(error);
+    }
+  } 
+
+  static async updateUserTopics(data: IUpdateTopicsRequest): Promise<any> {
+    const token = await AsyncStorage.getItem('@app:token');
+    try {
+      const response: AxiosResponse<any> = await api.post(
+        `/users/topics/${data.id}`,
+        { topics: data.topics },
         {
           headers: {
             Authorization: `Bearer ${token}`,

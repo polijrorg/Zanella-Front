@@ -29,6 +29,8 @@ export function Rotas() {
   }
 
   useEffect(() => {
+    console.log('loading', loading);
+    console.log('user', user);
     getRoutes();
     if (Platform.OS === 'ios') {
       setOS('ios')

@@ -42,6 +42,7 @@ export const AuthProvider: React.FC<{ children?: React.ReactNode | undefined }> 
       await AsyncStorage.setItem('@app:user', JSON.stringify(response.user));
       await AsyncStorage.setItem('@app:token', response.token);
 
+      setLoading(true);
           
     } catch (error) {
         throw new AppError(error);
@@ -66,19 +67,23 @@ export const AuthProvider: React.FC<{ children?: React.ReactNode | undefined }> 
   }
 
   useEffect(() => {
+    setLoading(true);
     const getUser = async () => {
-    const storedUser = JSON.parse(
-      await AsyncStorage.getItem('@app:user')
-    );
-    
-    if (storedUser) setUser(storedUser);
-    
-    setLoading(false);
+      const storedUser = JSON.parse(
+        await AsyncStorage.getItem('@app:user')
+      );
+      
+      console.log(storedUser)
+
+      if (storedUser) {
+        setUser(storedUser)
+        setLoading(false);
+      };
     };
     
     if (!user) getUser();
     else setLoading(false);
-  });
+  }, [user]);
 
   return (
     <AuthContext.Provider value={{ user, loading, signIn, signOut, update, handleMainPage, onMain }}>
