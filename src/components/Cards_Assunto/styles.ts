@@ -4,10 +4,9 @@ import styled from 'styled-components/native';
 
 export const Wrapper = styled(View)`
   width: 100%;
-  height: 88px;
   display: flex;
   flex-direction: column;
-  padding: 7px 16px;
+  padding: 16px 16px;
   border-radius: 24px;
   justify-content: center;
   background: ${ theme.colors.primary.BgSutil };
