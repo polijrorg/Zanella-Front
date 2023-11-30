@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import User from '@interfaces/User';
-
+import useAuth from '@hooks/useAuth';
 
 import { api } from './api';
 import { AppError } from '@utils/AppError';
@@ -36,6 +36,11 @@ export interface IEntryRequest extends IEntryResponse {
   date: string;
 }
 
+interface IUpdateTopicsRequest {
+  id: string;
+  topics: string[];
+}
+
 export default class UserService {
   static async login(data: ILoginRequest): Promise<ILoginResponse> {
     try {
@@ -43,9 +48,10 @@ export default class UserService {
         '/users/authenticate',
         data
       );
-               
+      
       return response.data;
     } catch (error) {
+      console.log('login');
       throw new AppError(error);
     }
   }
@@ -65,6 +71,7 @@ export default class UserService {
 
       return response.data;
     } catch (error) {
+      console.log('update');
       throw new AppError(error);
     }
   }
@@ -83,6 +90,7 @@ export default class UserService {
 
       return response.data;
     } catch (error) {
+      console.log('getdateentry');
       throw new AppError(error);
     }
   }
@@ -96,6 +104,7 @@ export default class UserService {
 
       return response.data;
     } catch (error) {
+      console.log('postentry');
       throw new AppError(error);
     }
   }
@@ -115,6 +124,27 @@ export default class UserService {
 
       return response.data;
     } catch (error) {
+      console.log('getsubjects');
+      throw new AppError(error);
+    }
+  } 
+
+  static async updateUserTopics(data: IUpdateTopicsRequest): Promise<any> {
+    const token = await AsyncStorage.getItem('@app:token');
+    try {
+      const response: AxiosResponse<any> = await api.post(
+        `/users/topics/${data.id}`,
+        { topics: data.topics },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      return response.data;
+    } catch (error) {
+      console.log('updatetopics');
       throw new AppError(error);
     }
   }

@@ -4,9 +4,9 @@ import UserService, { IEntryRequest } from '@services/UserService';
 import { AppError } from '@utils/AppError';
 import CalendarModal from '@components/CalendarModal';
 
-const Diario = ({navigation}) => {
+const Diario = ({navigation}) => { 
   const [date, setDate] = useState(new Date());
-  const initialDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+  const initialDate = (date.getDate()) + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
 
   const [TitleDate, setTitleDate] = useState(initialDate);
 
@@ -22,12 +22,14 @@ const Diario = ({navigation}) => {
 
   const [visible, setVisibility] = useState(false);
 
-  const getCurrentEntry =  async (selectedDate: Date) => {
-    const formattedDate = (selectedDate.getDate()) + "/" + (selectedDate.getMonth() + 1) + "/" + selectedDate.getFullYear();
-    console.log(formattedDate);
+  const getCurrentEntry =  async () => {
+    const dateString = JSON.stringify(date);
+    console.log(dateString);
+    const formattedDate = (date.getDate()) + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
     setTitleDate(formattedDate);
     
-    const requestDate = selectedDate.getFullYear() + "-" + (selectedDate.getMonth() + 1) + "-" + (selectedDate.getDate());
+    const requestDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate());
+    console.log(requestDate);
     try {
       const response = await UserService.getDateEntry(requestDate);
   
@@ -60,14 +62,15 @@ const Diario = ({navigation}) => {
   }
 
   useEffect(() => {
-    getCurrentEntry(date);
+    console.log(date);
+    getCurrentEntry();
   }, [date])
 
   return (
     <S.Wrapper>
       <S.Header>
         <S.CurrentDate>{`${TitleDate}`}</S.CurrentDate>
-        <CalendarModal visible={visible} setVisibility={setVisibility} setDate={setDate}/>
+        <CalendarModal visible={visible} setVisibility={setVisibility} setDate={setDate} date={date}/>
         <S.CalendarButton onPress={() => setVisibility(true)}>
           {mode === 'reading' ? (
             <S.CalendarIcon source={require('@assets/carbon_calendar.png')}/>

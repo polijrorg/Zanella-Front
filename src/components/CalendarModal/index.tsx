@@ -30,20 +30,23 @@ interface ICalendarModalProps {
   visible: boolean;
   setVisibility: (visible: boolean) => void;
   setDate: (date: Date)=> void;
+  date: Date;
 }
 
 const ModalCalendar:React.FC<ICalendarModalProps> = ({
   visible,
   setVisibility,
   setDate,
+  date,
 }) => {
   const initialDate = `${new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + (new Date().getDate())}`;
   const [selectedDate, setSelectedDate] = useState<string>(initialDate);
 
   const handleDayPress = (date: string) => {
-    const dateTime = new Date(date);
-    dateTime.setHours(new Date().getHours() + 3);
-    setSelectedDate(`${dateTime.getFullYear() + '-' + (dateTime.getMonth() + 1) + '-' + (dateTime.getDate())}`)
+    const dateString = date.split('-');
+    const dateTime = new Date(parseInt(dateString[0]), parseInt(dateString[1]), parseInt(dateString[2]));
+    console.log('dateTime', dateTime);
+    setSelectedDate(`${dateString[0]}-${dateString[1]}-${dateString[2]}`)
     setDate(dateTime);
   }
   
@@ -59,7 +62,7 @@ const ModalCalendar:React.FC<ICalendarModalProps> = ({
           <Calendar 
             onDayPress={(day) => handleDayPress(day.dateString)}
             setState={{
-              selectedDate: `${selectedDate}`,
+              selectedDate,
             }}
             style={{
               width: 321,

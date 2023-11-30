@@ -21,6 +21,8 @@ interface AuthContextData {
     update(data: IUpdateRequest): Promise<void>;
     handleMainPage(isFocused: boolean): void;
     onMain: boolean;    
+    token: string;
+    isFirstAccess: boolean;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -29,6 +31,8 @@ export const AuthProvider: React.FC<{ children?: React.ReactNode | undefined }> 
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [onMain, setOnMain] = useState(false);
+  const [token, setToken] = useState('')
+  const [isFirstAccess, setAccessibility] = useState(true);
 
   const handleMainPage = (isFocused: boolean) => {
     setOnMain(isFocused);
@@ -39,12 +43,17 @@ export const AuthProvider: React.FC<{ children?: React.ReactNode | undefined }> 
       const response = await UserService.login(data);
 
       setUser(response.user);
+      setToken(response.token);
       await AsyncStorage.setItem('@app:user', JSON.stringify(response.user));
       await AsyncStorage.setItem('@app:token', response.token);
 
-          
+      if (response.user.topics) {
+        const topics = JSON.parse(response.user.topics)
+        if (topics.length > 0) setAccessibility(false);
+      }
+         
     } catch (error) {
-        throw new AppError(error);
+      throw new AppError(error);
     }
   }
 
@@ -60,28 +69,31 @@ export const AuthProvider: React.FC<{ children?: React.ReactNode | undefined }> 
   }
 
   const signOut = async () => {
-    await AsyncStorage.clear();
     setUser(null);
-    setLoading(false);
+    setLoading(true);
+    await AsyncStorage.clear();
   }
 
   useEffect(() => {
     const getUser = async () => {
-    const storedUser = JSON.parse(
-      await AsyncStorage.getItem('@app:user')
-    );
-    
-    if (storedUser) setUser(storedUser);
-    
-    setLoading(false);
+      const storedUser = JSON.parse(
+        await AsyncStorage.getItem('@app:user')
+      );
+      
+      console.log('storedUser :', storedUser)
+
+      if (storedUser) {
+        setUser(storedUser)
+        setLoading(false);
+      };
     };
     
     if (!user) getUser();
     else setLoading(false);
-  });
+  }, [user]);
 
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signOut, update, handleMainPage, onMain }}>
+    <AuthContext.Provider value={{ user, loading, signIn, signOut, update, handleMainPage, onMain, token, isFirstAccess }}>
       {children}
     </AuthContext.Provider>
   );

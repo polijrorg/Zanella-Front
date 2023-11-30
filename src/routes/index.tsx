@@ -1,11 +1,9 @@
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import * as S from './styles';
 import { useEffect, useState } from 'react';
 import PublicRoutes from './PublicRoutes';
 import PrivateRoutes from './PrivateRoutes';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import useAuth from '@hooks/useAuth';
-import UserService, { ILoginRequest } from '@services/UserService';
 import NavBar from '@components/Navbar';
 import Header from '@components/Header';
 import { Platform } from 'react-native';
@@ -40,7 +38,9 @@ export function Rotas() {
 
   return (
     <S.View_Back OS={OS} >
-        <S.Status barStyle={OS === 'ios'? 'dark-content' : 'light-content'} />
+        {OS === 'ios' &&  
+          <S.Status barStyle='dark-content' />
+        }
         <NavigationContainer>
           {route === 'private' && (<Header />)}
           {routes[route]}
