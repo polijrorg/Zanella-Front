@@ -5,6 +5,7 @@ import styled from 'styled-components/native';
 export const Wrapper = styled(View)`
   width: 100%;
   display: flex;
+  min-height: 100px;
   flex-direction: column;
   padding: 16px 16px;
   border-radius: 24px;
@@ -18,7 +19,6 @@ export const Wrapper = styled(View)`
 
 export const Container_Forum = styled(View)`
   width: 100%;
-  height: 56px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -34,7 +34,8 @@ export const Forum = styled(View)`
 `;
 
 export const Wrapper_Forum = styled(View)`
-  max-width: 70%;
+  max-width: 80%;
+  overflow: hidden;
   height: 74px;
   display: flex;
   justify-content: space-between;

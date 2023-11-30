@@ -1,19 +1,23 @@
 import * as S from './styles';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import useAuth from '@hooks/useAuth';
 
 export function NavBar() {
-  const { handleMainPage } = useAuth();
-
+  const { onMain, handleMainPage } = useAuth();
+  const [isVisible, setVisibility] = useState(true);
   const navigation = useNavigation();
 
   const screens = [
     'main', 'diario', 'assuntos', 'forum', 'perfil'
   ]
 
+  useEffect(() => {
+    setVisibility(!onMain);
+  }, [onMain])
+
   return(
-  <S.Wrapper >
+  <S.Wrapper isVisible={isVisible} >
     {screens.map((screen: string, index) => {
       return(
         <S.Wrapper_Icon key={index} onPress={() => {

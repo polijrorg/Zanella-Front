@@ -1,7 +1,7 @@
 import { AppError } from '@utils/AppError';
 import axios from 'axios';
 
-const api = axios.create({ baseURL: 'https://Zanella.polijrinternal.com/' });
+const api = axios.create({ baseURL: 'https://zanella.polijrinternal.com/' });
 
 api.interceptors.response.use(
   (response) => response,

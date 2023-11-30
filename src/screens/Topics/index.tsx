@@ -5,6 +5,8 @@ import useAuth from '@hooks/useAuth';
 import UserService from '@services/UserService';
 import Topic from '@components/Topic';
 import Button from '@components/Button';
+import { api } from '@services/api';
+import { AppError } from '@utils/AppError';
 
 const Topics = () => {
   const { user, handleMainPage } = useAuth();
@@ -12,6 +14,7 @@ const Topics = () => {
   const [userSelectedTopics, setUserSelectedTopics] = useState<string[]>([]); 
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const navigation = useNavigation();
+  const { token } = useAuth(); 
 
   useEffect(() => {
     if (navigation.isFocused()) {
@@ -20,9 +23,22 @@ const Topics = () => {
   }, [navigation])
 
   const handleTopics = async () => {
-    const data = await UserService.listTopics();    
-    const formattedData = JSON.parse(data);
-    setTopics(formattedData);
+    try {
+      const response = await api.get(
+        '/users/topics',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      const formattedData = JSON.parse(response.data);
+      setTopics(formattedData);
+    } catch (error) {
+      console.log('listtopics');
+      throw new AppError(error);
+    }
   }
 
   useEffect(() => {
@@ -38,7 +54,7 @@ const Topics = () => {
     const response = await UserService.updateUserTopics({id: user.id, topics: userSelectedTopics});
     console.log(response);
 
-    // navigation.navigate('main');
+    navigation.navigate('main');
   }
 
   const handleSkipTopics = () => {

@@ -2,7 +2,12 @@ import { theme } from '@styles/default.theme';
 import { TouchableOpacity, Image, View } from 'react-native';
 import styled from 'styled-components/native';
 
-export const Wrapper = styled(View)`
+interface IWrapperProps {
+  isVisible: boolean;
+}
+
+export const Wrapper = styled(View)<IWrapperProps>`
+  display: ${props => props.isVisible ? 'flex' : 'none'};
   width: 100%;
   flex: 1;
   height: 8%;

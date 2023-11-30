@@ -13,18 +13,7 @@ import useAuth from '@hooks/useAuth';
 const { Navigator, Screen } = createNativeStackNavigator();
 
 export function PrivateRoutes(){
-  const { user } = useAuth();
-  const [isFirstAccess, setIsFirstAccess] = useState(true);
-
-  useEffect(() => {
-    const topics = JSON.parse(user.topics)
-    if (topics && topics.length > 0) {
-      setIsFirstAccess(false);
-    }
-    console.log('userTopics', topics);
-    console.log('userTopics.length', topics.length)
-    console.log(isFirstAccess);
-  }, [user])
+  const { isFirstAccess } = useAuth();
 
   return (
     <Navigator initialRouteName={ isFirstAccess ? 'topics' : 'main'} screenOptions={{ headerShown: false, contentStyle: { backgroundColor: 'transparent'} }}>

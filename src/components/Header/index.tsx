@@ -1,7 +1,6 @@
 import * as S from './styles';
 import React, { useEffect, useState } from 'react';
 import useAuth from '@hooks/useAuth';
-import { useNavigation } from '@react-navigation/native';
 
 const Header: React.FC = () => {
   const { user, onMain } = useAuth();

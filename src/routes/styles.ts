@@ -2,10 +2,6 @@ import { theme } from '@styles/default.theme';
 import { ImageBackground, SafeAreaView, StatusBar, View } from 'react-native';
 import styled from 'styled-components';
 
-export const Wrapper = styled(View)`
-  flex: 1;
-`
-
 export const View_Back = styled(SafeAreaView)<{ OS: string }>`
   flex: 1;
   background: ${ theme.colors.primary.BgHover };

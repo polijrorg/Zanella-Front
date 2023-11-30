@@ -2,7 +2,13 @@ import { theme } from '@styles/default.theme';
 import { TouchableOpacity, Text } from 'react-native';
 import styled from 'styled-components/native';
 
-export const Wrapper = styled(TouchableOpacity)<{ style: string, size: string, disabled: boolean }>`
+interface IWrapperProps {
+  style: string;
+  size: string;
+  disabled?: boolean;
+}
+
+export const Wrapper = styled(TouchableOpacity)<IWrapperProps>`
   width: ${(props) => props.size === 'small' ? '128px' : props.size === 'big' ? '100%' : '80%' };
   height: 48px;
   border-radius: 24px;
@@ -13,7 +19,7 @@ export const Wrapper = styled(TouchableOpacity)<{ style: string, size: string, d
   justify-content: center;
   opacity: ${(props) => props.disabled ? 0.6 : 1 };
 `;
-theme.colors.primary.BgSólidoHover
+
 export const Login_Button = styled(Text)`
   font-size: 14px;
   color: white;
