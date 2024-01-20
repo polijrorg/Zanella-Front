@@ -31,6 +31,7 @@
     "@react-navigation/native-stack": "^6.9.17",
     "@types/react-native-modern-datepicker": "^1.0.5",
     "axios": "^1.6.5",
+    "eas-cli": "^7.0.0",
     "expo": "^50.0.2",
     "expo-app-loading": "^2.1.1",
     "expo-font": "^11.10.2",

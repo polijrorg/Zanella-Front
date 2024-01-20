@@ -6,6 +6,19 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "ac1d8109-737a-40fb-ac78-80b94440d65b"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/ac1d8109-737a-40fb-ac78-80b94440d65b"
+    },
+    "android": {},
+    "ios": {}
   }
 }
