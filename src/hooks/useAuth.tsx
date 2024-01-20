@@ -69,6 +69,7 @@ export const AuthProvider: React.FC<{ children?: React.ReactNode | undefined }> 
   }
 
   const signOut = async () => {
+    console.log('signOut')
     setUser(null);
     setLoading(true);
     await AsyncStorage.clear();

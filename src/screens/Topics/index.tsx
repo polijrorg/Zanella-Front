@@ -50,7 +50,6 @@ const Topics = () => {
   }, [userSelectedTopics])
 
   const handleUpdateTopics = async () => {
-    console.log('topics', userSelectedTopics);
     const response = await UserService.updateUserTopics({id: user.id, topics: userSelectedTopics});
     console.log(response);
 

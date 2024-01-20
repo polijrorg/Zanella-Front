@@ -8,7 +8,7 @@ export const Container = styled(View)`
   flex: 1;
   align-items: center;
   justify-content: center;
-  background-color: #FFFFFF50};
+  background-color: #FFFFFF50;
 `
 
 export const ModalContent = styled(View)`
