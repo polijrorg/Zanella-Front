@@ -22,14 +22,12 @@ const Diario = ({navigation}) => {
 
   const [visible, setVisibility] = useState(false);
 
-  const getCurrentEntry =  async () => {
-    const dateString = JSON.stringify(date);
-    console.log(dateString);
+  const getCurrentEntry =  async () => { 
     const formattedDate = (date.getDate()) + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
     setTitleDate(formattedDate);
     
     const requestDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate());
-    console.log(requestDate);
+    
     try {
       const response = await UserService.getDateEntry(requestDate);
   
@@ -62,7 +60,6 @@ const Diario = ({navigation}) => {
   }
 
   useEffect(() => {
-    console.log(date);
     getCurrentEntry();
   }, [date])
 

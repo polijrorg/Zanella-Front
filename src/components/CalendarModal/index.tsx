@@ -44,9 +44,7 @@ const ModalCalendar:React.FC<ICalendarModalProps> = ({
 
   const handleDayPress = (date: string) => {
     const dateString = date.split('-');
-    const dateTime = new Date(parseInt(dateString[0]), parseInt(dateString[1]), parseInt(dateString[2]));
-    console.log('dateTime', dateTime);
-    setSelectedDate(`${dateString[0]}-${dateString[1]}-${dateString[2]}`)
+    const dateTime = new Date(parseInt(dateString[0]), parseInt(dateString[1]) - 1, parseInt(dateString[2]));
     setDate(dateTime);
   }
   
@@ -60,7 +58,10 @@ const ModalCalendar:React.FC<ICalendarModalProps> = ({
             </S.CloseIconButton>
           </S.CloseIconWrapper>
           <Calendar 
-            onDayPress={(day) => handleDayPress(day.dateString)}
+            onDayPress={(day) => {
+              handleDayPress(day.dateString)
+              setSelectedDate(day.dateString)
+            }}
             setState={{
               selectedDate,
             }}
