@@ -24,12 +24,31 @@ export const CurrentDate = styled(Text)`
   font-size: 16px;
   font-weight: 700;
 `
+export const ButtonsContainer = styled(View)`
+  flex-direction: row;
+  gap: 16px;
+`
 export const CalendarButton = styled(TouchableOpacity)`
 `
-
+export const EditButton = styled(TouchableOpacity)`
+  width: 24px;
+`
+export const DeleteButton = styled(TouchableOpacity)`
+`
 export const CalendarIcon = styled(Image)`
   width: 24px;
   height: 24px;
+`
+export const EditIcon = styled(Image)`
+  background-color: ${(props) => props.mode === "editing" ? theme.colors.primary.Grass.escura : theme.colors.primary.BgTela};
+  border-radius: 8px;
+  width: 28px;
+  padding: 2px;
+  height: 24px;
+`
+export const DeleteIcon = styled(Image)`
+  width: 22px;
+  height: 22px;
 `
 export const Body = styled(View)`
   border: 1px solid ${ theme.colors.primary.Grass.escura };
