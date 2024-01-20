@@ -10,6 +10,7 @@
     "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
+  "eslint.packageManager": "yarn",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
