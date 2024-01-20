@@ -81,7 +81,7 @@ export const EntryTitleInput = styled(TextInput).attrs({
   color: ${ theme.colors.primary.Texto };
 `
 export const EntryContentInput = styled(TextInput).attrs({
-  'placeholderTextColor': `${ theme.colors.primary.Texto }`
+  'placeholderTextColor': `${ theme.colors.primary.TextoHigh }`
 })`
   width: 100%;
   min-height: 32px;

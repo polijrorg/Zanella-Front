@@ -120,6 +120,23 @@ export default class UserService {
     }
   }
 
+  static async deleteEntry(id: string): Promise<void> {
+    const token = await AsyncStorage.getItem('@app:token');
+    try {
+      await api.delete(
+        `/diary/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+    } catch (error) {
+      console.log('deleteentry');
+      throw new AppError(error);
+    }
+  }
+
   static async updateEntry(data: IEntryPatchRequest, id: string): Promise<IEntryResponse> {
     try {
       const token = await AsyncStorage.getItem('@app:token');
