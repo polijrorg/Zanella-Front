@@ -12,7 +12,6 @@ export const Background = styled(ImageBackground)`
   justify-content: flex-start;
   gap: 32px;
   padding: 32px 0px;
-  border: 1px solid red;
   width: 100%;
   align-items: center;
 `
@@ -35,7 +34,6 @@ export const TopicsContainer = styled(ScrollView).attrs({
   }
 })`
   width: 100%;
-  border: 1px solid red;
 `;
 
 export const buttonsContainer = styled(View)`

@@ -1,10 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useContext, useState, createContext, useEffect } from 'react';
-
-import { api } from '@services/api';
-
 import UserService, { IUpdateRequest } from '@services/UserService';
-
 import User from '../interfaces/User';
 import { AppError } from '@utils/AppError';
 

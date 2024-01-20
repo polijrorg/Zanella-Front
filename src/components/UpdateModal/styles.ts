@@ -9,7 +9,7 @@ export const Container = styled(View)`
   align-items: center;
   justify-content: center;
   blur-radius: 10px;
-  background-color: #FFFFFF50};
+  background-color: #FFFFFF50;
 `
 
 export const ModalContent = styled(View)`
