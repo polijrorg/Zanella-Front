@@ -32,8 +32,13 @@ export interface IEntryResponse {
   content: string;
 }
 
-export interface IEntryRequest extends IEntryResponse {
+export interface IEntryPostRequest extends IEntryResponse {
   date: string;
+}
+
+export interface IEntryPatchRequest {
+  title?: string;
+  content?: string;
 }
 
 interface IUpdateTopicsRequest {
@@ -95,16 +100,41 @@ export default class UserService {
     }
   }
 
-  static async postEntry(data: IEntryRequest): Promise<IEntryResponse> {
+  static async postEntry(data: IEntryPostRequest): Promise<IEntryResponse> {
+    const token = await AsyncStorage.getItem('@app:token');
     try {
       const response: AxiosResponse<IEntryResponse> = await api.post(
         '/diary',
-        data
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
       );
 
       return response.data;
     } catch (error) {
       console.log('postentry');
+      throw new AppError(error);
+    }
+  }
+
+  static async updateEntry(data: IEntryPatchRequest, id: string): Promise<IEntryResponse> {
+    try {
+      const token = await AsyncStorage.getItem('@app:token');
+      const response: AxiosResponse<IEntryResponse> = await api.patch(
+        `/diary/${id}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      return response.data; 
+    } catch (error) {
       throw new AppError(error);
     }
   }

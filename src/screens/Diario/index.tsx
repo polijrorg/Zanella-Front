@@ -1,6 +1,6 @@
 import * as S from './styles';
 import React, { useEffect, useState } from 'react';
-import UserService, { IEntryRequest } from '@services/UserService';
+import UserService, {IEntryPatchRequest} from '@services/UserService';
 import { AppError } from '@utils/AppError';
 import CalendarModal from '@components/CalendarModal';
 
@@ -13,10 +13,14 @@ const Diario = ({navigation}) => {
   // to get entry
   const [entryTitle, setEntryTitle] = useState('');
   const [entryContent, setEntryContent] = useState('');
+  const [id, setId] = useState(''); 
 
   // to post entry
   const [newEntryTitle, setNewEntryTitle] = useState('');
   const [newEntryContent, setNewEntryContent] = useState('');
+
+  // to update entry 
+  const [toggleUpdate, setToggleUpdate] = useState(false);
 
   const [mode, setMode] = useState('reading');
 
@@ -33,9 +37,12 @@ const Diario = ({navigation}) => {
   
       if(response.length == 0){
         setMode('writing')
+        setEntryTitle(null);
+        setEntryContent(null);
       } else {
         setEntryTitle(response[0].title);
         setEntryContent(response[0].content);
+        setId(response[0].id);
         setMode('reading')
       }
 
@@ -47,13 +54,26 @@ const Diario = ({navigation}) => {
 
   const handleSave = async () => {
     try {
+      const postDate = new Date();
       const response = await UserService.postEntry({
-        date: JSON.stringify(new Date()),
+        date: (postDate.getFullYear()) + "-" + (postDate.getMonth() + 1) + "-" + postDate.getDate(),
         title: newEntryTitle,
         content: newEntryContent,
       });
 
-      console.log(response)
+    } catch (error) {
+      throw new AppError(error); 
+    }
+  }
+
+  const handleUpdate = async () => {
+    const updateRequest: IEntryPatchRequest = {
+      title: newEntryTitle ? newEntryTitle : entryTitle,
+      content: newEntryContent ? newEntryContent : entryContent,
+    }
+
+    try {
+      await UserService.updateEntry(updateRequest, id);
     } catch (error) {
       throw new AppError(error); 
     }
@@ -61,22 +81,31 @@ const Diario = ({navigation}) => {
 
   useEffect(() => {
     getCurrentEntry();
-  }, [date])
+  }, [date, toggleUpdate])
 
   return (
     <S.Wrapper>
       <S.Header>
         <S.CurrentDate>{`${TitleDate}`}</S.CurrentDate>
         <CalendarModal visible={visible} setVisibility={setVisibility} setDate={setDate} date={date}/>
-        <S.CalendarButton onPress={() => setVisibility(true)}>
-          {mode === 'reading' ? (
+        <S.ButtonsContainer>
+          <S.DeleteButton>
+            <S.DeleteIcon source={require('@assets/trashCan.png')}/>
+          </S.DeleteButton>
+          <S.EditButton onPress={() => {
+            if (mode === 'editing') {
+              setMode('reading');
+              setToggleUpdate(!toggleUpdate);
+            } else {
+              setMode('editing');
+            }
+          }}>
+            <S.EditIcon mode={mode} source={mode === 'editing' ? require('@assets/check.png') : require('@assets/edit.png')}/>
+          </S.EditButton>
+          <S.CalendarButton onPress={() => setVisibility(true)}>
             <S.CalendarIcon source={require('@assets/carbon_calendar.png')}/>
-            ) : (
-              <S.CreateButton onPress={() => {handleSave; setVisibility(true)}}>
-                <S.ButtonIcon source={require('@assets/check.png')}/>
-              </S.CreateButton>
-          )}
-        </S.CalendarButton>
+          </S.CalendarButton>
+        </S.ButtonsContainer>
       </S.Header>
       <S.Body>
         {mode === 'reading' ? (
@@ -86,8 +115,21 @@ const Diario = ({navigation}) => {
           </>
         ) : (
           <>
-            <S.EntryTitleInput multiline={true} placeholder="Título" onChangeText={(text) => setNewEntryTitle(text)} />
-            <S.EntryContentInput multiline={true} placeholder="Conteúdo" onChangeText={(text) => setNewEntryContent(text)} />
+            <S.EntryTitleInput 
+              multiline={true} 
+              placeholder={"Título"} 
+              defaultValue={entryTitle} 
+              onChangeText={(text) => setNewEntryTitle(text)} 
+            />
+            <S.EntryContentInput 
+              multiline={false} 
+              placeholder={"Conteúdo"} 
+              defaultValue={entryContent} 
+              onChangeText={(text) => setNewEntryContent(text)} 
+              onEndEditing={() => {
+                mode === 'editing' ? handleUpdate() : handleSave()
+              }}
+            />
           </>
         )}
       </S.Body>
