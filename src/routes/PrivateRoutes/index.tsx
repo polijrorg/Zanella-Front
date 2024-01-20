@@ -13,10 +13,10 @@ import useAuth from '@hooks/useAuth';
 const { Navigator, Screen } = createNativeStackNavigator();
 
 export function PrivateRoutes(){
-  const { isFirstAccess } = useAuth();
+  const { topics } = useAuth();
 
   return (
-    <Navigator initialRouteName={ isFirstAccess ? 'topics' : 'main'} screenOptions={{ headerShown: false, contentStyle: { backgroundColor: 'transparent'} }}>
+    <Navigator initialRouteName={ topics.length > 0 ? 'topics' : 'main'} screenOptions={{ headerShown: false, contentStyle: { backgroundColor: 'transparent'} }}>
       <Screen name="main" component={Main} />
       <Screen name="topics" component={Topics} />
       <Screen name="diario" component={Diario} />
