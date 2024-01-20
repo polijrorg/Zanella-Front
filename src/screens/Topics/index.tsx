@@ -7,6 +7,7 @@ import Topic from '@components/Topic';
 import Button from '@components/Button';
 import { api } from '@services/api';
 import { AppError } from '@utils/AppError';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Topics = () => {
   const { user, handleMainPage } = useAuth();
@@ -14,7 +15,6 @@ const Topics = () => {
   const [userSelectedTopics, setUserSelectedTopics] = useState<string[]>([]); 
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
   const navigation = useNavigation();
-  const { token } = useAuth(); 
 
   useEffect(() => {
     if (navigation.isFocused()) {
@@ -24,6 +24,7 @@ const Topics = () => {
 
   const handleTopics = async () => {
     try {
+      const token = await AsyncStorage.getItem('@app:token'); 
       const response = await api.get(
         '/users/topics',
         {
