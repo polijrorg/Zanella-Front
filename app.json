@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Zanella",
-    "slug": "Zanella",
-    "scheme": "Zanella",
+    "name": "zanella",
+    "slug": "zanella",
+    "scheme": "zanella",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
