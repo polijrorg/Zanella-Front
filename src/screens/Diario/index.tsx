@@ -54,13 +54,14 @@ const Diario = ({navigation}) => {
 
   const handleSave = async () => {
     try {
-      const postDate = new Date();
-      const response = await UserService.postEntry({
-        date: (postDate.getFullYear()) + "-" + (postDate.getMonth() + 1) + "-" + postDate.getDate(),
+      await UserService.postEntry({
+        date: (date.getFullYear()) + "-" + (date.getMonth() + 1) + "-" + date.getDate(),
         title: newEntryTitle,
         content: newEntryContent,
       });
 
+      setToggleUpdate(!toggleUpdate);
+      setMode('reading');
     } catch (error) {
       throw new AppError(error); 
     }
@@ -79,6 +80,15 @@ const Diario = ({navigation}) => {
     }
   }
 
+  const handleDelete = async () => {
+    try {
+      await UserService.deleteEntry(id);
+      setToggleUpdate(!toggleUpdate)
+    } catch (error) {
+      throw new AppError(error); 
+    }
+  }
+
   useEffect(() => {
     getCurrentEntry();
   }, [date, toggleUpdate])
@@ -89,7 +99,11 @@ const Diario = ({navigation}) => {
         <S.CurrentDate>{`${TitleDate}`}</S.CurrentDate>
         <CalendarModal visible={visible} setVisibility={setVisibility} setDate={setDate} date={date}/>
         <S.ButtonsContainer>
-          <S.DeleteButton>
+          <S.DeleteButton onPress={() => {
+            handleDelete();
+            setMode('reading');
+            setToggleUpdate(!toggleUpdate);
+          }}>
             <S.DeleteIcon source={require('@assets/trashCan.png')}/>
           </S.DeleteButton>
           <S.EditButton onPress={() => {
@@ -127,7 +141,11 @@ const Diario = ({navigation}) => {
               defaultValue={entryContent} 
               onChangeText={(text) => setNewEntryContent(text)} 
               onEndEditing={() => {
-                mode === 'editing' ? handleUpdate() : handleSave()
+                mode === 'editing' 
+                  ? handleUpdate() 
+                  : mode === 'writing' 
+                    ? handleSave()
+                    : null
               }}
             />
           </>
