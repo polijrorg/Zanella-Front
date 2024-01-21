@@ -15,13 +15,10 @@ const Cadastro_II = ({navigation}) => {
   const [userPhone, setUserPhone] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  console.log("variaveiss", name, age, parental );
-
 
   async function signUp() {
-    console.log("Entrou na função");
     try {
-      const { data } = await api.post('/users/register', {
+      await api.post('/users/register', {
         name: name,
         age: age,
         parental_role: parental,
@@ -30,7 +27,7 @@ const Cadastro_II = ({navigation}) => {
         password: userPassword
       });
 
-      console.log("A requisição deu certo:", data);
+      navigation.navigate('Login');
     } catch (error) {
       console.log(error);
     }
@@ -39,15 +36,17 @@ const Cadastro_II = ({navigation}) => {
   return(
     
   <S.Wrapper>
+    <S.background source={require('@assets/Background.png')}>
     <S.Title>ComTato</S.Title>
-
-    <S.Container>
-      <Nelson_Ballon/>
-      
+    <S.Header>
+      <S.Ballon>
+        <S.BallonImage source={require('@assets/JabutiNelson_Dir.png')}/>
+      </S.Ballon>
       <S.StyledText>Estamos quase lá!</S.StyledText>
-      
-      <S.Wrapper_Input>
-        <S.Input_Description>Como você se descreveria?</S.Input_Description>
+    </S.Header>  
+    <S.Wrapper_Input>
+        <S.Input_Description 
+          placeholder='Como você se descreveria?'/>
         <S.Input_Cadastro
           placeholder='Pode me passar seu telefone?'
           placeholderTextColor="#FFB381"
@@ -64,9 +63,8 @@ const Cadastro_II = ({navigation}) => {
           value={userPassword}
           onChangeText={(value) => setUserPassword(value)}/>
       </S.Wrapper_Input>
-      <Button text='CADASTRAR' onPress={signUp} style='solido'/>
-    </S.Container>
-    
+      <Button text='CADASTRAR' onPress={signUp} style='solido' size='medium'/>
+    </S.background>
   </S.Wrapper>
 )
 };

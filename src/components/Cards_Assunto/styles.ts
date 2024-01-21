@@ -3,7 +3,7 @@ import { TouchableOpacity, Text, Image, View } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Wrapper = styled(View)`
-  width: 100%;
+  width: 90%;
   display: flex;
   min-height: 100px;
   flex-direction: column;

@@ -1,6 +1,5 @@
 import * as S from './styles';
 import React from 'react';
-import Icon_Navbar from '@components/Icon_NavBar';
 
 const image = require('../../../public/assets/JabutiNelson_Dir.png')
 

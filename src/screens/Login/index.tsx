@@ -29,7 +29,7 @@ export function Login({ navigation }) {
       <S.StyledText>É bom ter você aqui!</S.StyledText>
       <S.Text_Login>Login</S.Text_Login>
       <S.Wrapper_Input>
-        <Input placeholder='Email' stateFunction={setEmail} />
+        <Input placeholder='Email' stateFunction={setEmail} type='email-address'/>
         <Input placeholder='Senha' stateFunction={setPassword}/>
       </S.Wrapper_Input>
       <S.Wrapper_Info>

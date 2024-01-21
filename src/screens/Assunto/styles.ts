@@ -8,6 +8,7 @@ export const Wrapper = styled(ScrollView).attrs({
     justifyContent: 'flex-start',
     alignItems: 'center',
     gap: 16,
+    paddingTop: 16,
   }
 })`
   flex: 1;
@@ -93,5 +94,3 @@ export const Footer = styled(View)`
   width: 100%;
   height: 32px;
 `
-
-

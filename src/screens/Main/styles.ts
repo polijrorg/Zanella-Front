@@ -1,5 +1,5 @@
 import { theme } from '@styles/default.theme';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Wrapper = styled(View)`
@@ -8,11 +8,16 @@ export const Wrapper = styled(View)`
   background: ${ theme.colors.primary.BgHover };
 `;
 
-export const Wrapper_Talk = styled(View)`
+export const Wrapper_TalkButton = styled(TouchableOpacity)`
   width: 70%;
   height: 11%;
-  align-items: center;
   margin-top: 48px;
+`
+
+export const Wrapper_Talk = styled(View)`
+  width: 100%;
+  height: 100%;
+  align-items: center;
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
   border-bottom-right-radius: 32px;
