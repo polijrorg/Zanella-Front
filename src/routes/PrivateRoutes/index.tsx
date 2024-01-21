@@ -8,6 +8,8 @@ import Perfil from '@screens/Perfil';
 import Interesses from '@screens/Interesses';
 import Assunto from '@screens/Assunto';
 import Topics from '@screens/Topics';
+import TopicsSelection from '@screens/TopicsSelection';
+import Subjects from '@screens/Subjects';
 import useAuth from '@hooks/useAuth';
 
 const { Navigator, Screen } = createNativeStackNavigator();
@@ -25,6 +27,8 @@ export function PrivateRoutes(){
       <Screen name="perfil" component={Perfil} />
       <Screen name="interesses" component={Interesses} />
       <Screen name="assunto" component={Assunto} />
+      <Screen name="selection" component={TopicsSelection} />
+      <Screen name='subjects' component={Subjects} />
     </Navigator>
   );
 };

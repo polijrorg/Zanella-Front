@@ -40,7 +40,7 @@ const Assunto = ({ route, navigation }) => {
       </S.HintContainer>
       <S.HintWrapper>
         {contents.map((content, index) => (
-          <S.ContentWrapper>
+          <S.ContentWrapper key={index}>
             <S.HintTitle key={index + 1}>{hints[index]}</S.HintTitle>
             <S.Content key={index}>{content}</S.Content>
           </S.ContentWrapper>

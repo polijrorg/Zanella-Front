@@ -8,8 +8,14 @@ export function NavBar() {
   const [isVisible, setVisibility] = useState(true);
   const navigation = useNavigation();
 
+
+  // retirado a tela de forum
+  // const screens = [
+  //   'main', 'diario', 'assuntos', 'forum', 'perfil'
+  // ]
+
   const screens = [
-    'main', 'diario', 'assuntos', 'forum', 'perfil'
+    'main', 'diario', 'assuntos', 'perfil'
   ]
 
   useEffect(() => {
