@@ -1,12 +1,8 @@
 import * as S from './styles';
-import { StatusBar } from 'expo-status-bar';
 import React, {useState, useContext} from 'react';
-import Nelson_Ballon from '@components/Nelson_Balloon';
 import Button from '@components/Button';
-import Input from '@components/Input';
 import { api } from '@services/api';
 import { UserContext } from '@utils/UserContext';
-import { TouchableOpacity } from 'react-native';
 
 
 const Cadastro_II = ({navigation}) => {
@@ -27,7 +23,7 @@ const Cadastro_II = ({navigation}) => {
         password: userPassword
       });
 
-      navigation.navigate('Login');
+      navigation.navigate('login');
     } catch (error) {
       console.log(error);
     }
