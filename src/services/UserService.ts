@@ -194,5 +194,25 @@ export default class UserService {
       console.log('updatetopics');
       throw new AppError(error);
     }
+
   }
+
+  static async listTopics(): Promise<any> {
+    const token = await AsyncStorage.getItem('@app:token');
+    try {
+      const response: AxiosResponse<any> = await api.get(
+        'users/topics',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      return response.data;
+    } catch (error) {
+      console.log('listtopics');
+      throw new AppError(error);
+    }
+  } 
 }

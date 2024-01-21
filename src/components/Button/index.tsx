@@ -7,6 +7,8 @@ export type ButtonProps = {
   onPress(): any;
   size: string;
   disabled?: boolean;
+  isSelected?: boolean;
+  setIsSelected?: React.Dispatch<React.SetStateAction<boolean>>;
 }; 
 const Button: React.FC<ButtonProps> = ({ text, style, onPress, size, disabled }) => (
   <S.Wrapper onPress={onPress} style={style} size={size} disabled={disabled}>
