@@ -23,7 +23,7 @@ const TopicsSelection = ({ navigation }) => {
   const handleUpdateTopics = async () => {
     const response = await UserService.updateUserTopics({id: user.id, topics: userSelectedTopics});
 
-    // navigation.navigate('main');
+    navigation.navigate('subjects');
   }
 
   return (
@@ -44,18 +44,18 @@ const TopicsSelection = ({ navigation }) => {
             </S.QuestionBalloon>
           </S.RightSection>
         </S.QuestionWrapper>
-        <S.ButtonsWrapper>
+        <S.CardContainer>
           {topics.map((topic, index) => {
             return (
               <SelectionButton 
-                key={index} 
-                text={topic} 
-                userSelectedTopics={userSelectedTopics} 
-                setUserSelectedTopics={setUserSelectedTopics}
+              key={index} 
+              text={topic} 
+              userSelectedTopics={userSelectedTopics} 
+              setUserSelectedTopics={setUserSelectedTopics}
               />
-            )
+              )
           })}
-        </S.ButtonsWrapper>
+        </S.CardContainer>
         <Button text='CONTINUAR' style='solido' onPress={handleUpdateTopics} size='medium' disabled={userSelectedTopics.length > 0 ? false : true} />
       </S.Background>
     </S.Container>

@@ -1,9 +1,9 @@
+import React, { useState, useEffect } from 'react';
 import * as S from './styles';
-import React, { useEffect, useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import Cards_Assunto from '@components/Cards_Assunto';
 import useAuth from '@hooks/useAuth';
 import UserService from '@services/UserService';
+import Cards_Assunto from '@components/Cards_Assunto';
+import Button from '@components/Button';
 
 interface ISubject {
   title: string;
@@ -14,10 +14,9 @@ interface ISubject {
   subjectTopics: string;
 }
 
-const Assuntos = (props) => {
-  const { user } = useAuth();
-  const [searchtext, setSearchtext] = useState("");
+const Subjects = (props) => {
   const [subjects, setSubjects] = useState([] as any);
+  const { user } = useAuth();
 
   const getUserSubjects = async () => {
     const response = await UserService.getSubjects(user);
@@ -28,25 +27,21 @@ const Assuntos = (props) => {
     getUserSubjects();
   }, [user])
 
-  return(
-    <S.Wrapper>
-      <StatusBar style="dark" />
-      <S.Container>
-        <S.HeaderGap />
-        <S.Search_Wrapper>
-          <S.Search><S.Search_Icon source={require('../../../public/assets/SearchIcon.png')}/></S.Search>
-          <S.Search_Input 
-            placeholder='O que você quer descobrir?' 
-            placeholderTextColor="#FFB381" 
-            value={searchtext}
-            onChangeText={(value) => setSearchtext(value)}
-          />
-        </S.Search_Wrapper>
+  return (
+    <S.Container>
+      <S.Background source={require('@assets/topicSelectionBackground.png')}>
+      <S.QuestionWrapper>
+          <S.LeftSection>
+            <S.TurtleIcon source={require('@assets/JabutiNelson_Dir.png')}/>
+          </S.LeftSection>
+          <S.RightSection>
+            <S.QuestionBalloon>
+              <S.Question>{'Acredito que estes recursos podem te ajudar!'}</S.Question>
+            </S.QuestionBalloon>
+          </S.RightSection>
+        </S.QuestionWrapper>
         <S.CardContainer>
-          {subjects.filter((subject) => 
-            subject.title.includes(searchtext) || 
-            subject.description.includes(searchtext) ||
-            subject.subjectTopics.includes(searchtext)).map((subject: ISubject, index: number) => (
+          {subjects.map((subject: ISubject, index: number) => (
             <S.CardButton key={index + 1} onPress={() => props.navigation.navigate('assunto', {
               title: subject.title,
               description: subject.description,
@@ -59,13 +54,15 @@ const Assuntos = (props) => {
                 key={index}
                 title={subject.title} 
                 description={subject.description} 
-                />
+              />
             </S.CardButton>
           ))}
         </S.CardContainer>
-      </S.Container>
-    </S.Wrapper>
-  )
-};
+        <Button text="ME MOSTRE!" style='solido' size='medium' onPress={() => props.navigation.navigate('assuntos')}/>
+        <Button text="QUERO VER DEPOIS" style='vazado' size='medium' onPress={() => props.navigation.navigate('main')}/>
+      </S.Background>
+    </S.Container>
+  );
+}
 
-export default Assuntos;
+export default Subjects;

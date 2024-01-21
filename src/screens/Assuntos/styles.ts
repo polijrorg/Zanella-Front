@@ -56,3 +56,15 @@ export const Search_Input = styled(TextInput)`
   font-size: 18px;
   font-family:Poppins;
 `;
+
+export const CardContainer = styled(ScrollView).attrs({
+  contentContainerStyle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 16,
+  }
+})`
+  width: 100%;
+  height: 100%;
+  flex: 1;
+`
