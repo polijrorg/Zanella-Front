@@ -18,7 +18,7 @@ export function PrivateRoutes(){
   const { topics } = useAuth();
 
   return (
-    <Navigator initialRouteName={ topics.length > 0 ? 'topics' : 'main'} screenOptions={{ headerShown: false, contentStyle: { backgroundColor: 'transparent'} }}>
+    <Navigator initialRouteName={ !topics ? 'topics' : 'main'} screenOptions={{ headerShown: false, contentStyle: { backgroundColor: 'transparent'} }}>
       <Screen name="main" component={Main} />
       <Screen name="topics" component={Topics} />
       <Screen name="diario" component={Diario} />

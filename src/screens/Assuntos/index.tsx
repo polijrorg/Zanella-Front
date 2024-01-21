@@ -31,7 +31,7 @@ const Assuntos = (props) => {
   return(
     <S.Wrapper>
       <StatusBar style="dark" />
-      <S.Container>
+      {/* <S.Container> */}
         <S.HeaderGap />
         <S.Search_Wrapper>
           <S.Search><S.Search_Icon source={require('../../../public/assets/SearchIcon.png')}/></S.Search>
@@ -63,7 +63,7 @@ const Assuntos = (props) => {
             </S.CardButton>
           ))}
         </S.CardContainer>
-      </S.Container>
+      {/* </S.Container> */}
     </S.Wrapper>
   )
 };

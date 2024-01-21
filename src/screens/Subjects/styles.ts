@@ -69,7 +69,7 @@ export const CardContainer = styled(ScrollView).attrs({
     gap: 16,
   }
 })`
-  width: 90%;
+  width: 100%;
   height: 100%;
   flex: 1;
 `

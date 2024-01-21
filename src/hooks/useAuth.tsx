@@ -18,7 +18,7 @@ interface AuthContextData {
     handleMainPage(isFocused: boolean): void;
     onMain: boolean;    
     token: string;
-    topics: string[];
+    topics: boolean;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -28,7 +28,7 @@ export const AuthProvider: React.FC<{ children?: React.ReactNode | undefined }> 
   const [loading, setLoading] = useState(true);
   const [onMain, setOnMain] = useState(false);
   const [token, setToken] = useState('')
-  const [topics, setTopics] = useState<string[]>([]);
+  const [topics, setTopics] = useState<boolean>(false);
 
   const handleMainPage = (isFocused: boolean) => {
     setOnMain(isFocused);
@@ -40,10 +40,10 @@ export const AuthProvider: React.FC<{ children?: React.ReactNode | undefined }> 
 
       setUser(response.user);
       setToken(response.token);
+      response.user.topics ? setTopics(true) : setTopics(false);
       await AsyncStorage.setItem('@app:user', JSON.stringify(response.user));
       await AsyncStorage.setItem('@app:token', response.token);
 
-      setTopics(JSON.parse(response.user.topics));
          
     } catch (error) {
       throw new AppError(error);
@@ -72,8 +72,6 @@ export const AuthProvider: React.FC<{ children?: React.ReactNode | undefined }> 
       const storedUser = JSON.parse(
         await AsyncStorage.getItem('@app:user')
       );
-      
-      // console.log('storedUser :', storedUser)
 
       if (storedUser) {
         setUser(storedUser)

@@ -23,28 +23,13 @@ const Topics = () => {
   }, [navigation])
 
   const handleTopics = async () => {
-    try {
-      const token = await AsyncStorage.getItem('@app:token'); 
-      const response = await api.get(
-        '/users/topics',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-
-      const formattedData = JSON.parse(response.data);
-      setTopics(formattedData);
-    } catch (error) {
-      console.log('listtopics');
-      throw new AppError(error);
-    }
+    const response = await UserService.listTopics();
+    setTopics(response);
   }
 
   useEffect(() => {
     handleTopics();
-  }, [])
+  }, [user])
 
   useEffect(() => {
     userSelectedTopics.length > 0 ? setIsDisabled(false) : setIsDisabled(true);

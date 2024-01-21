@@ -6,6 +6,7 @@ export const Wrapper = styled(View)`
   flex: 1;
   align-items: center;
   background: ${ theme.colors.primary.BgTela };
+  gap: 24px;
 `;
 
 export const CardButton = styled(TouchableOpacity)`
@@ -13,16 +14,6 @@ export const CardButton = styled(TouchableOpacity)`
 export const HeaderGap = styled(View)`
   width: 100%;
 `
-export const Container = styled(ScrollView).attrs({
-  contentContainerStyle: {
-    alignItems: 'center',
-    gap: 24,
-  }
-})`
-  width: 90%;
-  height: 100%;
-`;
-
 export const Search_Wrapper = styled(View)`
   align-items: center;
   display: flex;
@@ -65,6 +56,5 @@ export const CardContainer = styled(ScrollView).attrs({
   }
 })`
   width: 100%;
-  height: 100%;
   flex: 1;
 `
