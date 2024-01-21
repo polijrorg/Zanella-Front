@@ -11,7 +11,7 @@ export const Background = styled(ImageBackground)`
   flex: 1;
   justify-content: flex-start;
   gap: 32px;
-  padding: 32px 0px;
+  padding: 14% 0px;
   width: 100%;
   align-items: center;
 `

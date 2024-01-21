@@ -4,6 +4,7 @@ import User from '@interfaces/User';
 import useAuth from '@hooks/useAuth';
 
 import { api } from './api';
+import getApi from './axios';
 import { AppError } from '@utils/AppError';
 
 export interface ILoginRequest {
@@ -201,10 +202,10 @@ export default class UserService {
     const token = await AsyncStorage.getItem('@app:token');
     try {
       const response: AxiosResponse<any> = await api.get(
-        'users/topics',
+        '/users/topics',
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
           },
         },
       );

@@ -3,6 +3,7 @@
     "name": "zanella",
     "slug": "Zanella",
     "scheme": "zanella",
+    "owner": "zanellaapp",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"

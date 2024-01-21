@@ -37,13 +37,13 @@ export const AuthProvider: React.FC<{ children?: React.ReactNode | undefined }> 
   const signIn = async (data: ILoginRequest) => {
     try {
       const response = await UserService.login(data);
-
-      setUser(response.user);
-      setToken(response.token);
-      response.user.topics ? setTopics(true) : setTopics(false);
+    
       await AsyncStorage.setItem('@app:user', JSON.stringify(response.user));
-      await AsyncStorage.setItem('@app:token', response.token);
+      await AsyncStorage.setItem('@app:token', response.token).then(() => {setUser(response.user)});
 
+      setToken(response.token);
+
+      response.user.topics ? setTopics(true) : setTopics(false);
          
     } catch (error) {
       throw new AppError(error);
@@ -69,16 +69,11 @@ export const AuthProvider: React.FC<{ children?: React.ReactNode | undefined }> 
 
   useEffect(() => {
     const getUser = async () => {
-      const storedUser = JSON.parse(
-        await AsyncStorage.getItem('@app:user')
-      );
-
-      if (storedUser) {
-        setUser(storedUser)
-        setLoading(false);
-      };
+      await AsyncStorage.getItem('@app:user').then((user) => {
+        setUser(JSON.parse(user));
+      })
     };
-    
+
     if (!user) getUser();
     else setLoading(false);
   }, [user]);

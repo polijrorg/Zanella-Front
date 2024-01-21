@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './styles';
-import { useNavigation } from '@react-navigation/native';
 import useAuth from '@hooks/useAuth';
 import UserService from '@services/UserService';
 import Topic from '@components/Topic';
@@ -9,12 +8,11 @@ import { api } from '@services/api';
 import { AppError } from '@utils/AppError';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Topics = () => {
+const Topics = ({ navigation }) => {
   const { user, handleMainPage } = useAuth();
   const [topics, setTopics] = useState<string[]>([]);
   const [userSelectedTopics, setUserSelectedTopics] = useState<string[]>([]); 
   const [isDisabled, setIsDisabled] = useState<boolean>(true);
-  const navigation = useNavigation();
 
   useEffect(() => {
     if (navigation.isFocused()) {
@@ -24,7 +22,8 @@ const Topics = () => {
 
   const handleTopics = async () => {
     const response = await UserService.listTopics();
-    setTopics(response);
+
+    setTopics(JSON.parse(response));
   }
 
   useEffect(() => {
@@ -36,8 +35,7 @@ const Topics = () => {
   }, [userSelectedTopics])
 
   const handleUpdateTopics = async () => {
-    const response = await UserService.updateUserTopics({id: user.id, topics: userSelectedTopics});
-    console.log(response);
+    await UserService.updateUserTopics({id: user.id, topics: userSelectedTopics});
 
     navigation.navigate('main');
   }
@@ -52,8 +50,8 @@ const Topics = () => {
         <S.Title>Quais tópicos te interessam mais?</S.Title>
         <S.TopicsContainer>
           {topics.map((topic: string, index: number) => 
-            <Topic key={index} title={topic} userSelectedTopics={userSelectedTopics} setUserSelectedTopics={setUserSelectedTopics} />)
-          }
+            <Topic key={index} title={topic} userSelectedTopics={userSelectedTopics} setUserSelectedTopics={setUserSelectedTopics} />
+          )}
         </S.TopicsContainer>
         <S.buttonsContainer>
           <Button style={'vazado'} size={'small'} onPress={handleSkipTopics} text='PULAR'/>
