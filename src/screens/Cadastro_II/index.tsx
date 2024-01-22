@@ -24,8 +24,9 @@ const Cadastro_II = ({navigation}) => {
         password: userPassword
       });
 
-      await AsyncStorage.setItem('@app:isFirstAccess', 'true')
-      navigation.navigate('login');
+      await AsyncStorage.setItem('@app:isFirstAccess', 'true').then(
+        () => {navigation.navigate('login')}
+      );
     } catch (error) {
       console.log(error);
     }

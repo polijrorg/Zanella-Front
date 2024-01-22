@@ -62,7 +62,6 @@ export const Wrapper_Input = styled(View)`
 `;
 
 export const Input_Description = styled(TextInput)`
-  display: flex;
   justify-content: flex-start;
   width: 80%;
   height: 100px;

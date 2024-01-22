@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, { useRef, useEffect } from 'react';
 import {Animated, Dimensions} from 'react-native';
 import * as S from './styles';
 import SlideItem from '@components/SlideItem';
@@ -6,8 +6,10 @@ import slides from '@utils/SlideData';
 import Pagination from '@components/Pagination';
 import Button from '@components/Button';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import useAuth from '@hooks/useAuth';
 
 const Assistance = ({ navigation }) => {
+  const { handleMainPage } = useAuth();
   const scrollX = useRef(new Animated.Value(0)).current;
   const [scrolledUnits, setScrolledUnits] = React.useState(0);
   
@@ -29,9 +31,14 @@ const Assistance = ({ navigation }) => {
   };
 
   const handleScrollEnd = async() => {
-    await AsyncStorage.setItem('@app:isFirstAccess', 'false');
-    navigation.navigate('main');
+    await AsyncStorage.setItem('@app:isFirstAccess', 'false').then(() => {navigation.navigate('main')});
   }
+
+  useEffect(() => {
+    if (navigation.isFocused()) {
+      handleMainPage(true);
+    }
+  }, [navigation])
 
   return (
     <S.Container>
@@ -50,7 +57,7 @@ const Assistance = ({ navigation }) => {
             />
         </S.SlidesContainer>
         <Pagination slides={slides} scrollX={scrolledUnits} width={width}/>
-        {scrolledUnits > width*(slides.length - 1) && <Button text="COMEÇAR" size='medium' style='solido' onPress={handleScrollEnd}/>}
+        {scrolledUnits > width*(slides.length - 2) && <Button text="COMEÇAR" size='medium' style='solido' onPress={handleScrollEnd}/>}
       </S.Background>
     </S.Container>
   );

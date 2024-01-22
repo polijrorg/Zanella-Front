@@ -18,18 +18,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const { Navigator, Screen } = createNativeStackNavigator();
 
 export function PrivateRoutes(){
-  const { topics } = useAuth();
-  const [isFirstAccess, setFirstAccess] = useState(false);
-
-  useEffect(() => {
-    const getFirstAceess = async () => {
-      const firstAccess = await AsyncStorage.getItem('@app:isFirstAccess');
-
-      setFirstAccess(firstAccess === 'true');
-    }
-
-    getFirstAceess();
-  }, [])
+  const { topics, isFirstAccess } = useAuth();
 
   return (
     <Navigator initialRouteName={ isFirstAccess? 'assistance' : !topics ? 'topics' : 'main'} screenOptions={{ headerShown: false, contentStyle: { backgroundColor: 'transparent'} }}>
