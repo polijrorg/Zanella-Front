@@ -9,7 +9,7 @@ import { api } from '@services/api';
 import { UserContext } from '@utils/UserContext';
 
 
-const Cadastro_I = (props) => {
+const Cadastro_I = ({ navigation }) => {
 
   const context = useContext(UserContext);
   
@@ -18,14 +18,14 @@ const Cadastro_I = (props) => {
   const [userParental, setUserParental] = useState("");
     
   function handleDoLogin() {
-    props.navigation.navigate('login');
+    navigation.navigate('login');
   };
 
   const handleCadastroii = () => {
     context.setName(userName);
     context.setAge(userAge);
     context.setParental(userParental);
-    props.navigation.navigate('cadastroii');
+    navigation.navigate('cadastroii');
   };
 
 
@@ -36,11 +36,15 @@ const Cadastro_I = (props) => {
     <S.Title>ComTato</S.Title>
    
 
-    <S.Container>
-      <Nelson_Ballon/>
+    
+    <S.Header>
+      <S.Ballon>
+        <S.BallonImage source={require('@assets/JabutiNelson_Dir.png')}/>
+      </S.Ballon>
+    </S.Header>
       
-      <S.StyledText>Oi, eu sou o Nelson!</S.StyledText>
-      <S.StyledText>Prazer em te conhecer!</S.StyledText>
+      <S.StyledText>{"Oi, eu sou o Nelson. Prazer em te conhecer!"}</S.StyledText>
+
       
       <S.Wrapper_Input>
         <S.Input_Cadastro 
@@ -73,7 +77,7 @@ const Cadastro_I = (props) => {
       <S.Button_continuar onPress={handleCadastroii} >
         <S.Login_Button>CONTINUAR</S.Login_Button>
       </S.Button_continuar>
-    </S.Container>
+  
     </S.Background>
   </S.Wrapper>
   )
