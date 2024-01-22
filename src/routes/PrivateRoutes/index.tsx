@@ -11,14 +11,28 @@ import Topics from '@screens/Topics';
 import TopicsSelection from '@screens/TopicsSelection';
 import Subjects from '@screens/Subjects';
 import useAuth from '@hooks/useAuth';
+import Assistance from '@screens/Assistance';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
 export function PrivateRoutes(){
   const { topics } = useAuth();
+  const [isFirstAccess, setFirstAccess] = useState(false);
+
+  useEffect(() => {
+    const getFirstAceess = async () => {
+      const firstAccess = await AsyncStorage.getItem('@app:isFirstAccess');
+
+      setFirstAccess(firstAccess === 'true');
+    }
+
+    getFirstAceess();
+  }, [])
 
   return (
-    <Navigator initialRouteName={ !topics ? 'topics' : 'main'} screenOptions={{ headerShown: false, contentStyle: { backgroundColor: 'transparent'} }}>
+    <Navigator initialRouteName={ isFirstAccess? 'assistance' : !topics ? 'topics' : 'main'} screenOptions={{ headerShown: false, contentStyle: { backgroundColor: 'transparent'} }}>
       <Screen name="main" component={Main} />
       <Screen name="topics" component={Topics} />
       <Screen name="diario" component={Diario} />
@@ -29,6 +43,7 @@ export function PrivateRoutes(){
       <Screen name="assunto" component={Assunto} />
       <Screen name="selection" component={TopicsSelection} />
       <Screen name='subjects' component={Subjects} />
+      <Screen name="assistance" component={Assistance} />
     </Navigator>
   );
 };

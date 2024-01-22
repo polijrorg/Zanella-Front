@@ -1,12 +1,9 @@
 import * as S from './styles';
-import { StatusBar } from 'expo-status-bar';
 import React, {useState, useContext} from 'react';
-import Nelson_Ballon from '@components/Nelson_Balloon';
 import Button from '@components/Button';
-import Input from '@components/Input';
 import { api } from '@services/api';
 import { UserContext } from '@utils/UserContext';
-import { TouchableOpacity } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const Cadastro_II = ({navigation}) => {
@@ -27,46 +24,46 @@ const Cadastro_II = ({navigation}) => {
         password: userPassword
       });
 
-      navigation.navigate('Login');
+      await AsyncStorage.setItem('@app:isFirstAccess', 'true')
+      navigation.navigate('login');
     } catch (error) {
       console.log(error);
     }
-}
+  }
 
-  return(
-    
-  <S.Wrapper>
-    <S.background source={require('@assets/Background.png')}>
-    <S.Title>ComTato</S.Title>
-    <S.Header>
-      <S.Ballon>
-        <S.BallonImage source={require('@assets/JabutiNelson_Dir.png')}/>
-      </S.Ballon>
-      <S.StyledText>Estamos quase lá!</S.StyledText>
-    </S.Header>  
-    <S.Wrapper_Input>
-        <S.Input_Description 
-          placeholder='Como você se descreveria?'/>
-        <S.Input_Cadastro
-          placeholder='Pode me passar seu telefone?'
-          placeholderTextColor="#FFB381"
-          value={userPhone}
-          onChangeText={(value) => setUserPhone(value)}/>
-        <S.Input_Cadastro
-          placeholder='Qual o seu email?'
-          placeholderTextColor="#FFB381"
-          value={userEmail}
-          onChangeText={(value) => setUserEmail(value)}/>
-        <S.Input_Cadastro
-          placeholder='Crie uma senha!'
-          placeholderTextColor="#FFB381"
-          value={userPassword}
-          onChangeText={(value) => setUserPassword(value)}/>
-      </S.Wrapper_Input>
-      <Button text='CADASTRAR' onPress={signUp} style='solido' size='medium'/>
-    </S.background>
-  </S.Wrapper>
-)
+  return(  
+    <S.Wrapper>
+      <S.background source={require('@assets/Background.png')}>
+      <S.Title>ComTato</S.Title>
+      <S.Header>
+        <S.Ballon>
+          <S.BallonImage source={require('@assets/JabutiNelson_Dir.png')}/>
+        </S.Ballon>
+        <S.StyledText>Estamos quase lá!</S.StyledText>
+      </S.Header>  
+      <S.Wrapper_Input>
+          <S.Input_Description 
+            placeholder='Como você se descreveria?'/>
+          <S.Input_Cadastro
+            placeholder='Pode me passar seu telefone?'
+            placeholderTextColor="#FFB381"
+            value={userPhone}
+            onChangeText={(value) => setUserPhone(value)}/>
+          <S.Input_Cadastro
+            placeholder='Qual o seu email?'
+            placeholderTextColor="#FFB381"
+            value={userEmail}
+            onChangeText={(value) => setUserEmail(value)}/>
+          <S.Input_Cadastro
+            placeholder='Crie uma senha!'
+            placeholderTextColor="#FFB381"
+            value={userPassword}
+            onChangeText={(value) => setUserPassword(value)}/>
+        </S.Wrapper_Input>
+        <Button text='CADASTRAR' onPress={signUp} style='solido' size='medium'/>
+      </S.background>
+    </S.Wrapper>
+  )
 };
 
 export default Cadastro_II;

@@ -15,30 +15,41 @@ export const Background = styled(ImageBackground)`
   width: 100%;
   align-items: center;
   justify-content: center;
+  gap: 24px;
+`
+export const Header = styled(View)`
+  width: 100%;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+`
+export const Ballon = styled(View)`
+  width: 80px;
+  height: 80px;
+  border-bottom-right-radius: 40px;
+  border-top-right-radius: 40px;
+  border-top-left-radius: 40px;
+  background: ${ theme.colors.primary.BgHover };
+  align-items: center;
+  justify-content: center;
+`
+export const BallonImage = styled(Image)`
+  width: 56px;
+  height: 56px;
 `
 
 export const Title = styled(Text)`
   color: ${ theme.colors.primary.Texto };
   font-size: 40px;
-  position: absolute;
-  top: 8%;
   letter-spacing: 2px;
   font-family: PoppinsMedium;
 `;
 
-export const Container = styled(View)`
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  margin-top: 56px;
-  flex-direction: column;
-  padding: 16px;
-`;
-
 export const StyledText = styled(Text)`
   color: ${ theme.colors.primary.TextoHigh };
-  margin-top: 8px;
-  font-size: 32px;
+  width: 80%;
+  font-size: 24px;
+  text-align: center;
   letter-spacing: 0.4px;
   font-family: Poppins;
 `;
@@ -48,10 +59,8 @@ export const Wrapper_Input = styled(View)`
   justify-content: space-evenly;
   width: 100%;
   height: 200px;
-  margin-top: 23%;
   flex-direction: column;
   gap: 16px;
-  margin-bottom: 24px;
 `;
 
 export const Input_Cadastro = styled(TextInput)`
@@ -69,7 +78,6 @@ export const Wrapper_Info = styled(View)`
   justify-content: space-evenly;
   width: 100%;
   height: 24px;
-  margin-bottom: 56px;
   gap: 24px;
   flex-direction: row;
 `;
