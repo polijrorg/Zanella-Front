@@ -19,12 +19,14 @@ interface AuthContextData {
     onMain: boolean;    
     token: string;
     topics: boolean;
+    isFirstAccess: boolean;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC<{ children?: React.ReactNode | undefined }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [isFirstAccess, setFirstAccess] = useState(false);
   const [loading, setLoading] = useState(true);
   const [onMain, setOnMain] = useState(false);
   const [token, setToken] = useState('')
@@ -39,7 +41,11 @@ export const AuthProvider: React.FC<{ children?: React.ReactNode | undefined }> 
       const response = await UserService.login(data);
     
       await AsyncStorage.setItem('@app:user', JSON.stringify(response.user));
-      await AsyncStorage.setItem('@app:token', response.token).then(() => {setUser(response.user)});
+      await AsyncStorage.setItem('@app:token', response.token).then(async() => {
+        await AsyncStorage.getItem('@app:isFirstAccess').then((firstAccess) => {
+          setFirstAccess(firstAccess === 'true');
+          setUser(response.user)
+      })});
 
       setToken(response.token);
 
@@ -79,7 +85,7 @@ export const AuthProvider: React.FC<{ children?: React.ReactNode | undefined }> 
   }, [user]);
 
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signOut, update, handleMainPage, onMain, token, topics }}>
+    <AuthContext.Provider value={{ user, loading, signIn, signOut, update, handleMainPage, onMain, token, topics, isFirstAccess }}>
       {children}
     </AuthContext.Provider>
   );
