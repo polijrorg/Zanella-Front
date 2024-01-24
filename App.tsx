@@ -2,8 +2,7 @@ import AppProvider from '@hooks/index';
 import React from 'react';
 import { useFonts } from '@expo-google-fonts/poppins';
 import { Rotas } from './src/routes';
-import { Image } from 'react-native';
-import { UserContextProvider } from '@utils/UserContext';
+import UserContextProvider from '@utils/UserContext';
 import { AuthProvider } from '@hooks/useAuth';
 export default function App() {
 

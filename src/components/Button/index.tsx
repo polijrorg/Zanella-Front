@@ -12,7 +12,7 @@ export type ButtonProps = {
 }; 
 const Button: React.FC<ButtonProps> = ({ text, style, onPress, size, disabled }) => (
   <S.Wrapper onPress={onPress} style={style} size={size} disabled={disabled}>
-      <S.Login_Button>{text}</S.Login_Button>
+      <S.Login_Button style={style}>{text}</S.Login_Button>
   </S.Wrapper>
 );
 
