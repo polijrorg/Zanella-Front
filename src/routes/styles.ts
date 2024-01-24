@@ -7,9 +7,7 @@ export const View_Back = styled(SafeAreaView)<{ OS: string }>`
   background: ${ theme.colors.primary.BgHover };
 `;
 
-export const Status = styled(StatusBar).attrs({ 
-  translucent: true,
-})``;
+export const Status = styled(StatusBar)``;
 
 export const BackgroundContainer = styled(View)`
   flex: 1;

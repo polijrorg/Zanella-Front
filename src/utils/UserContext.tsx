@@ -1,5 +1,4 @@
-  import React, { createContext, useState, ReactNode, useEffect } from 'react';
-import { View } from 'react-native';
+import React, { createContext, useState, ReactNode, useEffect } from 'react';
 
 
 export type UserContextType = {
@@ -25,7 +24,7 @@ export const UserContext = createContext<UserContextType>(
     {} as UserContextType
   );
 
-export const UserContextProvider = ({
+const UserContextProvider = ({
   children,
 }: UserProviderType): React.ReactElement => {
   const [name, setName] = useState<string>('');
@@ -36,6 +35,7 @@ export const UserContextProvider = ({
   const [password, setPassword] = useState<string>('');
   useEffect(() => {
     console.log('Reload');
+    console.log(name, age, parental, phone,  email,  password);
   }, [name, age, parental, phone,  email,  password]);
 
   return (
@@ -44,3 +44,5 @@ export const UserContextProvider = ({
     </UserContext.Provider>
     )
 };
+
+export default UserContextProvider;
