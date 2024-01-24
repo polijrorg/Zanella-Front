@@ -38,8 +38,9 @@ export function Rotas() {
 
   return (
     <S.View_Back OS={OS} >
-        {OS === 'ios' &&  
-          <S.Status barStyle='dark-content' />
+        {OS === 'ios' 
+          ? <S.Status barStyle='dark-content' translucent />
+          : <S.Status barStyle='light-content' />
         }
         <NavigationContainer>
           {route === 'private' && (<Header />)}

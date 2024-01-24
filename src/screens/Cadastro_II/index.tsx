@@ -6,12 +6,15 @@ import { UserContext } from '@utils/UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-const Cadastro_II = ({navigation}) => {
+const Cadastro_II = ({ navigation }) => {
 
-  const { name,  age,  parental } = useContext(UserContext);
+  
+  const { name, age, parental } = useContext(UserContext);
   const [userPhone, setUserPhone] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  
+  console.log('cadastro 2')
 
   async function signUp() {
     try {
@@ -44,7 +47,8 @@ const Cadastro_II = ({navigation}) => {
       </S.Header>  
       <S.Wrapper_Input>
           <S.Input_Description 
-            placeholder='Como você se descreveria?'/>
+            placeholder='Como você se descreveria?'
+            placeholderTextColor="#FFB381" />
           <S.Input_Cadastro
             placeholder='Pode me passar seu telefone?'
             placeholderTextColor="#FFB381"

@@ -16,7 +16,7 @@ export const background = styled(ImageBackground)`
   justify-content: center;
   width: 100%;
   padding: 20% 0;
-  gap: 50%;
+  gap: 24px;
 `
 export const Header = styled(View)`
   width: 100%;

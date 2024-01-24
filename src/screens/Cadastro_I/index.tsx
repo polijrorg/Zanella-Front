@@ -11,7 +11,7 @@ import { UserContext } from '@utils/UserContext';
 
 const Cadastro_I = ({ navigation }) => {
 
-  const context = useContext(UserContext);
+  const { setName, setAge, setParental, name, age, parental } = useContext(UserContext);
   
   const [userName, setUserName] = useState("");
   const [userAge, setUserAge] = useState("");
@@ -22,9 +22,9 @@ const Cadastro_I = ({ navigation }) => {
   };
 
   const handleCadastroii = () => {
-    context.setName(userName);
-    context.setAge(userAge);
-    context.setParental(userParental);
+    setName(userName);
+    setAge(userAge);
+    setParental(userParental);
     navigation.navigate('cadastroii');
   };
 
