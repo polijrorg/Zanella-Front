@@ -10,4 +10,6 @@ export const Input = styled(TextInput)`
   border: 1px ${ theme.colors.primary.Borda } ;
   color: ${ theme.colors.primary.BordaElemento };
   padding-left: 12px;
+  font-size: 16px;
+  font-family: Poppins;
 `;

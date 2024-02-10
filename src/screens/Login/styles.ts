@@ -1,5 +1,5 @@
 import { theme } from '@styles/default.theme';
-import { TouchableOpacity, Text, View, Image, ImageBackground } from 'react-native';
+import { TouchableOpacity, Text, TextInput, View, Image, ImageBackground } from 'react-native';
 import styled from 'styled-components/native';
 
 
@@ -50,6 +50,36 @@ export const Wrapper_Input = styled(View)`
   justify-content: space-around;
 `;
 
+export const Input_Password_Wrapper = styled(View)`
+  position: relative;
+  width: 80%;
+`
+
+export const Input_Password = styled(TextInput)`
+  position: relative;
+  width: 100%;
+  height: 42px;
+  font-size: 16px;
+  padding: 0px 12px;
+  border: 1px ${ theme.colors.primary.Borda };
+  border-radius: 24px;
+  font-family: Poppins;
+  color: ${ theme.colors.primary.BordaElemento };
+`;
+
+export const Input_Password_Icon_Button = styled(TouchableOpacity)`
+  position: absolute;
+  right: 12px;
+  width: 24px;
+  height: 42px;
+  justify-content: center;
+`
+
+export const Input_Password_Icon = styled(Image)`
+  width: 24px;
+  height: 24px;
+`;
+
 export const Nelson = styled(Image)`
   width: 56px;
   height: 56px;
@@ -86,18 +116,3 @@ export const Cadastrar = styled(Text)`
   font-family: Poppins;
 `; 
 
-export const Lines_Inf_Esq = styled(Image)`
-  bottom: -12%;
-  left: -95%;
-  position: absolute;
-  width: 740px;
-  height: 532px;
-`;
-
-export const Lines_Inf_Dir = styled(Image)`
-  bottom: -16%;
-  right: -90%;
-  position: absolute;
-  width: 800px;
-  height: 540px;
-`;
