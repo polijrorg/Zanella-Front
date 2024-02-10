@@ -54,9 +54,8 @@ const Perfil = () => {
         
           <S.Attribute>{`Idade: ${synchronizedUser.age}`}</S.Attribute>
           <S.Attribute>{`Grau de parentesco: ${synchronizedUser.parental_role}`}</S.Attribute>
-          <S.Attribute>{`Breve descrição: ${synchronizedUser.description}`}</S.Attribute>
           <S.Attribute>{`E-mail: ${synchronizedUser.email}`}</S.Attribute>
-          <S.Attribute>{`Telefone: ${synchronizedUser.phone}`}</S.Attribute>
+          <S.Attribute>{`Telefone: ${synchronizedUser.phone || 'Não informado'}`}</S.Attribute>
         </S.AttributesWrapper>
       </S.Wrapper>
     )
