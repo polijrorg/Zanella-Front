@@ -13,8 +13,6 @@ const Cadastro_II = ({ navigation }) => {
   const [userPhone, setUserPhone] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
-  
-  console.log('cadastro 2')
 
   async function signUp() {
     try {
@@ -46,11 +44,8 @@ const Cadastro_II = ({ navigation }) => {
         <S.StyledText>Estamos quase lá!</S.StyledText>
       </S.Header>  
       <S.Wrapper_Input>
-          <S.Input_Description 
-            placeholder='Como você se descreveria?'
-            placeholderTextColor="#FFB381" />
           <S.Input_Cadastro
-            placeholder='Pode me passar seu telefone?'
+            placeholder='Telefone (Opcional)'
             placeholderTextColor="#FFB381"
             value={userPhone}
             onChangeText={(value) => setUserPhone(value)}/>
