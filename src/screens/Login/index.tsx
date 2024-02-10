@@ -10,7 +10,7 @@ export function Login({ navigation }) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const { signIn } = useAuth();
-
+  const [passwordVisibility, setPasswordVisibility] = React.useState(false);
 
   const handleCadastre = () => {
     navigation.navigate('cadastroi');
@@ -30,7 +30,17 @@ export function Login({ navigation }) {
       <S.Text_Login>Login</S.Text_Login>
       <S.Wrapper_Input>
         <Input placeholder='Email' stateFunction={setEmail} type='email-address'/>
-        <Input placeholder='Senha' stateFunction={setPassword}/>
+        <S.Input_Password_Wrapper>
+            <S.Input_Password
+              placeholder='Senha'
+              secureTextEntry={!passwordVisibility}
+              placeholderTextColor="#FFB381"
+              onChangeText={(value) => setPassword(value)}>
+            </S.Input_Password>
+            <S.Input_Password_Icon_Button onPress={() => setPasswordVisibility(!passwordVisibility)}>
+              <S.Input_Password_Icon source={passwordVisibility ? require('@assets/visibility_off.png') : require('@assets/visibility.png')}/>
+            </S.Input_Password_Icon_Button>
+          </S.Input_Password_Wrapper>
       </S.Wrapper_Input>
       <S.Wrapper_Info>
         <S.Text_DontHaveAccount>Não tem uma conta? </S.Text_DontHaveAccount>

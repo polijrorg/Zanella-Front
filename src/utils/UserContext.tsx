@@ -33,11 +33,7 @@ const UserContextProvider = ({
   const [phone, setPhone] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  useEffect(() => {
-    console.log('Reload');
-    console.log(name, age, parental, phone,  email,  password);
-  }, [name, age, parental, phone,  email,  password]);
-
+  
   return (
     <UserContext.Provider value={{ name, setName, age, setAge, parental, setParental, phone, setPhone, email, setEmail, password, setPassword }}>
       {children} 

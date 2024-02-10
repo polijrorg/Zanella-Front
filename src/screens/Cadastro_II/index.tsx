@@ -1,5 +1,6 @@
 import * as S from './styles';
 import React, {useState, useContext} from 'react';
+import { TextInput } from 'react-native-paper';
 import Button from '@components/Button';
 import { api } from '@services/api';
 import { UserContext } from '@utils/UserContext';
@@ -13,6 +14,7 @@ const Cadastro_II = ({ navigation }) => {
   const [userPhone, setUserPhone] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
 
   async function signUp() {
     try {
@@ -46,19 +48,28 @@ const Cadastro_II = ({ navigation }) => {
       <S.Wrapper_Input>
           <S.Input_Cadastro
             placeholder='Telefone (Opcional)'
+            inputMode='tel'
             placeholderTextColor="#FFB381"
             value={userPhone}
             onChangeText={(value) => setUserPhone(value)}/>
           <S.Input_Cadastro
             placeholder='Qual o seu email?'
+            inputMode='email'
             placeholderTextColor="#FFB381"
             value={userEmail}
             onChangeText={(value) => setUserEmail(value)}/>
-          <S.Input_Cadastro
-            placeholder='Crie uma senha!'
-            placeholderTextColor="#FFB381"
-            value={userPassword}
-            onChangeText={(value) => setUserPassword(value)}/>
+          <S.Input_Password_Wrapper>
+            <S.Input_Password
+              placeholder='Crie uma senha!'
+              secureTextEntry={!passwordVisibility}
+              placeholderTextColor="#FFB381"
+              value={userPassword}
+              onChangeText={(value) => setUserPassword(value)}>
+            </S.Input_Password>
+            <S.Input_Password_Icon_Button onPress={() => setPasswordVisibility(!passwordVisibility)}>
+              <S.Input_Password_Icon source={passwordVisibility ? require('@assets/visibility_off.png') : require('@assets/visibility.png')}/>
+            </S.Input_Password_Icon_Button>
+          </S.Input_Password_Wrapper>
         </S.Wrapper_Input>
         <Button text='CADASTRAR' onPress={signUp} style='solido' size='medium'/>
       </S.background>
