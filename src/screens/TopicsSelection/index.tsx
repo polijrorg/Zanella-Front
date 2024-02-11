@@ -40,7 +40,7 @@ const TopicsSelection = ({ navigation }) => {
           </S.LeftSection>
           <S.RightSection>
             <S.QuestionBalloon>
-              <S.Question>{"Oi " + user.name + "! O que você gostaria de discutir hoje?"}</S.Question>
+              <S.Question>{"Oi " + user.name.split(' ')[0] + "! O que você gostaria de discutir hoje?"}</S.Question>
             </S.QuestionBalloon>
           </S.RightSection>
         </S.QuestionWrapper>

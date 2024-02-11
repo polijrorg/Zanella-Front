@@ -9,7 +9,10 @@ export const Wrapper = styled(View)`
   gap: 24px;
 `;
 
-export const CardButton = styled(TouchableOpacity)`
+export const CardButton = styled(TouchableOpacity).attrs({
+  activeOpacity: 0.8
+})`
+  height: 120px;
 `
 export const HeaderGap = styled(View)`
   width: 100%;
@@ -45,16 +48,14 @@ export const Search_Input = styled(TextInput)`
   width: 70%;
   height: 36px;
   font-size: 18px;
-  font-family:Poppins;
+  font-family: Poppins;
 `;
 
 export const CardContainer = styled(ScrollView).attrs({
   contentContainerStyle: {
+    gap: 8,
     alignItems: 'center',
-    justifyContent: 'center',
-    gap: 16,
   }
 })`
   width: 100%;
-  flex: 1;
-`
+`;
