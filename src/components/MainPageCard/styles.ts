@@ -11,7 +11,7 @@ export const Assunto = styled(View)`
   gap: 8px;
   border-radius: 16px;
   background: ${ theme.colors.primary.BgSutil };
-  elevation: 5;
+  elevation: 8;
 `;
 
 export const CardImage = styled(Image)`
