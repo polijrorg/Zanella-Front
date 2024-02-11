@@ -55,6 +55,7 @@ const Assuntos = (props) => {
           })}>
             <Cards_Assunto 
               key={index}
+              uri={subject.thumbnail}
               title={subject.title} 
               description={subject.description} 
               />
