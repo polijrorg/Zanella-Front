@@ -1,6 +1,6 @@
 import Input from '@components/Input';
 import { theme } from '@styles/default.theme';
-import { TouchableOpacity, Text, View, Image, TextInput, ImageBackground } from 'react-native';
+import { TouchableOpacity, Text, View, Image, TextInput, ImageBackground, KeyboardAvoidingView } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Wrapper = styled(View)`
@@ -54,6 +54,10 @@ export const StyledText = styled(Text)`
   font-family: Poppins;
 `;
 
+export const KeyboardWrapper = styled(KeyboardAvoidingView)`
+  width: 100%;
+`;
+
 export const Wrapper_Input = styled(View)`
   align-items: center;
   justify-content: space-evenly;
@@ -61,6 +65,7 @@ export const Wrapper_Input = styled(View)`
   height: 200px;
   flex-direction: column;
   gap: 16px;
+  background-color: ${ theme.colors.primary.BgTela };
 `;
 
 export const Input_Cadastro = styled(TextInput)`
@@ -106,6 +111,7 @@ export const Button_continuar = styled(TouchableOpacity)`
   height: 48px;
   border-radius: 24px;
   background: ${ theme.colors.primary.BgSólidoHover };
+  opacity: ${ props => props.disabled ? 0.5 : 1 };
   align-items: center;
   justify-content: center;
 `;

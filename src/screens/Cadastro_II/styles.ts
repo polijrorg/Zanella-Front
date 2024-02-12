@@ -1,5 +1,5 @@
 import { theme } from '@styles/default.theme';
-import { TouchableOpacity, Text, View, Image, TextInput, ImageBackground } from 'react-native';
+import { TouchableOpacity, Text, View, Image, TextInput, ImageBackground, KeyboardAvoidingView } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Wrapper = styled(View)`
@@ -52,12 +52,17 @@ export const StyledText = styled(Text)`
   font-family: Poppins;
 `;
 
+export const KeyboardWrapper = styled(KeyboardAvoidingView)`
+  width: 100%;
+`;
+
 export const Wrapper_Input = styled(View)`
   align-items: center;
   justify-content: center;
   width: 100%;
   flex-direction: column;
   gap: 16px;
+  background-color: ${ theme.colors.primary.BgTela };
 `;
 
 export const Input_Description = styled(TextInput)`

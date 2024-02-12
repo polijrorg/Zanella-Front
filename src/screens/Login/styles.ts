@@ -1,5 +1,5 @@
 import { theme } from '@styles/default.theme';
-import { TouchableOpacity, Text, TextInput, View, Image, ImageBackground } from 'react-native';
+import { TouchableOpacity, Text, TextInput, View, Image, ImageBackground, KeyboardAvoidingView } from 'react-native';
 import styled from 'styled-components/native';
 
 
@@ -40,6 +40,10 @@ export const Text_Login = styled(Text)`
   font-family: Poppins;
 `;
 
+export const KeyboardWrapper = styled(KeyboardAvoidingView)`
+  width: 100%;
+`;
+
 export const Wrapper_Input = styled(View)`
   align-items: center;
   width: 100%;
@@ -48,6 +52,7 @@ export const Wrapper_Input = styled(View)`
   flex-direction: column;
   gap: 16px;
   justify-content: space-around;
+  background-color: #FEFCFBEE;
 `;
 
 export const Input_Password_Wrapper = styled(View)`

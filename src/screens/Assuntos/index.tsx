@@ -1,6 +1,5 @@
 import * as S from './styles';
 import React, { useEffect, useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
 import Cards_Assunto from '@components/Cards_Assunto';
 import useAuth from '@hooks/useAuth';
 import UserService from '@services/UserService';

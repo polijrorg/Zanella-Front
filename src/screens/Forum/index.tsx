@@ -1,8 +1,6 @@
 import * as S from './styles';
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import NavBar from '@components/NavBar_Forum';
-import HeadBar from '@components/Nelson_Question';
 import Cards_Forum from '@components/Cards_Forum';
 import axios from 'axios';
 import { Keyboard } from 'react-native';

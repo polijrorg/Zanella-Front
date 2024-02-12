@@ -1,10 +1,10 @@
 import * as S from './styles';
 import React, {useState, useContext} from 'react';
-import { TextInput } from 'react-native-paper';
 import Button from '@components/Button';
 import { api } from '@services/api';
 import { UserContext } from '@utils/UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Platform, useWindowDimensions } from 'react-native';
 
 
 const Cadastro_II = ({ navigation }) => {
@@ -15,6 +15,7 @@ const Cadastro_II = ({ navigation }) => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const { height } = useWindowDimensions();
 
   async function signUp() {
     try {
@@ -45,10 +46,45 @@ const Cadastro_II = ({ navigation }) => {
         </S.Ballon>
         <S.StyledText>Estamos quase lá!</S.StyledText>
       </S.Header>  
-      <S.Wrapper_Input>
+      {Platform.OS === 'ios' ? (
+        <S.KeyboardWrapper
+        keyboardVerticalOffset={height * 0.08}
+        behavior='position'
+        >
+          <S.Wrapper_Input>
+            <S.Input_Cadastro
+              placeholder='Telefone (Opcional)'
+              inputMode='text'
+              keyboardType='number-pad'
+              placeholderTextColor="#FFB381"
+              value={userPhone}
+              onChangeText={(value) => setUserPhone(value)}/>
+            <S.Input_Cadastro
+              placeholder='Qual o seu email?'
+              inputMode='email'
+              placeholderTextColor="#FFB381"
+              value={userEmail}
+              onChangeText={(value) => setUserEmail(value)}/>
+            <S.Input_Password_Wrapper>
+              <S.Input_Password
+                placeholder='Crie uma senha!'
+                secureTextEntry={!passwordVisibility}
+                placeholderTextColor="#FFB381"
+                value={userPassword}
+                onChangeText={(value) => setUserPassword(value)}>
+              </S.Input_Password>
+              <S.Input_Password_Icon_Button onPress={() => setPasswordVisibility(!passwordVisibility)}>
+                <S.Input_Password_Icon source={passwordVisibility ? require('@assets/visibility_off.png') : require('@assets/visibility.png')}/>
+              </S.Input_Password_Icon_Button>
+            </S.Input_Password_Wrapper>
+          </S.Wrapper_Input>
+        </S.KeyboardWrapper>
+      ) : (
+        <S.Wrapper_Input>
           <S.Input_Cadastro
             placeholder='Telefone (Opcional)'
-            inputMode='tel'
+            inputMode='text'
+            keyboardType='number-pad'
             placeholderTextColor="#FFB381"
             value={userPhone}
             onChangeText={(value) => setUserPhone(value)}/>
@@ -71,7 +107,8 @@ const Cadastro_II = ({ navigation }) => {
             </S.Input_Password_Icon_Button>
           </S.Input_Password_Wrapper>
         </S.Wrapper_Input>
-        <Button text='CADASTRAR' onPress={signUp} style='solido' size='medium'/>
+      )}
+      <Button text='CADASTRAR' onPress={signUp} style='solido' size='medium'/>
       </S.background>
     </S.Wrapper>
   )
