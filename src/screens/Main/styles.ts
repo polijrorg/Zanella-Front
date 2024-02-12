@@ -1,5 +1,5 @@
 import { theme } from '@styles/default.theme';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
+import { Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Wrapper = styled(View)`
@@ -48,38 +48,43 @@ export const Container = styled(View)`
   height: 100%;
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 12px 0px;
+  gap: 8px;
   background: ${ theme.colors.primary.BgTela };
 `;
 
 export const StyledText = styled(Text)`
   color: ${ theme.colors.primary.Texto };
   font-family: PoppinsSemiBold;
-  margin-top: 8px;
-  margin-bottom: 16px;
   font-size: 16px;
+  padding: 0px 16px;
   letter-spacing: 0.5px;
-  padding-left: 16px;
-  padding-top: 20px;
 `;
 
-export const Wrapper_Assunto = styled(View)`
+export const SliderContainer = styled(View)`
   width: 100%;
-  height: 120px;
-  align-items: center;
-  display: flex;
+  height: 150px;
+  background-color: ${ theme.colors.primary.BgTela };
+`;
+
+export const Wrapper_Assunto = styled(ScrollView).attrs({
+  contentContainerStyle: {
+    alignItems: 'flex-start',
+    gap: 16,
+    paddingHorizontal: 16,
+    flexDirection: 'row',
+  },
+  showsHorizontalScrollIndicator: false,
+  horizontal: true,
+})`
+  width: 100%;
   flex-direction: row;
-  padding-left: 16px;
-  gap: 16px;
   shadow-opacity: 1;
   shadow-offset: 1px 3px;
   shadow-color: grey;
   elevation: 10;
 `;
 
-export const Assunto = styled(View)`
-  width: 45%;
-  height: 100%;
-  align-items: center;
-  border-radius: 16px;
-  background: ${ theme.colors.primary.BgSutil };
-`;
+export const Button = styled(TouchableOpacity)``;

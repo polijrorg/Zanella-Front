@@ -1,6 +1,5 @@
 import * as S from './styles';
 import React, { useEffect, useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
 import Cards_Assunto from '@components/Cards_Assunto';
 import useAuth from '@hooks/useAuth';
 import UserService from '@services/UserService';
@@ -55,6 +54,7 @@ const Assuntos = (props) => {
           })}>
             <Cards_Assunto 
               key={index}
+              uri={subject.thumbnail}
               title={subject.title} 
               description={subject.description} 
               />

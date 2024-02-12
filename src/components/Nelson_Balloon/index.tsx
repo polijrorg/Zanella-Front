@@ -4,7 +4,7 @@ import React from 'react';
 const image = require('../../../public/assets/JabutiNelson_Dir.png')
 
 const Nelson_Balloon = () => (
-    <S.Wrapper_Nelson>
+  <S.Wrapper_Nelson>
     <S.Nelson source = {image}/>
   </S.Wrapper_Nelson>
 );

@@ -4,9 +4,6 @@ import useAuth from '@hooks/useAuth';
 import UserService from '@services/UserService';
 import Topic from '@components/Topic';
 import Button from '@components/Button';
-import { api } from '@services/api';
-import { AppError } from '@utils/AppError';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Topics = ({ navigation }) => {
   const { user, handleMainPage } = useAuth();

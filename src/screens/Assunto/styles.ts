@@ -82,6 +82,7 @@ export const KeyWordsWrapper = styled(View)`
   padding: 16px 8px;
   align-items: flex-start;
   gap: 16px;
+  margin-bottom: 16px;
 `
 
 export const KeyWords = styled(Text)`
