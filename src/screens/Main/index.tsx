@@ -54,7 +54,7 @@ const Main = ({ navigation }) => {
         <S.SliderContainer>
           <S.Wrapper_Assunto>
             {userSubjects.map((subject: any, index: number) => (
-              <S.Button activeOpacity={0.8} onPress={() => navigation.navigate('assunto', {
+              <S.Button activeOpacity={0.8} key={index} onPress={() => navigation.navigate('assunto', {
                 title: subject.title,
                 description: subject.description,
                 thumbnail: subject.thumbnail,

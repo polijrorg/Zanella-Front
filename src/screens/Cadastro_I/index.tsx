@@ -1,11 +1,6 @@
 import * as S from './styles';
-import { StatusBar } from 'expo-status-bar';
 import React, { useState, useContext} from 'react';
-import Nelson_Ballon from '@components/Nelson_Balloon';
-import Button from '@components/Button';
-import Input from '@components/Input';
-import { TouchableOpacity } from 'react-native';
-import { api } from '@services/api';
+import { Platform, useWindowDimensions } from 'react-native';
 import { UserContext } from '@utils/UserContext';
 
 
@@ -16,6 +11,7 @@ const Cadastro_I = ({ navigation }) => {
   const [userName, setUserName] = useState("");
   const [userAge, setUserAge] = useState("");
   const [userParental, setUserParental] = useState("");
+  const { height } = useWindowDimensions();
     
   function handleDoLogin() {
     navigation.navigate('login');
@@ -45,28 +41,54 @@ const Cadastro_I = ({ navigation }) => {
       
       <S.StyledText>{"Oi, eu sou o Nelson. Prazer em te conhecer!"}</S.StyledText>
 
-      
-      <S.Wrapper_Input>
-        <S.Input_Cadastro 
-          placeholder='Qual o seu nome?'
-          placeholderTextColor="#FFB381" 
-          value={userName}
-          onChangeText={(value) => setUserName(value)
-        }/>
-        <S.Input_Cadastro 
-          placeholder='Quantos anos você tem?'
-          placeholderTextColor="#FFB381" 
-          value={userAge}
-          onChangeText={(value) => setUserAge(value)
-        }/>
-        <S.Input_Cadastro
-          placeholder='Você é pai/mãe?'
-          placeholderTextColor="#FFB381" 
-          value={userParental}
-          onChangeText={(value) => setUserParental(value)
-      }/>
-      </S.Wrapper_Input>
-      
+      {Platform.OS === 'ios' ? (
+        <S.KeyboardWrapper
+        keyboardVerticalOffset={height * 0.08}
+        behavior='position'
+        >
+          <S.Wrapper_Input>
+            <S.Input_Cadastro 
+              placeholder='Qual o seu nome?'
+              placeholderTextColor="#FFB381" 
+              value={userName}
+              onChangeText={(value) => setUserName(value)
+              }/>
+            <S.Input_Cadastro 
+              placeholder='Quantos anos você tem?'
+              placeholderTextColor="#FFB381" 
+              value={userAge}
+              onChangeText={(value) => setUserAge(value)
+              }/>
+            <S.Input_Cadastro
+              placeholder='Você é pai/mãe?'
+              placeholderTextColor="#FFB381" 
+              value={userParental}
+              onChangeText={(value) => setUserParental(value)
+              }/>
+          </S.Wrapper_Input>
+         </S.KeyboardWrapper>
+      ) : (
+        <S.Wrapper_Input>
+          <S.Input_Cadastro 
+            placeholder='Qual o seu nome?'
+            placeholderTextColor="#FFB381" 
+            value={userName}
+            onChangeText={(value) => setUserName(value)
+            }/>
+          <S.Input_Cadastro 
+            placeholder='Quantos anos você tem?'
+            placeholderTextColor="#FFB381" 
+            value={userAge}
+            onChangeText={(value) => setUserAge(value)
+            }/>
+          <S.Input_Cadastro
+            placeholder='Você é pai/mãe?'
+            placeholderTextColor="#FFB381" 
+            value={userParental}
+            onChangeText={(value) => setUserParental(value)
+            }/>
+        </S.Wrapper_Input>
+      )} 
       <S.Wrapper_Info>
         <S.Text_HaveAccount>Já tem uma conta? </S.Text_HaveAccount>
         <S.Wrapper_DoLogin onPress={handleDoLogin}>
@@ -74,7 +96,7 @@ const Cadastro_I = ({ navigation }) => {
         </S.Wrapper_DoLogin>
       </S.Wrapper_Info>
       
-      <S.Button_continuar onPress={handleCadastroii} >
+      <S.Button_continuar onPress={handleCadastroii} disabled={ userName == "" || userAge == "" || userParental == "" ? true : false } >
         <S.Login_Button>CONTINUAR</S.Login_Button>
       </S.Button_continuar>
   
