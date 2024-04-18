@@ -19,25 +19,25 @@ export const Background = styled(ImageBackground)`
 
 export const Title = styled(Text)`
   color: ${ theme.colors.primary.Texto };
-  font-size: 40px;
-  letter-spacing: 2px;
-  font-family: PoppinsMedium;
+  font-size: ${props => props.width > 400 ? 48 : 32}px;
+  text-align: center;
 `;
 
 export const StyledText = styled(Text)`
   color: ${ theme.colors.primary.TextoHigh };
   margin-top: 8px;
-  font-size: 32px;
+  font-size: ${props => props.width > 400 ? 32 : 20}px;
   letter-spacing: 0.5px;
   font-family: Poppins;
 `;
 
 export const Text_Login = styled(Text)`
   color: ${ theme.colors.primary.Texto };
-  margin-top: 64px;
-  font-size: 24px;
+  margin-top: 5%;
+  font-size: ${props => props.width > 400 ? 24 : 16}px;
   letter-spacing: 0.5px;
   font-family: Poppins;
+  text-align: center;
 `;
 
 export const KeyboardWrapper = styled(KeyboardAvoidingView)`
@@ -47,8 +47,8 @@ export const KeyboardWrapper = styled(KeyboardAvoidingView)`
 export const Wrapper_Input = styled(View)`
   align-items: center;
   width: 100%;
-  height: 112px;
-  margin-top: 24px;
+  height: 104px;
+  margin-top: 5%;
   flex-direction: column;
   gap: 16px;
   justify-content: space-around;
@@ -91,33 +91,28 @@ export const Nelson = styled(Image)`
 `;
 
 export const Wrapper_Info = styled(View)`
-  align-items: center;
-  justify-content: space-evenly;
-  width: 90%;
-  height: 24px;
-  margin-top: 32px;
-  margin-bottom: 20%;
-  gap: 24px;
+  width: 80%;
   flex-direction: row;
+  justify-content: center;
+  margin-top: 5%;
+  margin-bottom: 10%;
 `;
 
 export const Text_DontHaveAccount = styled(Text)`
+  width: 60%;
   color: ${ theme.colors.primary.TextoHigh };
-  font-size: 16px;
+  font-size: ${props => props.width > 400 ? 16 : 12}px;
   font-family: Poppins;
 `;
 
 export const Wrapper_Cadastro = styled(TouchableOpacity)`
-  width: 104px;
-  height: 24px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 24px;
+  width: 40%;
+  align-items: flex-end;
 `;
 
 export const Cadastrar = styled(Text)`
   color: ${ theme.colors.primary.Texto };
-  font-size: 16px;
+  font-size:  ${props => props.width > 400 ? 16 : 12}px;
   font-family: Poppins;
 `; 
 
