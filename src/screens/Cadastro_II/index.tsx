@@ -15,7 +15,7 @@ const Cadastro_II = ({ navigation }) => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [passwordVisibility, setPasswordVisibility] = useState(false);
-  const { height } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
 
   async function signUp() {
     try {
@@ -38,13 +38,13 @@ const Cadastro_II = ({ navigation }) => {
 
   return(  
     <S.Wrapper>
-      <S.background source={require('@assets/Background.png')}>
-      <S.Title>ComTato</S.Title>
+      <S.background cwidth={width} source={require('@assets/Background.png')}>
+      <S.Title cwidth={width}>ComTato</S.Title>
       <S.Header>
         <S.Ballon>
           <S.BallonImage source={require('@assets/JabutiNelson_Dir.png')}/>
         </S.Ballon>
-        <S.StyledText>Estamos quase lá!</S.StyledText>
+        <S.StyledText cwidth={width}>Estamos quase lá!</S.StyledText>
       </S.Header>  
       {Platform.OS === 'ios' ? (
         <S.KeyboardWrapper
@@ -53,6 +53,7 @@ const Cadastro_II = ({ navigation }) => {
         >
           <S.Wrapper_Input>
             <S.Input_Cadastro
+              cwidth={width}
               placeholder='Telefone (Opcional)'
               inputMode='text'
               keyboardType='number-pad'
@@ -60,6 +61,7 @@ const Cadastro_II = ({ navigation }) => {
               value={userPhone}
               onChangeText={(value) => setUserPhone(value)}/>
             <S.Input_Cadastro
+              cwidth={width} 
               placeholder='Qual o seu email?'
               inputMode='email'
               placeholderTextColor="#FFB381"
@@ -67,6 +69,7 @@ const Cadastro_II = ({ navigation }) => {
               onChangeText={(value) => setUserEmail(value)}/>
             <S.Input_Password_Wrapper>
               <S.Input_Password
+                cwidth={width}
                 placeholder='Crie uma senha!'
                 secureTextEntry={!passwordVisibility}
                 placeholderTextColor="#FFB381"
@@ -82,6 +85,7 @@ const Cadastro_II = ({ navigation }) => {
       ) : (
         <S.Wrapper_Input>
           <S.Input_Cadastro
+            cwidth={width}
             placeholder='Telefone (Opcional)'
             inputMode='text'
             keyboardType='number-pad'
@@ -89,6 +93,7 @@ const Cadastro_II = ({ navigation }) => {
             value={userPhone}
             onChangeText={(value) => setUserPhone(value)}/>
           <S.Input_Cadastro
+            cwidth={width}
             placeholder='Qual o seu email?'
             inputMode='email'
             placeholderTextColor="#FFB381"
@@ -96,6 +101,7 @@ const Cadastro_II = ({ navigation }) => {
             onChangeText={(value) => setUserEmail(value)}/>
           <S.Input_Password_Wrapper>
             <S.Input_Password
+              cwidth={width}
               placeholder='Crie uma senha!'
               secureTextEntry={!passwordVisibility}
               placeholderTextColor="#FFB381"
