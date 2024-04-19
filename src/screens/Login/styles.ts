@@ -19,14 +19,14 @@ export const Background = styled(ImageBackground)`
 
 export const Title = styled(Text)`
   color: ${ theme.colors.primary.Texto };
-  font-size: ${props => props.width > 400 ? 48 : 32}px;
+  font-size: ${props => props.cwidth > 400 ? 48 : 32}px;
   text-align: center;
 `;
 
 export const StyledText = styled(Text)`
   color: ${ theme.colors.primary.TextoHigh };
   margin-top: 8px;
-  font-size: ${props => props.width > 400 ? 32 : 20}px;
+  font-size: ${props => props.cwidth > 400 ? 32 : 20}px;
   letter-spacing: 0.5px;
   font-family: Poppins;
 `;
@@ -34,7 +34,7 @@ export const StyledText = styled(Text)`
 export const Text_Login = styled(Text)`
   color: ${ theme.colors.primary.Texto };
   margin-top: 5%;
-  font-size: ${props => props.width > 400 ? 24 : 16}px;
+  font-size: ${props => props.cwidth > 400 ? 24 : 16}px;
   letter-spacing: 0.5px;
   font-family: Poppins;
   text-align: center;
@@ -93,24 +93,23 @@ export const Nelson = styled(Image)`
 export const Wrapper_Info = styled(View)`
   width: 80%;
   flex-direction: row;
+  justify-content: space-between;
   margin-top: 5%;
   margin-bottom: 10%;
 `;
 
 export const Text_DontHaveAccount = styled(Text)`
-  flex: 1;
   color: ${ theme.colors.primary.TextoHigh };
-  font-size: ${props => props.width > 400 ? 16 : 12}px;
+  font-size: ${props => props.cwidth > 400 ? 16 : 12}px;
   font-family: Poppins;
 `;
 
 export const Wrapper_Cadastro = styled(TouchableOpacity)`
-  flex: 0.45;
 `;
 
 export const Cadastrar = styled(Text)`
   color: ${ theme.colors.primary.Texto };
-  font-size:  ${props => props.width > 400 ? 16 : 12}px;
+  font-size:  ${props => props.cwidth > 400 ? 16 : 12}px;
   font-family: Poppins;
 `; 
 

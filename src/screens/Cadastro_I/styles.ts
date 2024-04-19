@@ -1,6 +1,6 @@
 import Input from '@components/Input';
 import { theme } from '@styles/default.theme';
-import { TouchableOpacity, Text, View, Image, TextInput, ImageBackground, KeyboardAvoidingView } from 'react-native';
+import { TouchableOpacity, Text, View, Image, TextInput, ImageBackground, KeyboardAvoidingView, Platform } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Wrapper = styled(View)`
@@ -15,7 +15,7 @@ export const Background = styled(ImageBackground)`
   width: 100%;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+  gap: ${props => props.cwidth > 400 ? 24 : 12}px;
 `
 export const Header = styled(View)`
   width: 100%;
@@ -40,38 +40,38 @@ export const BallonImage = styled(Image)`
 
 export const Title = styled(Text)`
   color: ${ theme.colors.primary.Texto };
-  font-size: 40px;
+  font-size: ${props => props.cwidth > 400 ? 40 : 24}px;
   letter-spacing: 2px;
+  text-align: center;
   font-family: PoppinsMedium;
 `;
 
 export const StyledText = styled(Text)`
   color: ${ theme.colors.primary.TextoHigh };
-  width: 80%;
-  font-size: 24px;
+  width: 70%;
+  font-size: ${props => props.cwidth > 400 ? 24 : 16}px;
   text-align: center;
   letter-spacing: 0.4px;
   font-family: Poppins;
 `;
 
 export const KeyboardWrapper = styled(KeyboardAvoidingView)`
-  width: 100%;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
 `;
 
 export const Wrapper_Input = styled(View)`
   align-items: center;
-  justify-content: space-evenly;
-  width: 100%;
-  height: 200px;
-  flex-direction: column;
+  width: ${Platform.OS === 'ios' ? 100 : 80}%;
   gap: 16px;
   background-color: ${ theme.colors.primary.BgTela };
 `;
 
 export const Input_Cadastro = styled(TextInput)`
-  width: 80%;
-  height: 48px;
-  font-size: 16px;
+  min-width: 100%;
+  height: ${props => props.cwidth > 400 ? 48 : 32}px;
+  font-size: ${props => props.cwidth > 400 ? 16 : 14}px;
   padding-left: 12px;
   border: 1px ${ theme.colors.primary.Borda };
   border-radius: 24px;
@@ -79,17 +79,16 @@ export const Input_Cadastro = styled(TextInput)`
 `;
 
 export const Wrapper_Info = styled(View)`
-  align-items: center;
-  justify-content: space-evenly;
+  flex-direction: row;
+  justify-content: center;
   width: 100%;
   height: 24px;
-  gap: 24px;
-  flex-direction: row;
+  gap: 32px;
 `;
 
 export const Text_HaveAccount = styled(Text)`
   color: ${ theme.colors.primary.TextoHigh };
-  font-size: 14px;
+  font-size: ${props => props.cwidth > 400 ? 16 : 14}px;
   font-family: Poppins;
 `;
 
@@ -97,12 +96,11 @@ export const Wrapper_DoLogin = styled(TouchableOpacity)`
   align-items: center;
   justify-content: center;
   width: auto;
-  height: 24px;
 `;
 
 export const DoLogin = styled(Text)`
   color: ${ theme.colors.primary.Texto };
-  font-size: 16px;
+  font-size: ${props => props.cwidth > 400 ? 16 : 14}px;
   font-family: Poppins;
 `; 
 

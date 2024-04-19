@@ -11,7 +11,7 @@ const Cadastro_I = ({ navigation }) => {
   const [userName, setUserName] = useState("");
   const [userAge, setUserAge] = useState("");
   const [userParental, setUserParental] = useState("");
-  const { height } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
     
   function handleDoLogin() {
     navigation.navigate('login');
@@ -28,8 +28,8 @@ const Cadastro_I = ({ navigation }) => {
 
   return(
   <S.Wrapper>
-    <S.Background source={require('@assets/Background.png')}>
-    <S.Title>ComTato</S.Title>
+    <S.Background cwidth={width} source={require('@assets/Background.png')}>
+    <S.Title cwidth={width}>ComTato</S.Title>
    
 
     
@@ -39,7 +39,7 @@ const Cadastro_I = ({ navigation }) => {
       </S.Ballon>
     </S.Header>
       
-      <S.StyledText>{"Oi, eu sou o Nelson. Prazer em te conhecer!"}</S.StyledText>
+      <S.StyledText cwidth={width}>{"Oi, eu sou o Nelson. Prazer em te conhecer!"}</S.StyledText>
 
       {Platform.OS === 'ios' ? (
         <S.KeyboardWrapper
@@ -48,18 +48,21 @@ const Cadastro_I = ({ navigation }) => {
         >
           <S.Wrapper_Input>
             <S.Input_Cadastro 
+              cwidth={width}
               placeholder='Qual o seu nome?'
               placeholderTextColor="#FFB381" 
               value={userName}
               onChangeText={(value) => setUserName(value)
               }/>
             <S.Input_Cadastro 
+              cwidth={width}
               placeholder='Quantos anos você tem?'
               placeholderTextColor="#FFB381" 
               value={userAge}
               onChangeText={(value) => setUserAge(value)
               }/>
             <S.Input_Cadastro
+              cwidth={width}
               placeholder='Você é pai/mãe?'
               placeholderTextColor="#FFB381" 
               value={userParental}
@@ -70,18 +73,21 @@ const Cadastro_I = ({ navigation }) => {
       ) : (
         <S.Wrapper_Input>
           <S.Input_Cadastro 
+            cwidth={width}
             placeholder='Qual o seu nome?'
             placeholderTextColor="#FFB381" 
             value={userName}
             onChangeText={(value) => setUserName(value)
             }/>
           <S.Input_Cadastro 
+            cwidth={width}
             placeholder='Quantos anos você tem?'
             placeholderTextColor="#FFB381" 
             value={userAge}
             onChangeText={(value) => setUserAge(value)
             }/>
           <S.Input_Cadastro
+            cwidth={width}
             placeholder='Você é pai/mãe?'
             placeholderTextColor="#FFB381" 
             value={userParental}
@@ -90,9 +96,9 @@ const Cadastro_I = ({ navigation }) => {
         </S.Wrapper_Input>
       )} 
       <S.Wrapper_Info>
-        <S.Text_HaveAccount>Já tem uma conta? </S.Text_HaveAccount>
+        <S.Text_HaveAccount cwidth={width}>Já tem uma conta? </S.Text_HaveAccount>
         <S.Wrapper_DoLogin onPress={handleDoLogin}>
-          <S.DoLogin>Faça login</S.DoLogin>
+          <S.DoLogin cwidth={width}>Faça login</S.DoLogin>
         </S.Wrapper_DoLogin>
       </S.Wrapper_Info>
       
