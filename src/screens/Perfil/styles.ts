@@ -7,19 +7,19 @@ export const Wrapper = styled(View)`
   align-items: center;
   justify-content: flex-start;
   gap: 24px;
-  padding-top: 90px; 
+  padding-top: 20px; 
   background-color: ${theme.colors.primary.White};
 `;
 
 export const ImageGroup = styled(View)`
   justify-content: space-between;
   align-items: center; 
-  height: 128px;
+  height: ${props => props.cwidth > 400 ? 128 : 100}px;
 `
 
 export const NelsonImage = styled(Image)`
-  width: 88px;
-  height: 88px;
+  width: ${props => props.cwidth > 400 ? 88 : 70}px;
+  height: ${props => props.cwidth > 400 ? 88 : 70}px;
 `
 export const UserName = styled(Text)`
   color: ${theme.colors.primary.Texto};
@@ -55,10 +55,10 @@ export const TitleWrapper = styled(View)`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-`
+  `
 export const InfoText = styled(Text)`
-  color: ${theme.colors.primary.TextoHigh};
   font-size: ${theme.fontSizes.body};
+  color: ${theme.colors.primary.TextoHigh};
   font-weight: ${theme.fontWeights.body};
 `
 export const ButtonGroup = styled(TouchableOpacity)`
@@ -72,6 +72,6 @@ export const EditIcon = styled(Image)`
 `
 export const EditText = styled(Text)`
   color: ${theme.colors.primary.TextoHigh};
-  font-size: ${theme.fontSizes.body};
+  font-size: ${props => props.cwidth > 400 ? theme.fontSizes.body : '14px'};
   font-weight: ${theme.fontWeights.body};
 `

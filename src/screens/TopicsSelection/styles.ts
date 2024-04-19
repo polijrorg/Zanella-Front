@@ -11,7 +11,7 @@ export const Background = styled(ImageBackground)`
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  padding: 20% 0px;
+  padding: ${ props => props.cwidth > 400 ? '20% 0px' : '10% 0px' };
   gap: 16px;
 `
 export const Header = styled(View)`
@@ -64,7 +64,7 @@ export const Question = styled(Text)`
   font-family: PoppinsSemiBold;
   color: ${ theme.colors.primary.TextoHigh };
   align-items: center;
-  font-size: 16px;
+  font-size: ${ props => props.cwidth > 400 ? 16 : 14 }px;
   letter-spacing: 0.5px;
 `;
 

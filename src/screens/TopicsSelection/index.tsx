@@ -4,11 +4,13 @@ import SelectionButton from '@components/SelectionButton';
 import * as S from './styles';
 import UserService from '@services/UserService';
 import useAuth from '@hooks/useAuth';
+import { useWindowDimensions } from 'react-native';
 
 const TopicsSelection = ({ navigation }) => {
   const [topics, setTopics] = useState<string[]>([]);
   const [userSelectedTopics, setUserSelectedTopics] = useState<string[]>([]);
   const { user } = useAuth();
+  const { width } = useWindowDimensions();
 
   const handleTopics = async () => {
     const response = await UserService.listTopics();
@@ -28,7 +30,7 @@ const TopicsSelection = ({ navigation }) => {
 
   return (
     <S.Container>
-      <S.Background source={require('@assets/topicSelectionBackground.png')}>
+      <S.Background cwidth={width} source={require('@assets/topicSelectionBackground.png')}>
         <S.Header>
           <S.ReturnButton onPress={() => navigation.navigate('main')}>
             <S.ReturnIcon source={require('@assets/returnIcon.png')}/>
@@ -40,7 +42,7 @@ const TopicsSelection = ({ navigation }) => {
           </S.LeftSection>
           <S.RightSection>
             <S.QuestionBalloon>
-              <S.Question>{"Oi " + user.name.split(' ')[0] + "! O que você gostaria de discutir hoje?"}</S.Question>
+              <S.Question cwidth={width}>{"Oi " + user.name.split(' ')[0] + "! O que você gostaria de discutir hoje?"}</S.Question>
             </S.QuestionBalloon>
           </S.RightSection>
         </S.QuestionWrapper>

@@ -53,6 +53,9 @@ const Diario = ({navigation}) => {
   }
 
   const handleSave = async () => {
+    if (newEntryContent.length == 0) {
+      return
+    }
     try {
       await UserService.postEntry({
         date: (date.getFullYear()) + "-" + (date.getMonth() + 1) + "-" + date.getDate(),

@@ -39,7 +39,7 @@ export const Wrapper_Text = styled(Text)`
 `;
 
 export const Wrapper_Name = styled(Text)`
-  font-size: 20px;
+  font-size: ${ props => props.cwidth > 400 ? 20 : 16 }px;
   align-items: center;
   justify-content: center;
 `;
