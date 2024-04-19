@@ -17,9 +17,15 @@ const Cadastro_II = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const { width, height } = useWindowDimensions();
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   async function signUp() {
     setLoading(true);
+    if (!emailRegex.test(userEmail)) {
+      Alert.alert('Erro', 'Forneça um email válido');
+      setLoading(false);
+      return;
+    }
     try {
       await api.post('/users/register', {
         name: name,
