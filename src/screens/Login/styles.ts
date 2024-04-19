@@ -93,21 +93,19 @@ export const Nelson = styled(Image)`
 export const Wrapper_Info = styled(View)`
   width: 80%;
   flex-direction: row;
-  justify-content: center;
   margin-top: 5%;
   margin-bottom: 10%;
 `;
 
 export const Text_DontHaveAccount = styled(Text)`
-  width: 60%;
+  flex: 1;
   color: ${ theme.colors.primary.TextoHigh };
   font-size: ${props => props.width > 400 ? 16 : 12}px;
   font-family: Poppins;
 `;
 
 export const Wrapper_Cadastro = styled(TouchableOpacity)`
-  width: 40%;
-  align-items: flex-end;
+  flex: 0.45;
 `;
 
 export const Cadastrar = styled(Text)`

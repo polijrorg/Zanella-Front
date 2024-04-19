@@ -66,13 +66,13 @@ export function Login({ navigation }) {
           </S.Input_Password_Wrapper>
         </S.Wrapper_Input>
       )}
-      <S.Wrapper_Info width={width}>
-        <S.Text_DontHaveAccount width={width}>Não tem uma conta? </S.Text_DontHaveAccount>
-        <S.Wrapper_Cadastro onPress={handleCadastre}>
-          <S.Cadastrar width={width}>Cadastre-se</S.Cadastrar>
-        </S.Wrapper_Cadastro>
-      </S.Wrapper_Info>
-      <Button text='ENTRAR' onPress={handleSignIn} style='solido' size='regular' />
+        <S.Wrapper_Info width={width}>
+          <S.Text_DontHaveAccount width={width}>Não tem uma conta?</S.Text_DontHaveAccount>
+          <S.Wrapper_Cadastro onPress={handleCadastre}>
+            <S.Cadastrar width={width}>Cadastre-se</S.Cadastrar>
+          </S.Wrapper_Cadastro>
+        </S.Wrapper_Info>
+        <Button text='ENTRAR' onPress={handleSignIn} style='solido' size='regular' />
       </S.Background>
     </S.Wrapper>
   )
