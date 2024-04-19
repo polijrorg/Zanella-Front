@@ -1,5 +1,5 @@
 import { theme } from '@styles/default.theme';
-import { TouchableOpacity, Text, View, Image, TextInput, ImageBackground, KeyboardAvoidingView } from 'react-native';
+import { TouchableOpacity, Text, View, Image, TextInput, ImageBackground, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Wrapper = styled(View)`
@@ -15,7 +15,7 @@ export const background = styled(ImageBackground)`
   justify-content: center;
   width: 100%;
   padding: 20% 0;
-  gap: 24px;
+  gap: ${props => props.cwidth > 400 ? 32 : 24}px;
 `
 export const Header = styled(View)`
   width: 100%;
@@ -40,14 +40,14 @@ export const BallonImage = styled(Image)`
 
 export const Title = styled(Text)`
   color: ${ theme.colors.primary.Texto };
-  font-size: 40px;
+  font-size: ${props => props.cwidth > 400 ? 40 : 24}px;
   letter-spacing: 2px;
   font-family: PoppinsMedium;
 `;
 
 export const StyledText = styled(Text)`
   color: ${ theme.colors.primary.TextoHigh };
-  font-size: 32px;
+  font-size: ${props => props.cwidth > 400 ? 32 : 20}px;
   letter-spacing: 0.5px;
   font-family: Poppins;
 `;
@@ -65,22 +65,10 @@ export const Wrapper_Input = styled(View)`
   background-color: ${ theme.colors.primary.BgTela };
 `;
 
-export const Input_Description = styled(TextInput)`
-  justify-content: flex-start;
-  width: 80%;
-  height: 100px;
-  font-size: 16px;
-  padding-left: 12px;
-  border: 1px ${ theme.colors.primary.Borda };
-  border-radius: 24px;
-  font-family: Poppins;
-  color: ${ theme.colors.primary.BordaElemento };
-`;
-
 export const Input_Cadastro = styled(TextInput)`
   width: 80%;
-  height: 42px;
-  font-size: 16px;
+  height: ${props => props.cwidth > 400 ? 48 : 32}px;
+  font-size: ${props => props.cwidth > 400 ? 16 : 14}px;
   padding: 0px 12px;
   border: 1px ${ theme.colors.primary.Borda };
   border-radius: 24px;
@@ -96,8 +84,8 @@ export const Input_Password_Wrapper = styled(View)`
 export const Input_Password = styled(TextInput)`
   position: relative;
   width: 100%;
-  height: 42px;
-  font-size: 16px;
+  height: ${props => props.cwidth > 400 ? 42 : 32}px;
+  font-size: ${props => props.cwidth > 400 ? 16 : 14}px;
   padding: 0px 12px;
   border: 1px ${ theme.colors.primary.Borda };
   border-radius: 24px;

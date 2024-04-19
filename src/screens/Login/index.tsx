@@ -12,7 +12,7 @@ export function Login({ navigation }) {
   const { signIn } = useAuth();
   const [passwordVisibility, setPasswordVisibility] = React.useState(false);
 
-  const { height } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
 
   const handleCadastre = () => {
     navigation.navigate('cadastroi');
@@ -26,10 +26,10 @@ export function Login({ navigation }) {
     <S.Wrapper>
       <S.Background source={require('@assets/Background.png')}>
 
-      <S.Title>ComTato</S.Title>
+      <S.Title cwidth={width}>ComTato</S.Title>
       <Nelson_Ballon/>
       <S.StyledText>É bom ter você aqui!</S.StyledText>
-      <S.Text_Login>Login</S.Text_Login>
+      <S.Text_Login cwidth={width}>Login</S.Text_Login>
       {Platform.OS === 'ios' ? (
         <S.KeyboardWrapper
         keyboardVerticalOffset={height * 0.1}
@@ -66,13 +66,13 @@ export function Login({ navigation }) {
           </S.Input_Password_Wrapper>
         </S.Wrapper_Input>
       )}
-      <S.Wrapper_Info>
-        <S.Text_DontHaveAccount>Não tem uma conta? </S.Text_DontHaveAccount>
-        <S.Wrapper_Cadastro onPress={handleCadastre}>
-        <S.Cadastrar>Cadastre-se</S.Cadastrar>
-        </S.Wrapper_Cadastro>
-      </S.Wrapper_Info>
-      <Button text='ENTRAR' onPress={handleSignIn} style='solido' size='regular' />
+        <S.Wrapper_Info cwidth={width}>
+          <S.Text_DontHaveAccount cwidth={width}>Não tem uma conta?</S.Text_DontHaveAccount>
+          <S.Wrapper_Cadastro onPress={handleCadastre}>
+            <S.Cadastrar cwidth={width}>Cadastre-se</S.Cadastrar>
+          </S.Wrapper_Cadastro>
+        </S.Wrapper_Info>
+        <Button text='ENTRAR' onPress={handleSignIn} style='solido' size='regular' />
       </S.Background>
     </S.Wrapper>
   )

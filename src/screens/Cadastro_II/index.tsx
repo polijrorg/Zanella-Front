@@ -4,7 +4,7 @@ import Button from '@components/Button';
 import { api } from '@services/api';
 import { UserContext } from '@utils/UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Platform, useWindowDimensions } from 'react-native';
+import { Platform, useWindowDimensions, Alert } from 'react-native';
 
 
 const Cadastro_II = ({ navigation }) => {
@@ -14,10 +14,12 @@ const Cadastro_II = ({ navigation }) => {
   const [userPhone, setUserPhone] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [passwordVisibility, setPasswordVisibility] = useState(false);
-  const { height } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
 
   async function signUp() {
+    setLoading(true);
     try {
       await api.post('/users/register', {
         name: name,
@@ -28,23 +30,30 @@ const Cadastro_II = ({ navigation }) => {
         password: userPassword
       });
 
+      setLoading(false);
       await AsyncStorage.setItem('@app:isFirstAccess', 'true').then(
         () => {navigation.navigate('login')}
       );
     } catch (error) {
       console.log(error);
+      setLoading(false);
+      if (error.messsage == "Email already in use") {
+        Alert.alert('Erro', 'Email já cadastrado');
+      } else {
+        Alert.alert('Erro', 'Erro ao cadastrar');
+      }
     }
   }
 
   return(  
     <S.Wrapper>
-      <S.background source={require('@assets/Background.png')}>
-      <S.Title>ComTato</S.Title>
+      <S.background cwidth={width} source={require('@assets/Background.png')}>
+      <S.Title cwidth={width}>ComTato</S.Title>
       <S.Header>
         <S.Ballon>
           <S.BallonImage source={require('@assets/JabutiNelson_Dir.png')}/>
         </S.Ballon>
-        <S.StyledText>Estamos quase lá!</S.StyledText>
+        <S.StyledText cwidth={width}>Estamos quase lá!</S.StyledText>
       </S.Header>  
       {Platform.OS === 'ios' ? (
         <S.KeyboardWrapper
@@ -53,6 +62,7 @@ const Cadastro_II = ({ navigation }) => {
         >
           <S.Wrapper_Input>
             <S.Input_Cadastro
+              cwidth={width}
               placeholder='Telefone (Opcional)'
               inputMode='text'
               keyboardType='number-pad'
@@ -60,6 +70,7 @@ const Cadastro_II = ({ navigation }) => {
               value={userPhone}
               onChangeText={(value) => setUserPhone(value)}/>
             <S.Input_Cadastro
+              cwidth={width} 
               placeholder='Qual o seu email?'
               inputMode='email'
               placeholderTextColor="#FFB381"
@@ -67,6 +78,7 @@ const Cadastro_II = ({ navigation }) => {
               onChangeText={(value) => setUserEmail(value)}/>
             <S.Input_Password_Wrapper>
               <S.Input_Password
+                cwidth={width}
                 placeholder='Crie uma senha!'
                 secureTextEntry={!passwordVisibility}
                 placeholderTextColor="#FFB381"
@@ -82,6 +94,7 @@ const Cadastro_II = ({ navigation }) => {
       ) : (
         <S.Wrapper_Input>
           <S.Input_Cadastro
+            cwidth={width}
             placeholder='Telefone (Opcional)'
             inputMode='text'
             keyboardType='number-pad'
@@ -89,6 +102,7 @@ const Cadastro_II = ({ navigation }) => {
             value={userPhone}
             onChangeText={(value) => setUserPhone(value)}/>
           <S.Input_Cadastro
+            cwidth={width}
             placeholder='Qual o seu email?'
             inputMode='email'
             placeholderTextColor="#FFB381"
@@ -96,6 +110,7 @@ const Cadastro_II = ({ navigation }) => {
             onChangeText={(value) => setUserEmail(value)}/>
           <S.Input_Password_Wrapper>
             <S.Input_Password
+              cwidth={width}
               placeholder='Crie uma senha!'
               secureTextEntry={!passwordVisibility}
               placeholderTextColor="#FFB381"
@@ -108,7 +123,7 @@ const Cadastro_II = ({ navigation }) => {
           </S.Input_Password_Wrapper>
         </S.Wrapper_Input>
       )}
-      <Button text='CADASTRAR' onPress={signUp} style='solido' size='medium'/>
+      <Button text='CADASTRAR' onPress={signUp} style='solido' size='medium' animating={loading} disabled={userEmail == "" || userPassword == "" ? true : false}/>
       </S.background>
     </S.Wrapper>
   )

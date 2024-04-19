@@ -1,5 +1,5 @@
 import { theme } from '@styles/default.theme';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, ActivityIndicator } from 'react-native';
 import styled from 'styled-components/native';
 
 interface IWrapperProps {
@@ -25,3 +25,13 @@ export const Login_Button = styled(Text)`
   text-transform: uppercase;
   color: ${(props) => props.style === 'solido' ? theme.colors.primary.White : theme.colors.primary.BgSólidoHover };
 `; 
+
+interface IAnimatingProps {
+  animating: boolean;
+}
+
+export const ButtonActivityIndicator = styled(ActivityIndicator).attrs<IAnimatingProps>(
+  ({ animating }) => (animating ? true  : false)
+)`
+  color: ${ theme.colors.primary.White };
+`
