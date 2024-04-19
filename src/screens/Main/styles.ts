@@ -9,8 +9,8 @@ export const Wrapper = styled(View)`
 `;
 
 export const Wrapper_TalkButton = styled(TouchableOpacity)`
-  width: 70%;
-  height: 11%;
+  width: 80%;
+  height: ${ props => props.cwidth > 400 ? 10 : 15 }%;
   margin-top: 48px;
 `
 
@@ -31,34 +31,38 @@ export const Talk = styled(Text)`
   font-family: PoppinsSemiBold;
   color: ${ theme.colors.primary.TextoHigh };
   align-items: center;
-  font-size: 16px;
+  font-size: ${ props => props.cwidth > 400 ? 16 : 14 }px;
   letter-spacing: 0.5px;
 `;
 
 export const Nelson = styled(Image)`
-  width: 137px;
-  height: 136px;
+  width: ${ props => props.cwidth > 400 ? 137 : 80 }px;
+  height: ${ props => props.cwidth > 400 ? 137 : 80 }px;
   justify-content: center;
   align-items: center;
   margin-bottom: 8%;
 `;
 
-export const Container = styled(View)`
+export const Container = styled(ScrollView).attrs({
+  contentContainerStyle: {
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    flex: 1,
+  },
+  showsVerticalScrollIndicator: false,
+})`
   width: 100%;
-  height: 100%;
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
-  justify-content: center;
-  align-items: flex-start;
   padding: 12px 0px;
-  gap: 8px;
+  gap: ${ props => props.cwidth > 400 ? 8 : 4 }px;
   background: ${ theme.colors.primary.BgTela };
 `;
 
 export const StyledText = styled(Text)`
   color: ${ theme.colors.primary.Texto };
   font-family: PoppinsSemiBold;
-  font-size: 16px;
+  font-size: ${ props => props.cwidth > 400 ? 16 : 12 }px;
   padding: 0px 16px;
   letter-spacing: 0.5px;
 `;

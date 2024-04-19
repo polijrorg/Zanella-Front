@@ -47,7 +47,7 @@ export const Search_Input = styled(TextInput)`
   align-items: center;
   width: 70%;
   height: 36px;
-  font-size: 18px;
+  font-size: ${ props => props.cwidth > 400 ? 18 : 14 }px;
   font-family: Poppins;
 `;
 

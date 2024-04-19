@@ -4,13 +4,14 @@ import Modal from '@components/Modal'
 import UpdateModal from '@components/UpdateModal';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import useAuth from '@hooks/useAuth';
-
+import { useWindowDimensions } from 'react-native';
 
 const Perfil = () => {
 
   const [modal, setModal] = useState(false);
   const [updateModal, setUpdateModal] = useState(false);
   const { signOut, user } = useAuth();
+  const { width } = useWindowDimensions();
 
   useEffect(() => {
     const synchronizeUser = async () => {
@@ -27,7 +28,7 @@ const Perfil = () => {
   }, {});
 
   return (
-      <S.Wrapper>       
+      <S.Wrapper cwidth={width}>       
         <S.LogoutButtonWrapper>
           <S.LogoutButton onPress={() => setModal(true)}>
             <S.LogoutIcon source={require('@assets/LogoutIcon.png')}/>
@@ -37,8 +38,8 @@ const Perfil = () => {
         <Modal visible={modal} onRequestClose={() => setModal(false)} onConfirm={signOut} />
         <UpdateModal visible={updateModal} onRequestClose={() => setUpdateModal(false)} />
 
-        <S.ImageGroup>
-          <S.NelsonImage source={require('@assets/JabutiNelson_Esq.png')} />
+        <S.ImageGroup cwidth={width}>
+          <S.NelsonImage cwidth={width} source={require('@assets/JabutiNelson_Esq.png')} />
           <S.UserName>{synchronizedUser.name}</S.UserName>
         </S.ImageGroup>
 
@@ -48,7 +49,7 @@ const Perfil = () => {
             <S.InfoText>{'Informações'}</S.InfoText>
             <S.ButtonGroup onPress={() => setUpdateModal(true)}>
               <S.EditIcon source={require("@assets/EditIcon.png")}/>
-              <S.EditText>{'EDITAR'}</S.EditText>
+              <S.EditText cwidth={width}>{'EDITAR'}</S.EditText>
             </S.ButtonGroup>
           </S.TitleWrapper>
         

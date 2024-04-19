@@ -10,7 +10,7 @@ interface IWrapperProps {
 
 export const Wrapper = styled(TouchableOpacity)<IWrapperProps>`
   width: ${(props) => props.size === 'small' ? '128px' : props.size === 'big' ? '100%' : '80%' };
-  height: 48px;
+  height: ${props => props.cwidth > 400 ? 48 : 40 }px;
   border-radius: 24px;
   background: ${(props) => props.style === 'solido' ? theme.colors.primary.BgSólidoHover : theme.colors.primary.BgSutil };
   border: ${(props) => props.style === 'solido' ? 'none' : `1px solid ${ theme.colors.primary.BgSólidoHover }` };

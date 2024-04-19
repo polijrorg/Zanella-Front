@@ -4,8 +4,8 @@ import { Text, Image, View, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Assunto = styled(View)`
-  width: 176px;
-  height: 130px;
+  width: ${ props => props.cwidth > 400 ? 176 : 140 }px;
+  height: ${ props => props.cwidth > 400 ? 130 : 120 }px;
   align-items: center;
   justify-content: center;
   gap: 8px;
@@ -23,7 +23,7 @@ export const CardImage = styled(Image)`
 export const CardTitle = styled(Text)`
   font-family: Poppins;
   color: ${ theme.colors.primary.Texto };
-  font-size: 16px;
+  font-size: ${ props => props.cwidth > 400 ? 16 : 12 }px;
   font-weight: 400;
 `;
 

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Cards_Assunto from '@components/Cards_Assunto';
 import useAuth from '@hooks/useAuth';
 import UserService from '@services/UserService';
+import { useWindowDimensions } from 'react-native';
 
 interface ISubject {
   title: string;
@@ -17,6 +18,7 @@ const Assuntos = (props) => {
   const { user } = useAuth();
   const [searchtext, setSearchtext] = useState("");
   const [subjects, setSubjects] = useState([] as any);
+  const { width } = useWindowDimensions();
 
   const getUserSubjects = async () => {
     const response = await UserService.getSubjects(user);
@@ -33,6 +35,7 @@ const Assuntos = (props) => {
       <S.Search_Wrapper>
         <S.Search><S.Search_Icon source={require('../../../public/assets/SearchIcon.png')}/></S.Search>
         <S.Search_Input 
+          cwidth={width}
           placeholder='O que você quer descobrir?' 
           placeholderTextColor="#FFB381" 
           value={searchtext}
