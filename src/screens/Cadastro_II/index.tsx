@@ -129,7 +129,7 @@ const Cadastro_II = ({ navigation }) => {
           </S.Input_Password_Wrapper>
         </S.Wrapper_Input>
       )}
-      <Button text='CADASTRAR' onPress={signUp} style='solido' size='medium' animating={loading} disabled={userEmail == "" || userPassword == "" ? true : false}/>
+      <Button text='CADASTRAR' onPress={signUp} style='solido' size='medium' animating={loading} disabled={userEmail == "" || userPassword == "" || loading ? true : false}/>
       </S.background>
     </S.Wrapper>
   )
