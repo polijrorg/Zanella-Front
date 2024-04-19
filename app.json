@@ -19,7 +19,11 @@
     "updates": {
       "url": "https://u.expo.dev/ac1d8109-737a-40fb-ac78-80b94440d65b"
     },
-    "android": {},
-    "ios": {}
+    "android": {
+      "package": "com.zanellaapp.Zanella"
+    },
+    "ios": {
+      "bundleIdentifier": "com.zanellaapp.Zanella"
+    }
   }
 }
