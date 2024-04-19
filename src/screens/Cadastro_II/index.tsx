@@ -4,7 +4,7 @@ import Button from '@components/Button';
 import { api } from '@services/api';
 import { UserContext } from '@utils/UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Platform, useWindowDimensions } from 'react-native';
+import { Platform, useWindowDimensions, Alert } from 'react-native';
 
 
 const Cadastro_II = ({ navigation }) => {
@@ -14,10 +14,12 @@ const Cadastro_II = ({ navigation }) => {
   const [userPhone, setUserPhone] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const { width, height } = useWindowDimensions();
 
   async function signUp() {
+    setLoading(true);
     try {
       await api.post('/users/register', {
         name: name,
@@ -28,11 +30,18 @@ const Cadastro_II = ({ navigation }) => {
         password: userPassword
       });
 
+      setLoading(false);
       await AsyncStorage.setItem('@app:isFirstAccess', 'true').then(
         () => {navigation.navigate('login')}
       );
     } catch (error) {
       console.log(error);
+      setLoading(false);
+      if (error.messsage == "Email already in use") {
+        Alert.alert('Erro', 'Email já cadastrado');
+      } else {
+        Alert.alert('Erro', 'Erro ao cadastrar');
+      }
     }
   }
 
@@ -114,7 +123,7 @@ const Cadastro_II = ({ navigation }) => {
           </S.Input_Password_Wrapper>
         </S.Wrapper_Input>
       )}
-      <Button text='CADASTRAR' onPress={signUp} style='solido' size='medium'/>
+      <Button text='CADASTRAR' onPress={signUp} style='solido' size='medium' animating={loading} disabled={userEmail == "" || userPassword == "" ? true : false}/>
       </S.background>
     </S.Wrapper>
   )

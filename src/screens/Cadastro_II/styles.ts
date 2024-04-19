@@ -1,5 +1,5 @@
 import { theme } from '@styles/default.theme';
-import { TouchableOpacity, Text, View, Image, TextInput, ImageBackground, KeyboardAvoidingView } from 'react-native';
+import { TouchableOpacity, Text, View, Image, TextInput, ImageBackground, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Wrapper = styled(View)`
