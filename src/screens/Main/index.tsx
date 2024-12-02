@@ -50,7 +50,7 @@ const Main = ({ navigation }) => {
           <S.Talk cwidth={width}>{`Oi,${' ' + user?.name.split(' ')[0] + '!' || ','} Estou aqui se quiser ajuda!`}</S.Talk>
         </S.Wrapper_Talk>
       </S.Wrapper_TalkButton>
-      <S.Nelson cwidth={width} source={require('@assets/JabutiNelson_Esq.png')}/>
+      <S.Nelson cwidth={width} source={require('@assets/JabutiNelson_SemFundoEsq3.png')}/>
       <S.Container>
         <S.StyledText cwidth={width}>Para você...</S.StyledText>
         <S.SliderContainer>

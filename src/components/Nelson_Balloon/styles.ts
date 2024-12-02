@@ -15,6 +15,9 @@ export const Wrapper_Nelson = styled(View)`
 `;
 
 export const Nelson = styled(Image)`
-  width: 56px;
-  height: 56px;
+  width: 80px;
+  height: 80px;
+  border-bottom-right-radius: 40px;
+  border-top-right-radius: 40px;
+  border-top-left-radius: 40px;
 `;

@@ -20,6 +20,7 @@ export const ImageGroup = styled(View)`
 export const NelsonImage = styled(Image)`
   width: ${props => props.cwidth > 400 ? 88 : 70}px;
   height: ${props => props.cwidth > 400 ? 88 : 70}px;
+  border-radius: 50%;
 `
 export const UserName = styled(Text)`
   color: ${theme.colors.primary.Texto};

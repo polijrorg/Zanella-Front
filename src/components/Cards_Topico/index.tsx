@@ -6,7 +6,7 @@ export type TestProps = {
 }; 
 const Cards_Topico: React.FC<TestProps> = ({ text }) => (
   <S.Wrapper >
-    <S.Nelson source={require('../../../public/assets/JabutiNelson_Dir.png')}/>    
+    <S.Nelson source={require('../../../public/assets/JabutiNelson_Topicos.jpg')}/>    
     <S.Topico>{text}</S.Topico>
   </S.Wrapper>
 );

@@ -35,7 +35,7 @@ const Cadastro_I = ({ navigation }) => {
     
     <S.Header>
       <S.Ballon>
-        <S.BallonImage source={require('@assets/JabutiNelson_Dir.png')}/>
+        <S.BallonImage source={require('@assets/JabutiNelson_Login2.jpg')}/>
       </S.Ballon>
     </S.Header>
       

@@ -57,7 +57,7 @@ const Cadastro_II = ({ navigation }) => {
       <S.Title cwidth={width}>ComTato</S.Title>
       <S.Header>
         <S.Ballon>
-          <S.BallonImage source={require('@assets/JabutiNelson_Dir.png')}/>
+          <S.BallonImage source={require('@assets/JabutiNelson_Login2.jpg')}/>
         </S.Ballon>
         <S.StyledText cwidth={width}>Estamos quase lá!</S.StyledText>
       </S.Header>  

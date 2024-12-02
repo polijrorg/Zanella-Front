@@ -17,6 +17,8 @@ export const Background = styled(ImageBackground)`
 export const TurtleIcon = styled(Image)`
   width: 160px;
   height: 160px;
+  border-end-end-radius:50%;
+  border-top-right-radius:20%;
 `
 export const SlidesContainer = styled(View)`
   width: 100%;

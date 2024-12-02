@@ -43,7 +43,7 @@ const Assistance = ({ navigation }) => {
   return (
     <S.Container>
       <S.Background source={require('@assets/assistanceBackground.png')}>
-        <S.TurtleIcon source={require('@assets/JabutiNelson_Esq.png')}/>
+        <S.TurtleIcon source={require('@assets/JabutiNelson_SemFundoEsq.png')}/>
         <S.SlidesContainer>
           <S.Slides 
             data={slides}

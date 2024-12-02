@@ -1,7 +1,7 @@
 import * as S from './styles';
 import React from 'react';
 
-const image = require('../../../public/assets/JabutiNelson_Dir.png')
+const image = require('../../../public/assets/JabutiNelson_Login2.jpg')
 
 const Nelson_Balloon = () => (
   <S.Wrapper_Nelson>

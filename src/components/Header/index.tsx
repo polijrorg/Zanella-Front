@@ -15,7 +15,7 @@ const Header: React.FC = () => {
   return (
     <S.Container isVisible={isVisible}>
       <S.Wrapper>
-        <S.Nelson source={require('../../../public/assets/JabutiNelson_Dir.png')}/>
+        <S.Nelson source={require('../../../public/assets/JabutiNelson_SemFundoEsq.png')}/>
         <S.Wrapper_Name cwidth={width}>Como você está hoje, <S.Wrapper_Name cwidth={width}>{user?.name.split(' ')[0] || ''}</S.Wrapper_Name>?<S.Wrapper_Name></S.Wrapper_Name>
         </S.Wrapper_Name>
       </S.Wrapper>

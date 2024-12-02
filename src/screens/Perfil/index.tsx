@@ -39,7 +39,7 @@ const Perfil = () => {
         <UpdateModal visible={updateModal} onRequestClose={() => setUpdateModal(false)} />
 
         <S.ImageGroup cwidth={width}>
-          <S.NelsonImage cwidth={width} source={require('@assets/JabutiNelson_Esq.png')} />
+          <S.NelsonImage cwidth={width} source={require('@assets/JabutiNelson_GramaFundo.jpg')} />
           <S.UserName>{synchronizedUser.name}</S.UserName>
         </S.ImageGroup>
 

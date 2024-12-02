@@ -34,8 +34,11 @@ export const Ballon = styled(View)`
   justify-content: center;
 `
 export const BallonImage = styled(Image)`
-  width: 56px;
-  height: 56px;
+  width: 80px;
+  height: 80px;
+  border-bottom-right-radius: 40px;
+  border-top-right-radius: 40px;
+  border-top-left-radius: 40px;
 `
 
 export const Title = styled(Text)`
