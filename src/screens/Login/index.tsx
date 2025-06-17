@@ -26,7 +26,7 @@ export function Login({ navigation }) {
     <S.Wrapper>
       <S.Background source={require('@assets/Background.png')}>
 
-      <S.Title cwidth={width}>ComTato</S.Title>
+      <S.Title cwidth={width}>Timo</S.Title>
       <Nelson_Ballon/>
       <S.StyledText>É bom ter você aqui!</S.StyledText>
       <S.Text_Login cwidth={width}>Login</S.Text_Login>

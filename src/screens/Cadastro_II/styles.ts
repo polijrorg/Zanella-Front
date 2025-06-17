@@ -43,7 +43,7 @@ export const BallonImage = styled(Image)`
 
 export const Title = styled(Text)`
   color: ${ theme.colors.primary.Texto };
-  font-size: ${props => props.cwidth > 400 ? 40 : 24}px;
+  font-size: ${props => props.cwidth > 400 ? 48 : 36}px;
   letter-spacing: 2px;
   font-family: PoppinsMedium;
 `;

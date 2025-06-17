@@ -29,7 +29,7 @@ const Cadastro_I = ({ navigation }) => {
   return(
   <S.Wrapper>
     <S.Background cwidth={width} source={require('@assets/Background.png')}>
-    <S.Title cwidth={width}>ComTato</S.Title>
+    <S.Title cwidth={width}>Timo</S.Title>
    
 
     
@@ -39,7 +39,7 @@ const Cadastro_I = ({ navigation }) => {
       </S.Ballon>
     </S.Header>
       
-      <S.StyledText cwidth={width}>{"Oi, eu sou o Nelson. Prazer em te conhecer!"}</S.StyledText>
+      <S.StyledText cwidth={width}>{"Oi, eu sou o Timo. Prazer em te conhecer!"}</S.StyledText>
 
       {Platform.OS === 'ios' ? (
         <S.KeyboardWrapper

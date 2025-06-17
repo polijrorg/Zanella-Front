@@ -35,7 +35,6 @@ const Cadastro_II = ({ navigation }) => {
         email: userEmail,
         password: userPassword
       });
-
       setLoading(false);
       await AsyncStorage.setItem('@app:isFirstAccess', 'true').then(
         () => {navigation.navigate('login')}
@@ -46,7 +45,7 @@ const Cadastro_II = ({ navigation }) => {
       if (error.messsage == "Email already in use") {
         Alert.alert('Erro', 'Email já cadastrado');
       } else {
-        Alert.alert('Erro', 'Erro ao cadastrar');
+        navigation.navigate('login');
       }
     }
   }
@@ -54,7 +53,7 @@ const Cadastro_II = ({ navigation }) => {
   return(  
     <S.Wrapper>
       <S.background cwidth={width} source={require('@assets/Background.png')}>
-      <S.Title cwidth={width}>ComTato</S.Title>
+      <S.Title cwidth={width}>Timo</S.Title>
       <S.Header>
         <S.Ballon>
           <S.BallonImage source={require('@assets/JabutiNelson_Login2.jpg')}/>

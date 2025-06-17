@@ -12,17 +12,15 @@ export const Background = styled(ImageBackground)`
   gap: 16px;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 100px;
+  padding-top: 130px;
 `
 export const TurtleIcon = styled(Image)`
   width: 160px;
-  height: 160px;
-  border-end-end-radius:50%;
-  border-top-right-radius:20%;
+  height: 210px;
 `
 export const SlidesContainer = styled(View)`
   width: 100%;
-  height: 350px;
+  height: 280px;
   justify-content: center;
   align-items: center;
 `
