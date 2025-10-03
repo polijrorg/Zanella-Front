@@ -1,15 +1,19 @@
+/* eslint-disable react/prop-types */
 import * as S from './styles';
-import React, {useState, useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import Button from '@components/Button';
 import { api } from '@services/api';
 import { UserContext } from '@utils/UserContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Platform, useWindowDimensions, Alert } from 'react-native';
+import { useWindowDimensions, Alert } from 'react-native';
 
+import Background from '@assets/Background.png';
+import JabutiNelson_Login2 from '@assets/JabutiNelson_Login2.jpg';
+import VisibilityOff from '@assets/visibility_off.png';
+import Visibility from '@assets/visibility.png';
+import KeyboardWrapper from '@components/KeyboardWrapper';
 
 const Cadastro_II = ({ navigation }) => {
-
-  
   const { name, age, parental } = useContext(UserContext);
   const [userPhone, setUserPhone] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -37,7 +41,7 @@ const Cadastro_II = ({ navigation }) => {
       });
       setLoading(false);
       await AsyncStorage.setItem('@app:isFirstAccess', 'true').then(
-        () => {navigation.navigate('login')}
+        () => { navigation.navigate('login') }
       );
     } catch (error) {
       console.log(error);
@@ -50,21 +54,34 @@ const Cadastro_II = ({ navigation }) => {
     }
   }
 
-  return(  
+  function formatPhoneNumber(value: string) {
+    const cleaned = value.replace(/\D/g, '').slice(0, 11);
+
+    if (cleaned.length < 3) {
+      return cleaned;
+    }
+    if (cleaned.length < 7) {
+      return cleaned.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+    }
+    if (cleaned.length <= 10) {
+      return cleaned.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+    }
+    return cleaned.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+  }
+
+
+  return (
     <S.Wrapper>
-      <S.background cwidth={width} source={require('@assets/Background.png')}>
-      <S.Title cwidth={width}>Timo</S.Title>
-      <S.Header>
-        <S.Ballon>
-          <S.BallonImage source={require('@assets/JabutiNelson_Login2.jpg')}/>
-        </S.Ballon>
-        <S.StyledText cwidth={width}>Estamos quase lá!</S.StyledText>
-      </S.Header>  
-      {Platform.OS === 'ios' ? (
-        <S.KeyboardWrapper
-        keyboardVerticalOffset={height * 0.08}
-        behavior='position'
-        >
+      <S.background cwidth={width} source={Background}>
+        <S.Title cwidth={width}>Timo</S.Title>
+        <S.Header>
+          <S.Ballon>
+            <S.BallonImage source={JabutiNelson_Login2} />
+          </S.Ballon>
+          <S.StyledText cwidth={width}>Estamos quase lá!</S.StyledText>
+        </S.Header>
+        
+        <KeyboardWrapper height={height}>
           <S.Wrapper_Input>
             <S.Input_Cadastro
               cwidth={width}
@@ -73,62 +90,38 @@ const Cadastro_II = ({ navigation }) => {
               keyboardType='number-pad'
               placeholderTextColor="#FFB381"
               value={userPhone}
-              onChangeText={(value) => setUserPhone(value)}/>
+              onChangeText={(value) => setUserPhone(formatPhoneNumber(value))} />
             <S.Input_Cadastro
-              cwidth={width} 
+              cwidth={width}
               placeholder='Qual o seu email?'
               inputMode='email'
               placeholderTextColor="#FFB381"
               value={userEmail}
-              onChangeText={(value) => setUserEmail(value)}/>
+              onChangeText={(value) => setUserEmail(value)} />
             <S.Input_Password_Wrapper>
-              <S.Input_Password
+              <S.Input_Cadastro
                 cwidth={width}
                 placeholder='Crie uma senha!'
                 secureTextEntry={!passwordVisibility}
                 placeholderTextColor="#FFB381"
                 value={userPassword}
                 onChangeText={(value) => setUserPassword(value)}>
-              </S.Input_Password>
+              </S.Input_Cadastro>
               <S.Input_Password_Icon_Button onPress={() => setPasswordVisibility(!passwordVisibility)}>
-                <S.Input_Password_Icon source={passwordVisibility ? require('@assets/visibility_off.png') : require('@assets/visibility.png')}/>
+                <S.Input_Password_Icon source={passwordVisibility ? VisibilityOff : Visibility} />
               </S.Input_Password_Icon_Button>
             </S.Input_Password_Wrapper>
           </S.Wrapper_Input>
-        </S.KeyboardWrapper>
-      ) : (
-        <S.Wrapper_Input>
-          <S.Input_Cadastro
-            cwidth={width}
-            placeholder='Telefone (Opcional)'
-            inputMode='text'
-            keyboardType='number-pad'
-            placeholderTextColor="#FFB381"
-            value={userPhone}
-            onChangeText={(value) => setUserPhone(value)}/>
-          <S.Input_Cadastro
-            cwidth={width}
-            placeholder='Qual o seu email?'
-            inputMode='email'
-            placeholderTextColor="#FFB381"
-            value={userEmail}
-            onChangeText={(value) => setUserEmail(value)}/>
-          <S.Input_Password_Wrapper>
-            <S.Input_Password
-              cwidth={width}
-              placeholder='Crie uma senha!'
-              secureTextEntry={!passwordVisibility}
-              placeholderTextColor="#FFB381"
-              value={userPassword}
-              onChangeText={(value) => setUserPassword(value)}>
-            </S.Input_Password>
-            <S.Input_Password_Icon_Button onPress={() => setPasswordVisibility(!passwordVisibility)}>
-              <S.Input_Password_Icon source={passwordVisibility ? require('@assets/visibility_off.png') : require('@assets/visibility.png')}/>
-            </S.Input_Password_Icon_Button>
-          </S.Input_Password_Wrapper>
-        </S.Wrapper_Input>
-      )}
-      <Button text='CADASTRAR' onPress={signUp} style='solido' size='medium' animating={loading} disabled={userEmail == "" || userPassword == "" || loading ? true : false}/>
+        </KeyboardWrapper>
+        
+        <Button
+          text='CADASTRAR'
+          onPress={signUp}
+          style='solido'
+          size='medium'
+          animating={loading}
+          disabled={userEmail == "" || userPassword == "" || loading ? true : false}
+        />
       </S.background>
     </S.Wrapper>
   )

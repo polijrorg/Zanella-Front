@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Main from '@screens/Main';
 import Diario from '@screens/Diario';
@@ -12,8 +12,6 @@ import TopicsSelection from '@screens/TopicsSelection';
 import Subjects from '@screens/Subjects';
 import useAuth from '@hooks/useAuth';
 import Assistance from '@screens/Assistance';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 
 const { Navigator, Screen } = createNativeStackNavigator();
 

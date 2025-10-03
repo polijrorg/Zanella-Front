@@ -1,4 +1,3 @@
-import Input from '@components/Input';
 import { theme } from '@styles/default.theme';
 import { TouchableOpacity, Text, View, Image, TextInput, ImageBackground, KeyboardAvoidingView, Platform } from 'react-native';
 import styled from 'styled-components/native';
@@ -73,12 +72,18 @@ export const Wrapper_Input = styled(View)`
 
 export const Input_Cadastro = styled(TextInput)`
   min-width: 100%;
-  height: ${props => props.cwidth > 400 ? 48 : 32}px;
   font-size: ${props => props.cwidth > 400 ? 16 : 14}px;
   padding-left: 12px;
   border: 1px ${ theme.colors.primary.Borda };
   border-radius: 24px;
   color: ${ theme.colors.primary.BordaElemento };
+  font-family: Poppins;
+`;
+
+export const QuestionText = styled(Text)`
+  padding-left: 12px;
+  color: ${ theme.colors.primary.BordaElemento };
+  font-family: Poppins;
 `;
 
 export const Wrapper_Info = styled(View)`
@@ -87,6 +92,7 @@ export const Wrapper_Info = styled(View)`
   width: 100%;
   height: 24px;
   gap: 32px;
+  margin-top: 16px;
 `;
 
 export const Text_HaveAccount = styled(Text)`
@@ -137,4 +143,25 @@ export const Lines_Inf_Dir = styled(Image)`
   position: absolute;
   width: 800px;
   height: 540px;
+`;
+
+export const Wrapper_Parental = styled(View)`
+  flex-direction: row;
+  justify-content: center;
+  gap: 16px;
+  align-items: center;
+`;
+
+export const OptionButton = styled(TouchableOpacity)`
+  padding: 10px 20px;
+  border-radius: 20px;
+  border-width: 1px;
+  border-color: ${theme.colors.primary.Borda};
+  background-color: ${({ selected }) => selected ? theme.colors.primary.BgSólidoHover : theme.colors.primary.White};
+`;
+
+export const OptionText = styled(Text)`
+  font-family: Poppins;
+  font-size: 12px;
+  color: ${({ selected }) => selected ? "#FFF" : theme.colors.primary.Texto};
 `;

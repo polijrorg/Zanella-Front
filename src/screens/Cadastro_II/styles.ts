@@ -1,5 +1,5 @@
 import { theme } from '@styles/default.theme';
-import { TouchableOpacity, Text, View, Image, TextInput, ImageBackground, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
+import { TouchableOpacity, Text, View, Image, TextInput, ImageBackground, KeyboardAvoidingView } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Wrapper = styled(View)`
@@ -69,32 +69,20 @@ export const Wrapper_Input = styled(View)`
 `;
 
 export const Input_Cadastro = styled(TextInput)`
-  width: 80%;
-  height: ${props => props.cwidth > 400 ? 48 : 32}px;
+  min-width: 80%;
   font-size: ${props => props.cwidth > 400 ? 16 : 14}px;
-  padding: 0px 12px;
+  padding-left: 12px;
   border: 1px ${ theme.colors.primary.Borda };
   border-radius: 24px;
-  font-family: Poppins;
   color: ${ theme.colors.primary.BordaElemento };
+  font-family: Poppins;
 `;
 
 export const Input_Password_Wrapper = styled(View)`
   position: relative;
   width: 80%;
+  justify-content: center;
 `
-
-export const Input_Password = styled(TextInput)`
-  position: relative;
-  width: 100%;
-  height: ${props => props.cwidth > 400 ? 42 : 32}px;
-  font-size: ${props => props.cwidth > 400 ? 16 : 14}px;
-  padding: 0px 12px;
-  border: 1px ${ theme.colors.primary.Borda };
-  border-radius: 24px;
-  font-family: Poppins;
-  color: ${ theme.colors.primary.BordaElemento };
-`;
 
 export const Input_Password_Icon_Button = styled(TouchableOpacity)`
   position: absolute;
