@@ -1,3 +1,4 @@
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import * as S from './styles';
 import { useEffect, useState } from 'react';
@@ -29,9 +30,9 @@ export function Rotas() {
   useEffect(() => {
     getRoutes();
     if (Platform.OS === 'ios') {
-      setOS('ios')
+      setOS('ios');
     } else {
-      setOS('android')
+      setOS('android');
     }
     
   }, [loading, user])

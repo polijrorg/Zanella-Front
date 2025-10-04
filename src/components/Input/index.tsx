@@ -3,7 +3,7 @@ import React from 'react';
 
 export type TestProps = {
     placeholder: string;
-    stateFunction(value: string): any;
+    stateFunction(value: string): void;
     type?: string;
 };
 

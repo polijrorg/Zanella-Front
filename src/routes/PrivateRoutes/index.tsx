@@ -19,7 +19,7 @@ export function PrivateRoutes(){
   const { topics, isFirstAccess } = useAuth();
 
   return (
-    <Navigator initialRouteName={ isFirstAccess? 'assistance' : !topics ? 'topics' : 'main'} screenOptions={{ headerShown: false, contentStyle: { backgroundColor: 'transparent'} }}>
+    <Navigator initialRouteName={ isFirstAccess ? 'assistance' : !topics ? 'topics' : 'main'} screenOptions={{ headerShown: false, contentStyle: { backgroundColor: 'transparent'} }}>
       <Screen name="main" component={Main} />
       <Screen name="topics" component={Topics} />
       <Screen name="diario" component={Diario} />

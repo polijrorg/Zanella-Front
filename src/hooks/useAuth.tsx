@@ -36,25 +36,25 @@ export const AuthProvider: React.FC<{ children?: React.ReactNode | undefined }> 
     setOnMain(isFocused);
   }
 
-  const signIn = async (data: ILoginRequest) => {
-    try {
-      const response = await UserService.login(data);
-      await AsyncStorage.setItem('@app:user', JSON.stringify(response.user));
-      await AsyncStorage.setItem('@app:token', response.token).then(async() => {
-        await AsyncStorage.getItem('@app:isFirstAccess').then((firstAccess) => {
-          // setFirstAccess(firstAccess === 'true');
-          setFirstAccess(true);
-          setUser(response.user)
-      })});
+const signIn = async (data: ILoginRequest) => {
+  try {
+    const response = await UserService.login(data);
 
-      setToken(response.token);
+    await AsyncStorage.setItem('@app:user', JSON.stringify(response.user));
+    await AsyncStorage.setItem('@app:token', response.token);
 
-      response.user.topics ? setTopics(true) : setTopics(false);
-         
-    } catch (error) {
-      throw new AppError(error);
-    }
+    const firstAccess = await AsyncStorage.getItem('@app:isFirstAccess');
+    setFirstAccess(firstAccess === 'true');
+
+    setUser(response.user);
+    setToken(response.token);
+    setTopics(!!response.user.topics);
+
+  } catch (error) {
+    throw new AppError(error?.message || error);
   }
+};
+
 
   const update = async (data: IUpdateRequest) => {
     try { 

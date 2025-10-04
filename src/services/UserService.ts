@@ -1,10 +1,7 @@
 import { AxiosResponse } from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import User from '@interfaces/User';
-import useAuth from '@hooks/useAuth';
-
 import { api } from './api';
-import getApi from './axios';
 import { AppError } from '@utils/AppError';
 
 export interface ILoginRequest {
@@ -51,13 +48,13 @@ export default class UserService {
   static async login(data: ILoginRequest): Promise<ILoginResponse> {
     try {
       const response: AxiosResponse<ILoginResponse> = await api.post(
-        '/users/authenticate',
+        '/users/login',
         data
       );
       
       return response.data;
     } catch (error) {
-      console.log('login');
+      console.log('erro ao fazer login:', error);
       throw new AppError(error);
     }
   }
