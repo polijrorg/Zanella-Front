@@ -1,3 +1,6 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable @typescript-eslint/no-require-imports */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as S from './styles';
 import React, { useEffect, useState } from 'react';
 import useAuth from '@hooks/useAuth';
@@ -20,6 +23,7 @@ const Main = ({ navigation }) => {
   const getUserSubjects = async () => {
     try {
       const response = await UserService.getSubjects(user);
+      console.log(response);
 
       setUserSubjects(response);
     } catch (error) {

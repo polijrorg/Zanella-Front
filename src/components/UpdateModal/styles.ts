@@ -9,7 +9,7 @@ export const Container = styled(View)`
   align-items: center;
   justify-content: center;
   blur-radius: 10px;
-  background-color: #FFFFFF50;
+  background-color: rgba(0,0,0,0.5);
 `
 
 export const ModalContent = styled(View)`
@@ -46,7 +46,7 @@ export const ContentTitle = styled(Text)`
 `
 export const AtributteContainer = styled(View)`
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   width: 100%;
   align-items: center;
   padding: 4px 0px;
@@ -62,3 +62,29 @@ export const Input = styled(TextInput)`
   flex: 1;
   color: ${ theme.colors.primary.TextoHigh };
 `
+
+interface Props {
+  selected?: boolean;
+}
+
+export const OptionButton = styled(TouchableOpacity)<Props>`
+  padding: 10px 20px;
+  border-radius: 20px;
+  border-width: 1px;
+  border-color: ${theme.colors.primary.Borda};
+  background-color: ${({ selected }) => selected ? theme.colors.primary.BgSólidoHover : theme.colors.primary.White};
+`;
+
+export const OptionText = styled(Text)<Props>`
+  font-family: Poppins;
+  font-size: 12px;
+  color: ${({ selected }) => selected ? "#FFF" : theme.colors.primary.Texto};
+`;
+
+export const Wrapper_Parental = styled(View)`
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-left: 16px
+`;

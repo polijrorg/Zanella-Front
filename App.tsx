@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 import AppProvider from '@hooks/index';
 import React from 'react';
 import { useFonts } from '@expo-google-fonts/poppins';

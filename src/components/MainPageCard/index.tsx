@@ -15,6 +15,6 @@ const MainPageCard = ({ title, image }: MainPageCardProps) => {
       <S.CardTitle cwidth={width}>{title}</S.CardTitle>
     </S.Assunto>
   )
-}
+};
 
 export default MainPageCard;

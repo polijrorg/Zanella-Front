@@ -22,7 +22,6 @@ export const Search_Wrapper = styled(View)`
   display: flex;
   flex-direction: row;
   width: 90%;
-  height: 36px;
   border-radius: 24px;
   border: 1px ${ theme.colors.primary.Borda };
   color: ${ theme.colors.primary.BordaElemento };
@@ -46,8 +45,7 @@ export const Search_Icon = styled(Image)`
 export const Search_Input = styled(TextInput)`
   align-items: center;
   width: 70%;
-  height: 36px;
-  font-size: ${ props => props.cwidth > 400 ? 18 : 14 }px;
+  font-size: 14px;
   font-family: Poppins;
 `;
 

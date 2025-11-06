@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AxiosResponse } from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import User from '@interfaces/User';
@@ -47,15 +48,21 @@ interface IUpdateTopicsRequest {
 export default class UserService {
   static async login(data: ILoginRequest): Promise<ILoginResponse> {
     try {
+      console.log('data', data);
       const response: AxiosResponse<ILoginResponse> = await api.post(
-        '/users/login',
+        '/sessions/login',
         data
       );
       
       return response.data;
-    } catch (error) {
-      console.log('erro ao fazer login:', error);
-      throw new AppError(error);
+    } catch (error: any) {
+      const message =
+        error.response?.data?.message ||
+        error.message ||
+        'Erro inesperado ao fazer login';
+
+      console.log('erro ao fazer login:', message);
+      throw new AppError(message);
     }
   }
 

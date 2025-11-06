@@ -9,16 +9,17 @@ import KeyboardWrapper from '@components/KeyboardWrapper';
 
 export default function Cadastro_I({ navigation }) {
   const { setName, setAge, setParental } = useContext(UserContext);
-  const [userName, setUserName] = useState("");
-  const [userAge, setUserAge] = useState("");
-  const [userParental, setUserParental] = useState(null);
+  const [userName, setUserName] = useState('');
+  const [userAge, setUserAge] = useState('');
+  const [userParental, setUserParental] = useState<string | null>(null);
   const { width, height } = useWindowDimensions();
 
   const handleDoLogin = () => navigation.navigate('login');
+
   const handleCadastroii = () => {
     setName(userName);
     setAge(userAge);
-    setParental(userParental);
+    setParental(userParental); // "pai" ou "mãe"
     navigation.navigate('cadastroii');
   };
 
@@ -52,21 +53,24 @@ export default function Cadastro_I({ navigation }) {
               placeholderTextColor="#FFB381"
               value={userAge}
               onChangeText={setUserAge}
-              keyboardType='numeric'
+              keyboardType="numeric"
             />
+
             <S.Wrapper_Parental>
               <S.QuestionText>Você é pai ou mãe?</S.QuestionText>
+
               <S.OptionButton
-                selected={userParental === true}
-                onPress={() => setUserParental(true)}
+                selected={userParental === 'pai'}
+                onPress={() => setUserParental('pai')}
               >
-                <S.OptionText selected={userParental === true}>Sim</S.OptionText>
+                <S.OptionText selected={userParental === 'pai'}>Pai</S.OptionText>
               </S.OptionButton>
+
               <S.OptionButton
-                selected={userParental === false}
-                onPress={() => setUserParental(false)}
+                selected={userParental === 'mãe'}
+                onPress={() => setUserParental('mãe')}
               >
-                <S.OptionText selected={userParental === false}>Não</S.OptionText>
+                <S.OptionText selected={userParental === 'mãe'}>Mãe</S.OptionText>
               </S.OptionButton>
             </S.Wrapper_Parental>
           </S.Wrapper_Input>
@@ -81,7 +85,7 @@ export default function Cadastro_I({ navigation }) {
 
         <S.Button_continuar
           onPress={handleCadastroii}
-          disabled={userName === "" || userAge === "" || userParental === null}
+          disabled={userName === '' || userAge === '' || userParental === null}
         >
           <S.Login_Button>CONTINUAR</S.Login_Button>
         </S.Button_continuar>
@@ -89,4 +93,3 @@ export default function Cadastro_I({ navigation }) {
     </S.Wrapper>
   );
 }
-

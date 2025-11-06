@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 import React from 'react';
 import * as S from './styles';
 import Button from '../Button';
@@ -8,7 +9,7 @@ interface ModalProps {
   onConfirm(): void;
 }
 
-const Modal : React.FC<ModalProps> = ({ visible, onRequestClose, onConfirm }) => {
+const LogoutModal: React.FC<ModalProps> = ({ visible, onRequestClose, onConfirm }) => {
   return (
     <S.ModalWrapper
       animationType='fade'
@@ -34,4 +35,4 @@ const Modal : React.FC<ModalProps> = ({ visible, onRequestClose, onConfirm }) =>
   );
 }
 
-export default Modal;
+export default LogoutModal;

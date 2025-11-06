@@ -1,56 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { ActivityIndicator, Platform, View } from 'react-native';
 import * as S from './styles';
-import { useEffect, useState } from 'react';
+import useAuth from '@hooks/useAuth';
 import PublicRoutes from './PublicRoutes';
 import PrivateRoutes from './PrivateRoutes';
-import useAuth from '@hooks/useAuth';
 import NavBar from '@components/Navbar';
 import Header from '@components/Header';
-import { Platform } from 'react-native';
-
 
 export function Rotas() {
   const { user, loading } = useAuth();
-  const [route, setRoute] = useState('public');
   const [OS, setOS] = useState('');
-  const routes = {
-    public: <PublicRoutes />,
-    private: <PrivateRoutes />,
-  }
-
-  const getRoutes = async() => {
-    if (!loading && user) {
-      setRoute('private');
-    } else {
-      setRoute('public')
-    }
-  }
 
   useEffect(() => {
-    getRoutes();
     if (Platform.OS === 'ios') {
       setOS('ios');
     } else {
       setOS('android');
     }
-    
-  }, [loading, user])
+  }, []);
+
+  if (loading) {
+    return <ActivityIndicator size={48} />
+  }
+
+  const isPrivate = !!user;
 
   return (
-    <S.View_Back OS={OS} >
-        {OS === 'ios' 
-          ? <S.Status barStyle='dark-content' translucent />
-          : <S.Status barStyle='light-content' />
-        }
-        <NavigationContainer>
-          {route === 'private' && (<Header />)}
-          {routes[route]}
-          {route === 'private' && (<NavBar />)}
-        </NavigationContainer>
+    <S.View_Back OS={OS}>
+      {OS === 'ios' ? (
+        <S.Status barStyle="dark-content" translucent />
+      ) : (
+        <S.Status barStyle="light-content" />
+      )}
+
+      <NavigationContainer>
+        {isPrivate && <Header />}
+        <View style={{ paddingBottom: isPrivate ? 32 : 0, flex: 1 }}>
+          {isPrivate ? <PrivateRoutes /> : <PublicRoutes />}
+        </View>
+        {isPrivate && <NavBar />}
+      </NavigationContainer>
     </S.View_Back>
   );
-};
+}
 
 export default Rotas;
-

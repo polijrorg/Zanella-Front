@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable @typescript-eslint/no-require-imports */
 import React, { useEffect, useState } from 'react';
 import * as S from './styles';
 import useAuth from '@hooks/useAuth';
@@ -28,7 +30,7 @@ const Topics = ({ navigation }) => {
   }, [user])
 
   useEffect(() => {
-    userSelectedTopics.length > 0 ? setIsDisabled(false) : setIsDisabled(true);
+    setIsDisabled(!(userSelectedTopics.length > 0));
   }, [userSelectedTopics])
 
   const handleUpdateTopics = async () => {

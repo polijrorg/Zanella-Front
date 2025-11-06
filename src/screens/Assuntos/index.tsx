@@ -1,3 +1,6 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-require-imports */
 import * as S from './styles';
 import React, { useEffect, useState } from 'react';
 import Cards_Assunto from '@components/Cards_Assunto';

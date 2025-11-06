@@ -23,8 +23,8 @@ export const Wrapper = styled(View)<IWrapperProps>`
 `;
 
 export const Wrapper_Icon = styled(TouchableOpacity)`
-width: 24px;
-height: 24px;
+width: 48px;
+height: 48px;
 align-items: center;
 justify-content: center;
 `;

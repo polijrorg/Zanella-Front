@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 import * as S from './styles';
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
@@ -35,11 +36,11 @@ export function NavBar() {
             case 'perfil': navigation.navigate('perfil'); handleMainPage(false); break;
           }
         }}>
-        {screen === 'main' && (<S.NavbarIcon source={require(`../../../public/assets/main.png`)}/>)}
-        {screen === 'diario' && (<S.NavbarIcon source={require(`../../../public/assets/diario.png`)}/>)}
-        {screen === 'assuntos' && (<S.NavbarIcon source={require(`../../../public/assets/assuntos.png`)}/>)}
-        {screen === 'forum' && (<S.NavbarIcon source={require(`../../../public/assets/forum.png`)}/>)}
-        {screen === 'perfil' && (<S.NavbarIcon source={require(`../../../public/assets/perfil.png`)}/>)}
+          {screen === 'main' && (<S.NavbarIcon source={require(`../../../public/assets/main.png`)}/>)}
+          {screen === 'diario' && (<S.NavbarIcon source={require(`../../../public/assets/diario.png`)}/>)}
+          {screen === 'assuntos' && (<S.NavbarIcon source={require(`../../../public/assets/assuntos.png`)}/>)}
+          {screen === 'forum' && (<S.NavbarIcon source={require(`../../../public/assets/forum.png`)}/>)}
+          {screen === 'perfil' && (<S.NavbarIcon source={require(`../../../public/assets/perfil.png`)}/>)}
         </S.Wrapper_Icon>
       )
     })}

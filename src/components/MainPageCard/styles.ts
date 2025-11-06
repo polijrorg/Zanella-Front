@@ -1,6 +1,5 @@
 import { theme } from '@styles/default.theme';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Text, Image, View, TouchableOpacity } from 'react-native';
+import { Text, Image, View } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Assunto = styled(View)`
@@ -10,6 +9,7 @@ export const Assunto = styled(View)`
   justify-content: center;
   gap: 8px;
   border-radius: 16px;
+  padding: 16px;
   background: ${ theme.colors.primary.BgSutil };
   elevation: 8;
 `;
@@ -25,6 +25,7 @@ export const CardTitle = styled(Text)`
   color: ${ theme.colors.primary.Texto };
   font-size: ${ props => props.cwidth > 400 ? 16 : 12 }px;
   font-weight: 400;
+  text-align: center;
 `;
 
 
