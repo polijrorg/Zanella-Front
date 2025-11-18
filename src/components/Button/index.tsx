@@ -6,14 +6,14 @@ import { useWindowDimensions } from 'react-native';
 export type ButtonProps = {
   text: string;
   style: string;
-  onPress(): any;
+  onPress(): () => void;
   size: string;
   animating?: boolean;
   disabled?: boolean;
   isSelected?: boolean;
   setIsSelected?: React.Dispatch<React.SetStateAction<boolean>>;
 }; 
-const Button: React.FC<ButtonProps> = ({ text, style, onPress, size, disabled, isSelected, setIsSelected, animating }) => {
+const Button: React.FC<ButtonProps> = ({ text, style, onPress, size, disabled, animating }) => {
   const { width } = useWindowDimensions();
   return (
     <S.Wrapper cwidth={width} onPress={onPress} style={style} size={size} disabled={disabled}>

@@ -53,7 +53,7 @@ export default class UserService {
         '/sessions/login',
         data
       );
-      
+
       return response.data;
     } catch (error: any) {
       const message =
@@ -70,13 +70,13 @@ export default class UserService {
     const token = await AsyncStorage.getItem('@app:token');
     try {
       const response: AxiosResponse<User> = await api.patch(
-        '/users/update', 
+        '/users/update',
         data,
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       );
 
       return response.data;
@@ -95,7 +95,7 @@ export default class UserService {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       );
 
       return response.data;
@@ -115,7 +115,7 @@ export default class UserService {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       );
 
       return response.data;
@@ -128,21 +128,21 @@ export default class UserService {
   static async deleteEntry(id: string): Promise<void> {
     const token = await AsyncStorage.getItem('@app:token');
     try {
-      await api.delete(
-        `/diary/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      await api.delete(`/diary/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-      );
+      });
     } catch (error) {
       console.log('deleteentry');
       throw new AppError(error);
     }
   }
 
-  static async updateEntry(data: IEntryPatchRequest, id: string): Promise<IEntryResponse> {
+  static async updateEntry(
+    data: IEntryPatchRequest,
+    id: string
+  ): Promise<IEntryResponse> {
     try {
       const token = await AsyncStorage.getItem('@app:token');
       const response: AxiosResponse<IEntryResponse> = await api.patch(
@@ -152,10 +152,10 @@ export default class UserService {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       );
 
-      return response.data; 
+      return response.data;
     } catch (error) {
       throw new AppError(error);
     }
@@ -164,14 +164,11 @@ export default class UserService {
   static async listSubjects(): Promise<any> {
     const token = await AsyncStorage.getItem('@app:token');
     try {
-      const response: AxiosResponse<any> = await api.get(
-        '/users/subjects',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      const response: AxiosResponse<any> = await api.get('/users/subjects', {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-      );
+      });
 
       return response.data;
     } catch (error) {
@@ -190,7 +187,7 @@ export default class UserService {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       );
 
       return response.data;
@@ -198,7 +195,7 @@ export default class UserService {
       console.log('getsubjects');
       throw new AppError(error);
     }
-  } 
+  }
 
   static async updateUserTopics(data: IUpdateTopicsRequest): Promise<any> {
     const token = await AsyncStorage.getItem('@app:token');
@@ -210,7 +207,7 @@ export default class UserService {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       );
 
       return response.data;
@@ -218,25 +215,20 @@ export default class UserService {
       console.log('updatetopics');
       throw new AppError(error);
     }
-
   }
 
   static async listTopics(): Promise<any> {
     const token = await AsyncStorage.getItem('@app:token');
     try {
-      const response: AxiosResponse<any> = await api.get(
-        '/users/topics',
-        {
-          headers: {
+      const response: AxiosResponse<any> = await api.get('/users/topics', {
+        headers: {
           Authorization: `Bearer ${token}`,
-          },
         },
-      );
+      });
 
       return response.data;
     } catch (error) {
-      console.log('listtopics');
       throw new AppError(error);
     }
-  } 
+  }
 }
