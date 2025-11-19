@@ -51,7 +51,7 @@ const ModalCalendar:React.FC<ICalendarModalProps> = ({
   }
   
   return (
-    <S.ModalWrapper visible={visible} transparent> 
+    <S.ModalWrapper animationType='fade' visible={visible} transparent>
       <S.ModalContainer>
         <S.CalendarContainer>
           <S.CloseIconWrapper>

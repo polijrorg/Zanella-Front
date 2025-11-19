@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 import React, { useEffect, useState } from 'react';
 import Button from '@components/Button';
 import SelectionButton from '@components/SelectionButton';
@@ -5,6 +6,7 @@ import * as S from './styles';
 import UserService from '@services/UserService';
 import useAuth from '@hooks/useAuth';
 import { useWindowDimensions } from 'react-native';
+import capitalize from '@utils/capitalize';
 
 const TopicsSelection = ({ navigation }) => {
   const [topics, setTopics] = useState<string[]>([]);
@@ -42,7 +44,7 @@ const TopicsSelection = ({ navigation }) => {
           </S.LeftSection>
           <S.RightSection>
             <S.QuestionBalloon>
-              <S.Question cwidth={width}>{"Oi " + user.name.split(' ')[0] + "! O que você gostaria de discutir hoje?"}</S.Question>
+              <S.Question cwidth={width}>{"Oi " + capitalize(user?.name.split(' ')[0]) + "! O que você gostaria de discutir hoje?"}</S.Question>
             </S.QuestionBalloon>
           </S.RightSection>
         </S.QuestionWrapper>

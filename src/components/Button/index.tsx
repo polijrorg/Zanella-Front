@@ -6,7 +6,7 @@ import { useWindowDimensions } from 'react-native';
 export type ButtonProps = {
   text: string;
   style: string;
-  onPress(): () => void;
+  onPress: () => void;
   size: string;
   animating?: boolean;
   disabled?: boolean;

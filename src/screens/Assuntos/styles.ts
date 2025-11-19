@@ -1,30 +1,36 @@
 import { theme } from '@styles/default.theme';
-import { View, Image, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import {
+  View,
+  Image,
+  TouchableOpacity,
+  TextInput,
+  ScrollView,
+} from 'react-native';
 import styled from 'styled-components/native';
 
 export const Wrapper = styled(View)`
   flex: 1;
   align-items: center;
-  background: ${ theme.colors.primary.BgTela };
+  background: ${theme.colors.primary.BgTela};
   gap: 24px;
 `;
 
 export const CardButton = styled(TouchableOpacity).attrs({
-  activeOpacity: 0.8
+  activeOpacity: 0.8,
 })`
   height: 120px;
-`
+`;
 export const HeaderGap = styled(View)`
   width: 100%;
-`
+`;
 export const Search_Wrapper = styled(View)`
   align-items: center;
   display: flex;
   flex-direction: row;
   width: 90%;
   border-radius: 24px;
-  border: 1px ${ theme.colors.primary.Borda };
-  color: ${ theme.colors.primary.BordaElemento };
+  border: 1px ${theme.colors.primary.Borda};
+  color: ${theme.colors.primary.BordaElemento};
 `;
 
 export const Search = styled(TouchableOpacity)`
@@ -53,7 +59,14 @@ export const CardContainer = styled(ScrollView).attrs({
   contentContainerStyle: {
     gap: 8,
     alignItems: 'center',
-  }
+  },
 })`
   width: 100%;
+`;
+
+export const DescriptionText = styled.Text`
+  font-size: 14px;
+  color: ${theme.colors.primary.TextoHigh};
+  margin-bottom: 12px;
+  text-align: center;
 `;

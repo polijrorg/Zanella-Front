@@ -7,6 +7,7 @@ import useAuth from '@hooks/useAuth';
 import MainPageCard from '@components/MainPageCard';
 import UserService from '@services/UserService';
 import { useWindowDimensions } from 'react-native';
+import capitalize from '@utils/capitalize';
 
 const Main = ({ navigation }) => {
   const { user, handleMainPage } = useAuth();
@@ -50,7 +51,7 @@ const Main = ({ navigation }) => {
     <S.Wrapper>
       <S.Wrapper_TalkButton cwidth={width} onPress={() => navigation.navigate('selection')}>
         <S.Wrapper_Talk cwidth={width}>
-          <S.Talk cwidth={width}>{`Oi,${' ' + user?.name.split(' ')[0] + '!' || ','} Estou aqui se quiser ajuda!`}</S.Talk>
+          <S.Talk cwidth={width}>{`Oi,${' ' + capitalize(user?.name.split(' ')[0]) + '!' || ','} Estou aqui se quiser ajuda!`}</S.Talk>
         </S.Wrapper_Talk>
       </S.Wrapper_TalkButton>
       <S.Nelson cwidth={width} source={require('@assets/JabutiNelson_SemFundoEsq3.png')}/>

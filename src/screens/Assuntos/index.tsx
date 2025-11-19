@@ -35,6 +35,9 @@ const Assuntos = (props) => {
   return(
     <S.Wrapper>
       <S.HeaderGap />
+      <S.DescriptionText>
+        Aqui você pode explorar todos os assuntos disponíveis, filtrar pelo título, descrição ou tópicos e clicar em qualquer card para ver os detalhes completos do assunto.
+      </S.DescriptionText>
       <S.Search_Wrapper>
         <S.Search><S.Search_Icon source={require('../../../public/assets/SearchIcon.png')}/></S.Search>
         <S.Search_Input 

@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import useAuth from '@hooks/useAuth';
 import { useWindowDimensions } from 'react-native';
 import Nelson from '@assets/JabutiNelson_GramaFundo.jpg';
+import capitalize from '@utils/capitalize';
 
 const Perfil = () => {
   const [modal, setModal] = useState(false);
@@ -48,7 +49,7 @@ const Perfil = () => {
 
       <S.ImageGroup>
         <S.NelsonImage source={Nelson} />
-        <S.UserName>{synchronizedUser.name}</S.UserName>
+        <S.UserName>{capitalize(synchronizedUser.name ?? '')}</S.UserName>
       </S.ImageGroup>
 
       <S.AttributesWrapper>
