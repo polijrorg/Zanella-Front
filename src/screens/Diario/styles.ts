@@ -3,100 +3,140 @@ import { Text, View, Image, TouchableOpacity, TextInput } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Wrapper = styled(View)`
-  padding: 16px;
   flex: 1;
-  gap: 16px;
+  padding: 16px;
+  background: ${theme.colors.primary.BgTela};
   align-items: center;
-  background: ${ theme.colors.primary.BgTela };
 `;
 
 export const Header = styled(View)`
   flex-direction: row;
   width: 100%;
-  height: 32px;
-  background: ${ theme.colors.primary.BgSutil };
+  max-width: 600px;
+  height: auto;
+  padding: 8px 16px;
+  background: ${theme.colors.primary.BgSutil};
   justify-content: space-between;
   align-items: center;
-  padding: 4px 16px;
-`
+  border-radius: 12px;
+`;
+
 export const CurrentDate = styled(Text)`
-  color: ${ theme.colors.primary.Texto };
-  font-size: 16px;
+  color: ${theme.colors.primary.Texto};
+  font-size: 18px;
   font-weight: 700;
-`
+`;
+
 export const ButtonsContainer = styled(View)`
   flex-direction: row;
-  gap: 16px;
-`
+  gap: 12px;
+`;
+
 export const CalendarButton = styled(TouchableOpacity)`
-`
+  padding: 6px;
+`;
+
 export const EditButton = styled(TouchableOpacity)`
-  width: 24px;
-`
+  padding: 6px;
+`;
+
 export const DeleteButton = styled(TouchableOpacity)`
-`
+  padding: 6px;
+`;
+
 export const CalendarIcon = styled(Image)`
+  width: 26px;
+  height: 26px;
+`;
+
+export const EditIcon = styled(Image)`
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+  border-radius: 8px;
+  background-color: ${(props) =>
+    props.mode === 'editing'
+      ? theme.colors.primary.Grass.escura
+      : theme.colors.primary.BgTela};
+`;
+
+export const DeleteIcon = styled(Image)`
   width: 24px;
   height: 24px;
-`
-export const EditIcon = styled(Image)`
-  background-color: ${(props) => props.mode === "editing" ? theme.colors.primary.Grass.escura : theme.colors.primary.BgTela};
-  border-radius: 8px;
-  width: 28px;
-  padding: 2px;
-  height: 24px;
-`
-export const DeleteIcon = styled(Image)`
-  width: 22px;
-  height: 22px;
-`
+`;
+
 export const Body = styled(View)`
-  border: 1px solid ${ theme.colors.primary.Grass.escura };
   flex: 1;
-  justify-content: flex-start;
+  width: 100%;
+  max-width: 600px;
+  padding: 16px;
+  border: 1px solid ${theme.colors.primary.Grass.escura};
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
-  width: 100%;
-  padding: 16px;
-  align-items: flex-start;
-  gap: 16px;
-`
+  background: ${theme.colors.primary.BgTela};
+  gap: 20px;
+`;
+
+/* ====== Conteúdo de leitura ====== */
+
 export const EntryTitle = styled(Text)`
-  font-size: 16px; 
-  height: 32px;
+  font-size: 18px;
   font-weight: 700;
-  color: ${ theme.colors.primary.Texto };
-`
+  color: ${theme.colors.primary.Texto};
+  flex-shrink: 1;
+`;
+
 export const EntryContent = styled(Text)`
-  font-size: 14px;
-  color: ${ theme.colors.primary.Texto };
-`
+  font-size: 16px;
+  color: ${theme.colors.primary.Texto};
+  flex-shrink: 1;
+`;
+
+/* ====== Inputs ====== */
+
 export const EntryTitleInput = styled(TextInput).attrs({
-  'placeholderTextColor': `${ theme.colors.primary.Texto }`
+  placeholderTextColor: theme.colors.primary.Texto,
 })`
   width: 100%;
-  height: 32px;
-  font-size: 16px; 
+  min-height: 40px;
+  padding: 6px 4px;
+  font-size: 18px;
   font-weight: 700;
-  color: ${ theme.colors.primary.Texto };
-`
+  color: ${theme.colors.primary.Texto};
+  border-radius: 8px;
+`;
+
 export const EntryContentInput = styled(TextInput).attrs({
-  'placeholderTextColor': `${ theme.colors.primary.TextoHigh }`
+  placeholderTextColor: theme.colors.primary.TextoHigh,
 })`
   width: 100%;
-  min-height: 32px;
-  font-size: 14px;
-  color: ${ theme.colors.primary.TextoHigh };
-`
+  min-height: 120px;
+  max-height: 300px;
+  padding: 10px 6px;
+  font-size: 16px;
+  color: ${theme.colors.primary.TextoHigh};
+  border-radius: 8px;
+  text-align-vertical: top;
+`;
+
+/* Criar botão */
 export const CreateButton = styled(TouchableOpacity)`
-  width: 24px;
-  height: 24px;
+  width: 36px;
+  height: 36px;
   justify-content: center;
   align-items: center;
-  border-radius: 8px;
-  background: ${ theme.colors.primary.Grass.escura };
-`
+  border-radius: 10px;
+  background: ${theme.colors.primary.Grass.escura};
+`;
+
 export const ButtonIcon = styled(Image)`
   width: 24px;
   height: 24px;
-`
+`;
+
+export const DescriptionText = styled.Text`
+  font-size: 14px;
+  color: ${theme.colors.primary.TextoHigh};
+  margin-bottom: 12px;
+  text-align: center;
+`;

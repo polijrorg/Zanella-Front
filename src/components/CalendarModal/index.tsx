@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React from 'react';
 import * as S from './styles';
 import { Calendar, LocaleConfig } from 'react-native-calendars';
 import { theme } from '@styles/default.theme';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 LocaleConfig.locales['br'] = {
   monthNames: [
@@ -37,8 +40,7 @@ const ModalCalendar:React.FC<ICalendarModalProps> = ({
   visible,
   setVisibility,
   setDate,
-  date,
-}) => {
+}: any) => {
   const initialDate = `${new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + (new Date().getDate())}`;
   const [selectedDate, setSelectedDate] = useState<string>(initialDate);
 
@@ -57,39 +59,37 @@ const ModalCalendar:React.FC<ICalendarModalProps> = ({
               <S.CloseIcon source={require('@assets/CloseIcon.png')}/>
             </S.CloseIconButton>
           </S.CloseIconWrapper>
-          <Calendar 
+          <Calendar
             onDayPress={(day) => {
-              handleDayPress(day.dateString)
-              setSelectedDate(day.dateString)
-            }}
-            setState={{
-              selectedDate,
+              handleDayPress(day.dateString);
+              setSelectedDate(day.dateString);
             }}
             style={{
               width: 321,
               paddingRight: 4,
               paddingLeft: 4,
             }}
+            monthFormat='MMM yyyy'
             markedDates={{
               [selectedDate]: {
                 selected: true,
-                selectedColor: `${theme.colors.primary.BordaElemento}`,
+                selectedColor: theme.colors.primary.BordaElemento,
               },
             }}
             theme={{
-              backgroundColor: `${theme.colors.primary.BgSutil}`,
-              calendarBackground: `${theme.colors.primary.BgSutil}`,
-              textSectionTitleColor: `${theme.colors.primary.TextoHigh}`,
-              selectedDayTextColor: `${theme.colors.primary.BgSutil}`,
-              selectedDayBackgroundColor: `${theme.colors.primary.Grass.clara}`,
-              dayTextColor: `${theme.colors.primary.TextoHigh}`,
-              todayTextColor: `${theme.colors.primary.BgTela}`,
-              arrowColor: `${theme.colors.primary.Grass.clara}`,
-              monthTextColor: `${theme.colors.primary.TextoHigh}`,
+              backgroundColor: theme.colors.primary.BgSutil,
+              calendarBackground: theme.colors.primary.BgSutil,
+              textSectionTitleColor: theme.colors.primary.TextoHigh,
+              selectedDayTextColor: theme.colors.primary.BgSutil,
+              selectedDayBackgroundColor: theme.colors.primary.Grass.clara,
+              dayTextColor: theme.colors.primary.TextoHigh,
+              todayTextColor: theme.colors.primary.BgTela,
+              arrowColor: theme.colors.primary.Grass.clara,
+              monthTextColor: theme.colors.primary.TextoHigh,
               textMonthFontWeight: '400',
-              textDayFontWeight: '400',  
+              textDayFontWeight: '400',
               textDayHeaderFontSize: 10,
-              todayBackgroundColor: `${theme.colors.primary.Grass.clara}`,
+              todayBackgroundColor: theme.colors.primary.Grass.clara,
               weekVerticalMargin: 0,
             }}
           />

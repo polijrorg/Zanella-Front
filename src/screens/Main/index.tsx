@@ -23,8 +23,7 @@ const Main = ({ navigation }) => {
   const getUserSubjects = async () => {
     try {
       const response = await UserService.getSubjects(user);
-      console.log(response);
-
+      console.log(response.map((subject: any) => subject.thumbnail));
       setUserSubjects(response);
     } catch (error) {
       console.log(error);
@@ -63,7 +62,7 @@ const Main = ({ navigation }) => {
               <S.Button activeOpacity={0.8} key={index} onPress={() => navigation.navigate('assunto', {
                 title: subject.title,
                 description: subject.description,
-                thumbnail: subject.thumbnail,
+                thumbnail: subject.thumbnail ?? 'https://picsum.photos/300',
                 hints: subject.hints,
                 contents: subject.contents,
                 subjectTopics: subject.subjectTopics
@@ -71,8 +70,8 @@ const Main = ({ navigation }) => {
                 <MainPageCard 
                   key={index}
                   title={subject.title} 
-                  image={subject.thumbnail} 
-                  />
+                  image={subject.thumbnail ?? 'https://picsum.photos/300'} 
+                />
               </S.Button>
             ))}
           </S.Wrapper_Assunto>
@@ -83,7 +82,7 @@ const Main = ({ navigation }) => {
             <S.Button activeOpacity={0.8} key={index} onPress={() => navigation.navigate('assunto', {
               title: subject.title,
               description: subject.description,
-              thumbnail: subject.thumbnail,
+              thumbnail: subject.thumbnail ?? 'https://picsum.photos/300',
               hints: subject.hints,
               contents: subject.contents,
               subjectTopics: subject.subjectTopics
@@ -91,7 +90,7 @@ const Main = ({ navigation }) => {
               <MainPageCard 
                 key={index}
                 title={subject.title} 
-                image={subject.thumbnail} 
+                image={subject.thumbnail ?? 'https://picsum.photos/300'} 
                 />
             </S.Button>
           ))}

@@ -1,161 +1,209 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 import * as S from './styles';
-import React, { useEffect, useState } from 'react';
-import UserService, {IEntryPatchRequest} from '@services/UserService';
+import React, { useEffect, useState, useCallback } from 'react';
+import UserService, { IEntryPatchRequest } from '@services/UserService';
 import { AppError } from '@utils/AppError';
 import CalendarModal from '@components/CalendarModal';
+import { ScrollView } from 'react-native';
 
-const Diario = ({navigation}) => { 
+const Diario = () => {
+
   const [date, setDate] = useState(new Date());
-  const initialDate = (date.getDate()) + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
 
-  const [TitleDate, setTitleDate] = useState(initialDate);
-
-  // to get entry
+  // Dados da entry atual
   const [entryTitle, setEntryTitle] = useState('');
   const [entryContent, setEntryContent] = useState('');
-  const [id, setId] = useState(''); 
+  const [id, setId] = useState('');
 
-  // to post entry
+  // Dados novos
   const [newEntryTitle, setNewEntryTitle] = useState('');
   const [newEntryContent, setNewEntryContent] = useState('');
 
-  // to update entry 
-  const [toggleUpdate, setToggleUpdate] = useState(false);
+  // modo: reading | writing | editing
+  const [mode, setMode] = useState<'reading' | 'writing' | 'editing'>('reading');
 
-  const [mode, setMode] = useState('reading');
-
+  // modal
   const [visible, setVisibility] = useState(false);
 
-  const getCurrentEntry =  async () => { 
-    const formattedDate = (date.getDate()) + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
-    setTitleDate(formattedDate);
-    
-    const requestDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate());
-    
+  // trigger refetch
+  const [refresh, setRefresh] = useState(false);
+
+  const formatDisplayDate = (d: Date) =>
+    `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
+
+  const formatRequestDate = (d: Date) =>
+    `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+
+  const refreshEntry = () => setRefresh(prev => !prev);
+
+  const getCurrentEntry = useCallback(async () => {
+    const requestDate = formatRequestDate(date);
+
     try {
       const response = await UserService.getDateEntry(requestDate);
-  
-      if(response.length == 0){
-        setMode('writing')
-        setEntryTitle(null);
-        setEntryContent(null);
+
+      if (!response || response.length === 0) {
+        setEntryTitle('');
+        setEntryContent('');
+        setId('');
+        setMode('writing');
       } else {
         setEntryTitle(response[0].title);
         setEntryContent(response[0].content);
         setId(response[0].id);
-        setMode('reading')
+        setMode('reading');
       }
 
+      // limpa campos de edição
+      setNewEntryTitle('');
+      setNewEntryContent('');
 
     } catch (error) {
       throw new AppError(error.message);
     }
-  }
+  }, [date]);
 
   const handleSave = async () => {
-    if (newEntryContent.length == 0) {
-      return
-    }
+    if (!newEntryContent.trim()) return;
+
     try {
       await UserService.postEntry({
-        date: (date.getFullYear()) + "-" + (date.getMonth() + 1) + "-" + date.getDate(),
+        date: formatRequestDate(date),
         title: newEntryTitle,
         content: newEntryContent,
       });
 
-      setToggleUpdate(!toggleUpdate);
+      refreshEntry();
       setMode('reading');
+
     } catch (error) {
-      throw new AppError(error); 
+      throw new AppError(error);
     }
-  }
+  };
 
   const handleUpdate = async () => {
     const updateRequest: IEntryPatchRequest = {
-      title: newEntryTitle ? newEntryTitle : entryTitle,
-      content: newEntryContent ? newEntryContent : entryContent,
-    }
+      title: newEntryTitle || entryTitle,
+      content: newEntryContent || entryContent,
+    };
 
     try {
       await UserService.updateEntry(updateRequest, id);
+      refreshEntry();
+      setMode('reading');
     } catch (error) {
-      throw new AppError(error); 
+      throw new AppError(error);
     }
-  }
+  };
 
   const handleDelete = async () => {
+    if (!id) return;
+
     try {
       await UserService.deleteEntry(id);
-      setToggleUpdate(!toggleUpdate)
+      refreshEntry();
+      setMode('writing');
+
     } catch (error) {
-      throw new AppError(error); 
+      throw new AppError(error);
     }
-  }
+  };
 
   useEffect(() => {
     getCurrentEntry();
-  }, [date, toggleUpdate])
+  }, [getCurrentEntry, refresh]);
 
   return (
     <S.Wrapper>
+      <S.DescriptionText>
+        Aqui você pode registrar suas entradas diárias. Selecione uma data pelo ícone de calendário,
+        escreva ou edite o conteúdo e salve para registrar suas notas.
+      </S.DescriptionText>
+
       <S.Header>
-        <S.CurrentDate>{`${TitleDate}`}</S.CurrentDate>
-        <CalendarModal visible={visible} setVisibility={setVisibility} setDate={setDate} date={date}/>
+        <S.CurrentDate>{formatDisplayDate(date)}</S.CurrentDate>
+
+        <CalendarModal
+          visible={visible}
+          setVisibility={setVisibility}
+          date={date}
+          setDate={setDate}
+        />
+
         <S.ButtonsContainer>
-          <S.DeleteButton onPress={() => {
-            handleDelete();
-            setMode('reading');
-            setToggleUpdate(!toggleUpdate);
-          }}>
-            <S.DeleteIcon source={require('@assets/trashCan.png')}/>
+          <S.DeleteButton
+            onPress={handleDelete}
+          >
+            <S.DeleteIcon source={require('@assets/trashCan.png')} />
           </S.DeleteButton>
-          <S.EditButton onPress={() => {
-            if (mode === 'editing') {
-              setMode('reading');
-              setToggleUpdate(!toggleUpdate);
-            } else {
-              setMode('editing');
-            }
-          }}>
-            <S.EditIcon mode={mode} source={mode === 'editing' ? require('@assets/check.png') : require('@assets/edit.png')}/>
+
+          <S.EditButton
+            onPress={() => {
+              if (!id) return;
+
+              if (mode === 'editing') {
+                handleUpdate();
+              } else {
+                setNewEntryTitle(entryTitle);
+                setNewEntryContent(entryContent);
+                setMode('editing');
+              }
+            }}
+          >
+            <S.EditIcon
+              mode={mode}
+              source={
+                mode === 'editing'
+                  ? require('@assets/check.png')
+                  : require('@assets/edit.png')
+              }
+            />
           </S.EditButton>
+
           <S.CalendarButton onPress={() => setVisibility(true)}>
-            <S.CalendarIcon source={require('@assets/carbon_calendar.png')}/>
+            <S.CalendarIcon source={require('@assets/carbon_calendar.png')} />
           </S.CalendarButton>
         </S.ButtonsContainer>
       </S.Header>
+
       <S.Body>
         {mode === 'reading' ? (
-          <>
-            <S.EntryTitle>{`${entryTitle}`}</S.EntryTitle>
-            <S.EntryContent>{`${entryContent}`}</S.EntryContent>
-          </>
+          <ScrollView
+            style={{ width: '100%' }}
+            contentContainerStyle={{ paddingBottom: 16 }}
+            showsVerticalScrollIndicator={true}
+          >
+            <S.EntryTitle>{entryTitle}</S.EntryTitle>
+            <S.EntryContent>{entryContent}</S.EntryContent>
+          </ScrollView>
         ) : (
           <>
-            <S.EntryTitleInput 
-              multiline={true} 
-              placeholder={"Título"} 
-              defaultValue={entryTitle} 
-              onChangeText={(text) => setNewEntryTitle(text)} 
+            <S.EntryTitleInput
+              multiline
+              placeholder="Título"
+              value={newEntryTitle}
+              onChangeText={setNewEntryTitle}
             />
-            <S.EntryContentInput 
-              multiline={false} 
-              placeholder={"Conteúdo"} 
-              defaultValue={entryContent} 
-              onChangeText={(text) => setNewEntryContent(text)} 
+
+            <S.EntryContentInput
+              placeholder="Conteúdo"
+              multiline
+              scrollEnabled={true}
+              value={newEntryContent}
+              onChangeText={setNewEntryContent}
+              textAlignVertical="top"
               onEndEditing={() => {
-                mode === 'editing' 
-                  ? handleUpdate() 
-                  : mode === 'writing' 
-                    ? handleSave()
-                    : null
+                if (mode === 'editing') handleUpdate();
+                if (mode === 'writing') handleSave();
               }}
             />
           </>
         )}
       </S.Body>
+
+
     </S.Wrapper>
-  )
+  );
 };
 
 export default Diario;

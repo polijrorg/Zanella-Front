@@ -1,16 +1,17 @@
 import { theme } from '@styles/default.theme';
-import { Text, Image, View } from 'react-native';
+import { Text, View } from 'react-native';
+import { Image } from 'expo-image';
 import styled from 'styled-components/native';
 
 export const Assunto = styled(View)`
-  width: ${ props => props.cwidth > 400 ? 176 : 140 }px;
-  height: ${ props => props.cwidth > 400 ? 130 : 120 }px;
+  width: ${(props) => (props.cwidth > 400 ? 176 : 140)}px;
+  height: ${(props) => (props.cwidth > 400 ? 130 : 120)}px;
   align-items: center;
   justify-content: center;
   gap: 8px;
   border-radius: 16px;
   padding: 16px;
-  background: ${ theme.colors.primary.BgSutil };
+  background: ${theme.colors.primary.BgSutil};
   elevation: 8;
 `;
 
@@ -22,10 +23,8 @@ export const CardImage = styled(Image)`
 
 export const CardTitle = styled(Text)`
   font-family: Poppins;
-  color: ${ theme.colors.primary.Texto };
-  font-size: ${ props => props.cwidth > 400 ? 16 : 12 }px;
+  color: ${theme.colors.primary.Texto};
+  font-size: ${(props) => (props.cwidth > 400 ? 16 : 12)}px;
   font-weight: 400;
   text-align: center;
 `;
-
-
