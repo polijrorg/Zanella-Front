@@ -16,7 +16,7 @@ export function NavBar() {
   // ]
 
   const screens = [
-    'main', 'diario', 'assuntos', 'perfil'
+    'main', 'diario', 'assuntos', 'forum', 'perfil'
   ]
 
   useEffect(() => {

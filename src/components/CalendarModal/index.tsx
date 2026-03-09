@@ -48,6 +48,7 @@ const ModalCalendar:React.FC<ICalendarModalProps> = ({
     const dateString = date.split('-');
     const dateTime = new Date(parseInt(dateString[0]), parseInt(dateString[1]) - 1, parseInt(dateString[2]));
     setDate(dateTime);
+    setVisibility(false);
   }
   
   return (

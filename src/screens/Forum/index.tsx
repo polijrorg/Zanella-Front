@@ -1,25 +1,40 @@
 import * as S from './styles';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import Cards_Forum from '@components/Cards_Forum';
-import axios from 'axios';
-import { Keyboard } from 'react-native';
+import UserService from '@services/UserService';
+import { Keyboard, ScrollView } from 'react-native';
+
+interface IForumPost {
+  id?: string;
+  title: string;
+  subtitle: string;
+  commentCount?: number;
+}
 
 const Forum = () => {
   
   const [searchtext, setSearchtext] = useState("");
+  const [data, setData] = useState<IForumPost[]>([]);
 
-  const [data, setData] = useState([]);
-
-  const request = async () => {
-    Keyboard.dismiss()
-
+  const loadForum = async () => {
+    Keyboard.dismiss();
     try {
-      const product = axios.get("")
+      const response = await UserService.listForum();
+      setData(response || []);
     } catch (e) {
-
+      console.log('Erro ao carregar fórum:', e);
     }
   };
+
+  useEffect(() => {
+    loadForum();
+  }, []);
+
+  const filteredData = data.filter((post) =>
+    post.title?.toLowerCase().includes(searchtext.toLowerCase()) ||
+    post.subtitle?.toLowerCase().includes(searchtext.toLowerCase())
+  );
 
   return(
   <S.Wrapper>
@@ -34,11 +49,11 @@ const Forum = () => {
         onChangeText={(value) => setSearchtext(value)}
         />
       </S.Search_Wrapper>
-      <Cards_Forum title={'Título do Fórum'} subtitle='Descrição do Fórum' />
-      <Cards_Forum title={'Título do Fórum'} subtitle='Descrição do Fórum' />
-      <Cards_Forum title={'Título do Fórum'} subtitle='Descrição do Fórum' />
-      <Cards_Forum title={'Título do Fórum'} subtitle='Descrição do Fórum' />
-      <Cards_Forum title={'Título do Fórum'} subtitle='Descrição do Fórum' />
+      <ScrollView style={{ width: '100%' }} contentContainerStyle={{ gap: 16, paddingBottom: 16 }} showsVerticalScrollIndicator={false}>
+        {filteredData.map((post, index) => (
+          <Cards_Forum key={post.id || index} title={post.title} subtitle={post.subtitle} commentCount={post.commentCount} />
+        ))}
+      </ScrollView>
     </S.Container>
   </S.Wrapper>
 )

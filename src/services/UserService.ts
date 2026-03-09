@@ -217,6 +217,22 @@ export default class UserService {
     }
   }
 
+  static async listForum(): Promise<any> {
+    const token = await AsyncStorage.getItem('@app:token');
+    try {
+      const response: AxiosResponse<any> = await api.get('/forum', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return response.data;
+    } catch (error) {
+      console.log('listforum');
+      throw new AppError(error);
+    }
+  }
+
   static async listTopics(): Promise<any> {
     const token = await AsyncStorage.getItem('@app:token');
     try {

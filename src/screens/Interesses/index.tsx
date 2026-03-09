@@ -28,10 +28,10 @@ const Interesses = ({navigation}) => (
     </S.Container>
 
     <S.Wrapper_Bottom>
-      <S.Wrapper_Pular>
+      <S.Wrapper_Pular onPress={() => navigation.navigate('main')}>
         <S.Pular_Text>PULAR</S.Pular_Text>
       </S.Wrapper_Pular>
-      <S.Wrapper_Continuar>
+      <S.Wrapper_Continuar onPress={() => navigation.navigate('main')}>
         <S.Continuar_Text>CONTINUAR</S.Continuar_Text>
       </S.Wrapper_Continuar>
     </S.Wrapper_Bottom>
